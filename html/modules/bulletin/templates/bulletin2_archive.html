@@ -1,0 +1,54 @@
+<{strip}>
+<table class="outer" cellspacing="1">
+  <tr>
+    <th colspan="13"><{$lang_newsarchives}></th>
+  </tr>
+
+  <{foreach item=year from=$years}>
+    <tr>
+      <td class="head"><{$year.string}></td>
+      <{foreach item=month from=$year.months}>
+        <{if $month.current}>
+          <td class="even" align="center" style="background-color:#fcc;color:#0000ff;"><b><{$month.string}></b></td>
+        <{elseif $month.link}>
+          <td class="even" align="center"><a href="<{$myurl}>/archive.php?year=<{$year.number}>&month=<{$month.number}>"><{$month.string}></a></td>
+        <{else}>
+          <td class="odd" align="center"><{$month.string}></td>
+        <{/if}>
+      <{/foreach}>
+    </tr>
+  <{/foreach}>
+  
+</table>
+<br />
+
+<{if $show_articles == true}>
+
+  <table class="outer" cellspacing="1">
+    <tr>
+      <th><{$lang_articles}></th>
+      <th align="center"><{$lang_actions}></th>
+      <th align="center"><{$lang_views}></th>
+      <th align="center"><{$lang_date}></th>
+    </tr>
+
+    <{foreach item=story from=$stories}>
+    <tr class="<{cycle values="even, odd"}>">
+      <td><a href="<{$myurl}>/index.php?storytopic=<{$story.topicid}>"><{$story.topic}></a> : <a href="<{$myurl}>/article.php?storyid=<{$story.id}>"><{$story.title}></a></td>
+      <td align="center">
+        <a href="<{$story.print_link}>">
+        <img src="images/print.gif" alt="<{$lang_printer}>" /></a>&nbsp;
+        <a href="<{$story.mail_link}>" target="_top" />
+        <img src="images/friend.gif" alt="<{$lang_sendstory}>" /></a></td>
+      <td align="center"><{$story.counter}></td>
+      <td align="center"><{$story.date}></td>
+    </tr>
+    <{/foreach}>
+
+  </table>
+
+  <div><{$lang_storytotal}></div>
+
+<{/if}>
+
+<{/strip}>

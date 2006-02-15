@@ -1,0 +1,25 @@
+<{strip}>
+  
+  <{assign var="lang_postedby" value=$block.lang_postedby}>
+  <{assign var="lang_on" value=$block.lang_on}>
+  <{assign var="lang_reads" value=$block.lang_reads}>
+  <{assign var="lang_readmore" value=$block.lang_readmore}>
+  <{assign var="myurl" value=$block.myurl}>
+
+<{if $block.disphometext}>
+  <{include file="db:bulletin_item.html" story=$block.TopStory}>
+<{/if}>
+
+<ul>
+  <{foreach item=news from=$block.stories}>
+  <li><a href="<{$block.myurl}>/article.php?storyid=<{$news.id}>"><{$news.title}></a>
+  <{if $block.type == "published"}>
+    (<{$news.date}>)
+  <{else}>
+    (<{$news.hits}>)
+  <{/if}>
+  </li>
+  <{/foreach}>
+</ul>
+
+<{/strip}>

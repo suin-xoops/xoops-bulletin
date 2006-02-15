@@ -1,0 +1,56 @@
+<{strip}>
+<table width="100%" border="0" cellspacing="1" class="outer">
+  <tr>
+    <td class="odd">
+      <h4><a href="<{$myurl}>/admin/"><{$admin_title}></a>&nbsp;&raquo;&raquo;&nbsp;<a href="<{$myurl}>/admin/index.php?op=list"><{$_MI_BULLETIN_ADMENU5}></a>&nbsp;&raquo;&raquo;&nbsp;<{$table_title}></h4>
+    </td>
+  </tr>
+</table>
+
+<p><{$navi}></p>
+
+<table class="outer" cellpadding="4" cellspacing="1" width="100%">
+  <tr align="center">
+    <th width="40"><{$_AM_STORYID}></th>
+    <th><{$_AM_TITLE}></th>
+    <th width="100"><{$_AM_TOPIC}></th>
+    <th width="100"><{$_AM_POSTER}></th>
+    <th width="150">
+    <{if $mode == 'newsubmission'}>
+      <{$_AM_POSTED}>
+    <{elseif $mode == 'autostory'}>
+      <{$_AM_PROGRAMMED}>
+    <{else}>
+      <{$_AM_PUBLISHED}>
+    <{/if}>
+    </th>
+    <th width="150"><{$_AM_EXPIRED}></th>
+    <th width="80"><{$_AM_ACTION}></th>
+  </tr>
+  <{foreach item=i from=$stories}>
+    <tr align="center" class="<{cycle values="odd,even"}>">
+      <td><{$i.storyid}></td>
+      <td align="left"><{$i.title}></td>
+      <td><{$i.topic}></td>
+      <{if $i.uid}>
+        <td><{$i.uname}></td>
+      <{else}>
+        <td><a href="<{$xoops_url}>/userinfo.php?uid=<{$i.uid}>"><{$i.uname}></a></td>
+      <{/if}>
+      <td>
+      <{if $mode == 'newsubmission'}>
+        <{$i.created}>
+      <{else}>
+        <{$i.published}>
+      <{/if}>
+      </td>
+      <td><{$i.expired}></td>
+      <td><a href="index.php?op=form&amp;storyid=<{$i.storyid}>"><{$_AM_EDIT}></a>
+      &nbsp;<a href="index.php?op=delete&amp;storyid=<{$i.storyid}>"><{$_AM_DELETE}></a></td>
+    </tr>
+  <{/foreach}>
+</table>
+
+<p><{$navi}></p>
+
+<{/strip}>
