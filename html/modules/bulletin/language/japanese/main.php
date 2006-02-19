@@ -16,7 +16,7 @@ define("_MD_NUMCOMMENTS","%sコメント");
 //%%%%%%		File Name submit.php		%%%%%
 define("_MD_SUBMITNEWS","ニュース投稿");
 define("_MD_TITLE","表題");
-define("_MD_TOPIC","トピック");
+define("_MD_TOPIC","カテゴリ");
 define("_MD_THESCOOP","メッセージ本文");
 define("_MD_NOTIFYPUBLISH","ニュースが承認された旨をメールで受け取る");
 define("_MD_POST","投稿する");
@@ -41,7 +41,7 @@ define("_MD_THEREAREINTOTAL","計 %s 件のニュース記事があります");
 define("_MD_INTARTICLE","%sで見つけた興味深いニュース");
 define("_MD_INTARTFOUND","以下は%sで見つけた非常に興味深いニュース記事です：");
 
-define("_MD_TOPICC","トピック：");
+define("_MD_TOPICC","カテゴリ：");
 define("_MD_URL","URL：");
 define("_MD_NOSTORY","選択されたニュース記事は存在しません");
 
@@ -79,7 +79,10 @@ define("_MD_SEPTEMBER", "9月");
 define("_MD_OCTOBER", "10月");
 define("_MD_NOVEMBER", "11月");
 define("_MD_DECEMBER", "12月");
-define("_MD_NO_TOPICS","トピックがありません。");
+define("_MD_NO_TOPICS","カテゴリがありません。");
+
+// ver 1.01 added
+define("_MD_RSS", "RSS");
 
 }
 ?>

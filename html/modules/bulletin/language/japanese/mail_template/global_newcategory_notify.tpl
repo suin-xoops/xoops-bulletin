@@ -1,8 +1,8 @@
 {X_UNAME}さん、こんにちは
 
-{X_SITENAME}にて新規トピックが作成されました。
+{X_SITENAME}にて新規カテゴリが作成されました。
 
-トピック名：　{TOPIC_NAME}
+カテゴリ名：　{TOPIC_NAME}
 
 -----------
 

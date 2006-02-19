@@ -41,7 +41,8 @@ if ($op == 'preview' || $op == 'save') {
 	}
 }
 
-if( $op == 'newarticle' ) {
+// トピックがひとつもない
+if( $op == 'form' ) {
 	$BTopic = new BulletinTopic();
 	if( !$BTopic->topicExists() ){
 		redirect_header($myurl.'/admin/index.php?op=topicsmanager', 3, _AM_NO_TOPICS);
@@ -60,15 +61,8 @@ default:
 	foreach( $adminmenu as $i => $v ) $adminmenu[$i]['link'] = $myurl.'/'.$adminmenu[$i]['link'];
 	
 	$asssigns = array(
-		'_MI_BULLETIN_ADMENU1' => _MI_BULLETIN_ADMENU1,
-		'_MI_BULLETIN_ADMENU1_D' => _MI_BULLETIN_ADMENU1_D,
-		'_MI_BULLETIN_ADMENU7' => _MI_BULLETIN_ADMENU7,
-		'_MI_BULLETIN_ADMENU7_D' => _MI_BULLETIN_ADMENU7_D,
-		'admin_title' => sprintf(_AM_CONFIG, $xoopsModule->name()),
 		'module_id' => $module->getvar('mid'),
-		'items' => $adminmenu,
-		'xoops_url' => XOOPS_URL,
-		'myurl' => $myurl
+		'items' => $adminmenu
 	);
 
 	break;
@@ -79,30 +73,10 @@ case 'list':
 	$template = 'bulletin_list.html';
 
 	$asssigns = array(
-		'_MI_BULLETIN_ADMENU5' => _MI_BULLETIN_ADMENU5,
-		'_AM_WAITING_ARTICLES' => _AM_WAITING_ARTICLES,
-		'_AM_DISP_CONTENUE' => _AM_DISP_CONTENUE,
-		'_AM_AUTOARTICLES' => _AM_AUTOARTICLES,
-		'_AM_PUB_ARTICLES' => _AM_PUB_ARTICLES,
-		'_AM_EXPARTS' => _AM_EXPARTS,
-		'_AM_EDIT' => _AM_EDIT,
-		'_AM_DELETE' => _AM_DELETE,
-		'_AM_STORYID' => _AM_STORYID,
-		'_AM_TITLE' => _AM_TITLE,
-		'_AM_TOPIC' => _AM_TOPIC,
-		'_AM_POSTER' => _AM_POSTER,
-		'_AM_POSTED' => _AM_POSTED,
-		'_AM_ACTION' => _AM_ACTION,
-		'_AM_PROGRAMMED' => _AM_PROGRAMMED,
-		'_AM_EXPIRED' => _AM_EXPIRED,
-		'_AM_PUBLISHED' => _AM_PUBLISHED,
 		'submissions' => newSubmissions('newSubmissions'),
 		'autostories' => newSubmissions('autoStories'),
 		'published' => newSubmissions('Published', 10),
-		'expired' => newSubmissions('Expired'),
-		'admin_title' => sprintf(_AM_CONFIG, $xoopsModule->name()),
-		'xoops_url' => XOOPS_URL,
-		'myurl' => $myurl
+		'expired' => newSubmissions('Expired')
 	);
 	
 	break;
@@ -157,31 +131,10 @@ case 'listall':
 	}
 	
 	$asssigns = array(
-		'_MI_BULLETIN_ADMENU5' => _MI_BULLETIN_ADMENU5,
-		'_AM_ARTICLE_ADMIN' => _AM_ARTICLE_ADMIN,
-		'_AM_WAITING_ARTICLES' => _AM_WAITING_ARTICLES,
-		'_AM_DISP_CONTENUE' => _AM_DISP_CONTENUE,
-		'_AM_AUTOARTICLES' => _AM_AUTOARTICLES,
-		'_AM_PUB_ARTICLES' => _AM_PUB_ARTICLES,
-		'_AM_EXPARTS' => _AM_EXPARTS,
-		'_AM_EDIT' => _AM_EDIT,
-		'_AM_DELETE' => _AM_DELETE,
-		'_AM_STORYID' => _AM_STORYID,
-		'_AM_TITLE' => _AM_TITLE,
-		'_AM_TOPIC' => _AM_TOPIC,
-		'_AM_POSTER' => _AM_POSTER,
-		'_AM_POSTED' => _AM_POSTED,
-		'_AM_ACTION' => _AM_ACTION,
-		'_AM_PROGRAMMED' => _AM_PROGRAMMED,
-		'_AM_EXPIRED' => _AM_EXPIRED,
-		'_AM_PUBLISHED' => _AM_PUBLISHED,
 		'table_title' => $table_title,
 		'stories' => $story_list,
 		'mode' => $mode,
-		'navi' => $navi,
-		'admin_title' => sprintf(_AM_CONFIG, $xoopsModule->name()),
-		'xoops_url' => XOOPS_URL,
-		'myurl' => $myurl
+		'navi' => $navi
 	);
 	
     break;
@@ -218,44 +171,22 @@ case 'form':
 		$$k = ( isset($_POST[$k]) ) ? 1 : 0 ;
 	}
 
+	// 掲載日時
 	if ( !empty($published) ) {
-		$auto['year']  = formatTimestamp($published, 'Y');
-		$auto['month'] = formatTimestamp($published, 'n');
-		$auto['day']   = formatTimestamp($published, 'd');
-		$auto['hour']  = formatTimestamp($published, 'H');
-		$auto['min']   = formatTimestamp($published, 'i');
+		$auto = $published;
 	} elseif( isset($_POST['auto']) && is_array($_POST['auto']) ){
-		$auto['year']  = intval( $_POST['auto']['year'] );
-		$auto['month'] = intval( $_POST['auto']['month'] );
-		$auto['day']   = intval( $_POST['auto']['day'] );
-		$auto['hour']  = intval( $_POST['auto']['hour'] );
-		$auto['min']   = intval( $_POST['auto']['min'] );
+		$auto = gmmktime( $_POST['auto']['hour'], $_POST['auto']['min'], 0, $_POST['auto']['month'], $_POST['auto']['day'], $_POST['auto']['year'] );
 	} else {
-		$auto['year']  = formatTimestamp($time, 'Y');
-		$auto['month'] = formatTimestamp($time, 'n');
-		$auto['day']   = formatTimestamp($time, 'd');
-		$auto['hour']  = formatTimestamp($time, 'H');
-		$auto['min']   = formatTimestamp($time, 'i');
+		$auto = time();
 	}
 
+	// 掲載終了日時
 	if ( !empty($expired) ) {
-		$autoexp['year']  = formatTimestamp($expired, 'Y');
-		$autoexp['month'] = formatTimestamp($expired, 'n');
-		$autoexp['day']   = formatTimestamp($expired, 'd');
-		$autoexp['hour']  = formatTimestamp($expired, 'H');
-		$autoexp['min']   = formatTimestamp($expired, 'i');
+		$autoexp = $expired;
 	} elseif( isset($_POST['auto']) && is_array($_POST['autoexp']) ){
-		$autoexp['year']  = intval( $_POST['autoexp']['year'] );
-		$autoexp['month'] = intval( $_POST['autoexp']['month'] );
-		$autoexp['day']   = intval( $_POST['autoexp']['day'] );
-		$autoexp['hour']  = intval( $_POST['autoexp']['hour'] );
-		$autoexp['min']   = intval( $_POST['autoexp']['min'] );
+		$autoexp = gmmktime( $_POST['autoexp']['hour'], $_POST['autoexp']['min'], 0, $_POST['autoexp']['month'], $_POST['autoexp']['day'], $_POST['autoexp']['year'] );
 	}  else {
-		$autoexp['year']  = formatTimestamp($time, 'Y');
-		$autoexp['month'] = formatTimestamp($time, 'n');
-		$autoexp['day']   = formatTimestamp($time, 'd');
-		$autoexp['hour']  = formatTimestamp($time, 'H');
-		$autoexp['min']   = formatTimestamp($time, 'i');
+		$autoexp = time();
 	}
 
 	if( isset($_POST['preview']) ){
@@ -274,10 +205,7 @@ case 'form':
 		'bodytext' => @$bodytext4disp,
 		'preview' => isset($_POST['preview']),
 		'form' => $form,
-		'admin_title' => sprintf(_AM_CONFIG, $xoopsModule->name()),
-		'page_title' => ($isedit) ? _AM_EDIT_ARTICLE : _MI_BULLETIN_ADMENU3,
-		'xoops_url' => XOOPS_URL,
-		'myurl' => $myurl
+		'page_title' => ($isedit) ? _AM_EDIT_ARTICLE : _MI_BULLETIN_ADMENU3
 	);
 
 	break;
@@ -440,11 +368,7 @@ case 'permition':
 //	$form->addItem(6, _AM_RIGHT_SMILEY);
 	
 	$asssigns = array(
-		'_MI_BULLETIN_ADMENU4' => _MI_BULLETIN_ADMENU4,
-		'form' => $form->render(),
-		'admin_title' => sprintf(_AM_CONFIG, $xoopsModule->name()),
-		'xoops_url' => XOOPS_URL,
-		'myurl' => $myurl
+		'form' => $form->render()
 	);
 	break;
 
@@ -467,24 +391,10 @@ case 'topicsmanager':
 	ob_end_clean();
 
 	$asssigns = array(
-		'_MI_BULLETIN_ADMENU2' => _MI_BULLETIN_ADMENU2,
-		'_AM_ADDMTOPIC' => _AM_ADDMTOPIC,
-		'_AM_TOPICNAME' => _AM_TOPICNAME,
-		'_AM_MAX40CHAR' => _AM_MAX40CHAR,
-		'_AM_PARENTTOPIC' => _AM_PARENTTOPIC,
-		'_AM_TOPICIMG' => _AM_TOPICIMG,
-		'_AM_ADD' => _AM_ADD,
-		'_AM_MODIFYTOPIC' => _AM_MODIFYTOPIC,
-		'_AM_TOPIC' => _AM_TOPIC,
-		'_AM_MODIFY' => _AM_MODIFY,
-		'_AM_IMGNAEXLOC' => sprintf( _AM_IMGNAEXLOC,str_replace(XOOPS_ROOT_PATH,XOOPS_URL,$xoopsModuleConfig['topicon_path']) ),
 		'images' => $images,
 		'topics_exists' => $topics_exists,
 		'topicselbox' => $topicselbox,
-		'topicselbox2' => $topicselbox2,
-		'admin_title' => sprintf(_AM_CONFIG, $xoopsModule->name()),
-		'xoops_url' => XOOPS_URL,
-		'myurl' => $myurl
+		'topicselbox2' => $topicselbox2
 	);
 
 	break;
@@ -492,7 +402,7 @@ case 'topicsmanager':
 case 'modTopic':
 	$template = 'bulletin_modtopic.html';
 
-	$BTopic = new BulletinTopic($_POST['topic_id']);
+	$BTopic = new BulletinTopic($_GET['topic_id']);
 	$topics_array = XoopsLists :: getImgListAsArray( $xoopsModuleConfig['topicon_path'] );
 	xoops_cp_header();
 	$images = array();
@@ -507,27 +417,13 @@ case 'modTopic':
 	ob_end_clean();
 
 	$asssigns = array(
-		'_MI_BULLETIN_ADMENU2' => _MI_BULLETIN_ADMENU2,
-		'_AM_TOPICNAME' => _AM_TOPICNAME,
-		'_AM_MAX40CHAR' => _AM_MAX40CHAR,
-		'_AM_TOPICIMG' => _AM_TOPICIMG,
-		'_AM_MODIFYTOPIC' => _AM_MODIFYTOPIC,
-		'_AM_TOPIC' => _AM_TOPIC,
-		'_AM_DEL' => _AM_DEL,
-		'_AM_SAVECHANGE' => _AM_SAVECHANGE,
-		'_AM_CANCEL' => _AM_CANCEL,
-		'_AM_PARENTTOPIC' => _AM_PARENTTOPIC,
-		'_AM_IMGNAEXLOC' => sprintf( _AM_IMGNAEXLOC,str_replace(XOOPS_ROOT_PATH,XOOPS_URL,$xoopsModuleConfig['topicon_path']) ),
 		'images' => $images,
 		'topic_id' => $BTopic->topic_id(),
 		'topic_pid' => $BTopic->topic_pid(),
 		'topic_title' => $BTopic->topic_title('E'),
 		'topic_imgurl' => $BTopic->topic_imgurl(),
 		'topic_imgdir' => str_replace(XOOPS_ROOT_PATH,XOOPS_URL,$xoopsModuleConfig['topicon_path']),
-		'topicselbox' => $topicselbox,
-		'admin_title' => sprintf(_AM_CONFIG, $xoopsModule->name()),
-		'xoops_url' => XOOPS_URL,
-		'myurl' => $myurl
+		'topicselbox' => $topicselbox
 	);
 	break;
 
@@ -566,45 +462,76 @@ case 'delTopic':
 	if( empty($_POST['ok']) ){
 	
 		xoops_cp_header();
-		xoops_confirm( array( 'op' => 'delTopic', 'topic_id' => intval( $_GET['topic_id'] ), 'ok' => 1 ), 'index.php', _AM_WAYSYWTDTTAL );
-	
+		$template = 'bulletin_deltopic.html';
+
+		$BTopic = new BulletinTopic( $_GET['topic_id'] );
+		
+		// すべてのサブトピックを取得
+		$topic_arr = $BTopic->getAllChildTopics();
+
+		// 残るトピックを取得
+		$remain_topics = $BTopic->getTopicsList();
+
+		array_push( $topic_arr, $BTopic );
+
+		foreach( $topic_arr as $eachtopic ){
+			$topics[] = array(
+				'title' => $eachtopic->topic_title(),
+				'id' => $eachtopic->topic_id()
+				);
+			unset($remain_topics[$eachtopic->topic_id()]);
+		}
+
+		$asssigns = array(
+			'topics' => $topics,
+			'remain_topics' => $remain_topics,
+			'topicid' => intval($_GET['topic_id'])
+		);
+
 	}else{
 	
 		$BTopic = new BulletinTopic( $_POST['topic_id'] );
 		
 		// すべてのサブトピックを取得
 		$topic_arr = $BTopic->getAllChildTopics();
-		
+
+		// 記事を残すトピック
+		$move_topics = $_POST['topics'];
+
 		array_push( $topic_arr, $BTopic );
 		
 		foreach( $topic_arr as $eachtopic ){
 		
-			// すべての記事を取得
-			$story_arr = Bulletin::getAllByTopic( $eachtopic->topic_id() );
+			if( $move_topics[$eachtopic->topic_id()] == 0 ){
 			
-			foreach( $story_arr as $eachstory ){
-			
-				if ( false != $eachstory->delete() ){
-				
-					//コメントを削除
-					xoops_comment_delete( $xoopsModule->getVar( 'mid' ), $eachstory->getVar('storyid') );
-					//イベント通知を削除
-					xoops_notification_deletebyitem( $xoopsModule->getVar( 'mid' ), 'story', $eachstory->getVar('storyid') );
-					
+				// すべての記事を取得
+				$story_arr = Bulletin::getAllByTopic( $eachtopic->topic_id() );
+				foreach( $story_arr as $eachstory ){
+					if ( false != $eachstory->delete() ){
+						//コメントを削除
+						xoops_comment_delete( $xoopsModule->getVar( 'mid' ), $eachstory->getVar('storyid') );
+						//イベント通知を削除
+						xoops_notification_deletebyitem( $xoopsModule->getVar( 'mid' ), 'story', $eachstory->getVar('storyid') );
+					}
 				}
-				
+			
+			}else{
+			
+				// すべての記事を取得
+				$story_arr = Bulletin::getAllByTopic( $eachtopic->topic_id() );
+				foreach( $story_arr as $eachstory ){
+					$eachstory->setVar('topicid', $move_topics[$eachtopic->topic_id()]);
+					$eachstory->store();
+				}
 			}
 			
 			// トピックを削除
 			$eachtopic->delete();
-			
 			xoops_notification_deletebyitem( $xoopsModule->getVar( 'mid' ), 'category', $eachtopic->topic_id );
-			
 		}
 		redirect_header( 'index.php?op=topicsmanager', 1, _AM_DBUPDATED );
 
 	}
-
 
 	break;
 
@@ -702,6 +629,62 @@ case 'convert':
 	break;
 
 }
+
+$credit = _AM_CREDIT;
+$translater = _AM_TRANSLATER;
+
+$assing_global = array(
+	'_MI_BULLETIN_ADMENU1' => _MI_BULLETIN_ADMENU1,
+	'_MI_BULLETIN_ADMENU1_D' => _MI_BULLETIN_ADMENU1_D,
+	'_MI_BULLETIN_ADMENU7' => _MI_BULLETIN_ADMENU7,
+	'_MI_BULLETIN_ADMENU7_D' => _MI_BULLETIN_ADMENU7_D,
+	'_MI_BULLETIN_ADMENU2' => _MI_BULLETIN_ADMENU2,
+	'_MI_BULLETIN_ADMENU4' => _MI_BULLETIN_ADMENU4,
+	'_MI_BULLETIN_ADMENU5' => _MI_BULLETIN_ADMENU5,
+	'_AM_WAITING_ARTICLES' => _AM_WAITING_ARTICLES,
+	'_AM_DISP_CONTENUE' => _AM_DISP_CONTENUE,
+	'_AM_AUTOARTICLES' => _AM_AUTOARTICLES,
+	'_AM_PUB_ARTICLES' => _AM_PUB_ARTICLES,
+	'_AM_EXPARTS' => _AM_EXPARTS,
+	'_AM_EDIT' => _AM_EDIT,
+	'_AM_DELETE' => _AM_DELETE,
+	'_AM_STORYID' => _AM_STORYID,
+	'_AM_TITLE' => _AM_TITLE,
+	'_AM_TOPIC' => _AM_TOPIC,
+	'_AM_POSTER' => _AM_POSTER,
+	'_AM_POSTED' => _AM_POSTED,
+	'_AM_ACTION' => _AM_ACTION,
+	'_AM_PROGRAMMED' => _AM_PROGRAMMED,
+	'_AM_EXPIRED' => _AM_EXPIRED,
+	'_AM_PUBLISHED' => _AM_PUBLISHED,
+	'_AM_ARTICLE_ADMIN' => _AM_ARTICLE_ADMIN,
+	'_AM_ADDMTOPIC' => _AM_ADDMTOPIC,
+	'_AM_TOPICNAME' => _AM_TOPICNAME,
+	'_AM_MAX40CHAR' => _AM_MAX40CHAR,
+	'_AM_PARENTTOPIC' => _AM_PARENTTOPIC,
+	'_AM_TOPICIMG' => _AM_TOPICIMG,
+	'_AM_ADD' => _AM_ADD,
+	'_AM_MODIFYTOPIC' => _AM_MODIFYTOPIC,
+	'_AM_MODIFY' => _AM_MODIFY,
+	'_AM_IMGNAEXLOC' => sprintf( _AM_IMGNAEXLOC,str_replace(XOOPS_ROOT_PATH,XOOPS_URL,$xoopsModuleConfig['topicon_path']) ),
+	'_AM_DEL' => _AM_DEL,
+	'_AM_SAVECHANGE' => _AM_SAVECHANGE,
+	'_AM_CANCEL' => _AM_CANCEL,
+	'_AM_TOPICS_DELETE' => _AM_TOPICS_DELETE,
+	'_AM_TOPICID' => _AM_TOPICID,
+	'_AM_DESTINATION_OF_STORIES' => _AM_DESTINATION_OF_STORIES,
+	'_AM_FOLLOW_TOPICS_IS_DELETED' => _AM_FOLLOW_TOPICS_IS_DELETED,
+	'_AM_WAYSYWTDTTAL' => _AM_WAYSYWTDTTAL,
+	'_AM_GO' => _AM_GO,
+	'_AM_CREDIT' => $myts->previewTarea($credit,0,1,0,0,0),
+	'_AM_TRANSLATER' => $myts->previewTarea($translater,0,1,0,0,0),
+	'admin_title' => sprintf(_AM_CONFIG, $xoopsModule->name()),
+	'xoops_url' => XOOPS_URL,
+	'template_path' => MODULE_ROOT_PATH."/admin/templates",
+	'myurl' => $myurl
+);
+
+$tpl->assign($assing_global);
 if(!empty( $asssigns )) $tpl->assign($asssigns);
 if(!empty( $template )) $tpl->display("file:".MODULE_ROOT_PATH."/admin/templates/".$template);
 xoops_cp_footer();

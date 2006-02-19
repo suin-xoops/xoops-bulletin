@@ -1,5 +1,7 @@
 <{strip}>
 
+<{include file="db:bulletin_head.html"}>
+
 <div style="text-align: left;">
 <{if $pagenav}>Page <{$pagenav}><{/if}></div>
 
@@ -10,12 +12,22 @@
 <div style="text-align: left;">
 <{if $pagenav}>Page <{$pagenav}><{/if}></div>
 
-<div style="text-align: right;">
-<a href="<{$myurl}>/print.php?storyid=<{$story.id}>">
-<img src="<{$myurl}>/images/print.gif" border="0" alt="<{$lang_printerpage}>" /></a>
-<a target="_top" href="<{$mail_link}>">
-<img src="<{$myurl}>/images/friend.gif" border="0" alt="<{$lang_sendstory}>" /></a>
-</div>
+<{if $disp_print_icon or $disp_tell_icon}>
+  <div style="text-align: right;">
+  
+  <{if $disp_print_icon}>
+    <a href="<{$myurl}>/print.php?storyid=<{$story.id}>">
+    <img src="<{$myurl}>/images/print.gif" border="0" alt="<{$lang_printerpage}>" /></a>&nbsp;
+  <{/if}>
+  
+  <{if $disp_tell_icon}>
+    <a target="_top" href="<{$mail_link}>">
+    <img src="<{$myurl}>/images/friend.gif" border="0" alt="<{$lang_sendstory}>" /></a>
+  <{/if}>
+  
+  </div>
+<{/if}>
+<br />
 
 <div style="text-align: center;">
 <{$commentsnav}>

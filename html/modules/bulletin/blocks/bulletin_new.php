@@ -37,86 +37,87 @@ function b_bulletin_new_show($options) {
 	$module =& $module_handler->getByDirname($mydirname);
 		
 	$block = array();
-	
-	$block['myurl'] = $myurl;
-	
-	//
-	$sql  = sprintf('SELECT storyid, title, published, expired, counter FROM %s WHERE published < %u AND published > 0 AND (expired = 0 OR expired > %2$u) ORDER BY %s DESC', $table_stories, time(), $options[0]);
-	
-	$result = $xoopsDB->query($sql,$options[1],0);
 
-	if($options[3]){
-
-		$myrow = $xoopsDB->fetchArray($result);
+	// 本文を表示する
+	if($options[3] > 0){
 
 		require_once  $myroot."/class/bulletin.php";
 
-		$article = new Bulletin($myrow["storyid"]);
-		$block['TopStory']['id']       = $myrow["storyid"];
-		$block['TopStory']['posttime'] = formatTimestamp($article->getVar('published'));
-		$block['TopStory']['topicid']  = $article->getVar('topicid');
-		$block['TopStory']['topic']    = $article->topic_title();
-		$block['TopStory']['title']    = $article->getVar('title');
-		$block['TopStory']['text']     = $article->getVar('hometext');
-		$block['TopStory']['hits']     = $article->getVar('counter');
-		$block['TopStory']['title_link'] = true;
-		//ユーザ情報をアサイン
-		$block['TopStory']['uid']      = $article->getVar('uid');
-		$block['TopStory']['uname']    = $article->getUname();
-		$block['TopStory']['realname'] = $article->getRealname();
-		$block['TopStory']['morelink'] = '';
+		$articles = Bulletin::getAllPublished($options[3], 0);
 		
-		// 文字数カウント処理
-		if ( $article->strlenBodytext() > 1 ) {
-			$block['TopStory']['bytes']    = sprintf(_MB_BYTESMORE, $article->strlenBodytext());
-			$block['TopStory']['readmore'] = true;
-		}
-	
-		// コメントの数をアサイン
-		$ccount = $article->getVar('comments');
-		if( $ccount == 0 ){
-			$block['TopStory']['comentstotal'] = _MB_COMMENTS;
-		}elseif( $ccount == 1 ) {
-			$block['TopStory']['comentstotal'] = _MB_ONECOMMENT;
-		}else{
-			$block['TopStory']['comentstotal'] = sprintf(_MB_NUMCOMMENTS, $ccount);
-		}
-	
-		// 管理者用のリンク
-		$block['TopStory']['adminlink'] = 0;
-	
-		// トピック画像
-		if ( $article->showTopicimg()  ) {
-			$block['TopStory']['imglink'] = $article->imglink($bulletin_topicon_path);
-			$block['TopStory']['align']   = $article->getTopicalign();
-		}
+		$total = count($articles);
 		
-		$block['disphometext'] = 1;
-	}
-
-	while ( $myrow = $xoopsDB->fetchArray($result) ) {
-		$news = array();
-		$title = $myts->makeTboxData4Show($myrow["title"]);
-		if ( !XOOPS_USE_MULTIBYTES ) {
-			if (strlen($myrow['title']) >= $options[2]) {
-				$title = $myts->makeTboxData4Show(substr($myrow['title'],0,($options[2] -1)))."...";
+		for ( $i = 0; $i < $total; $i++ ) {
+			$block['items'][$i]['id']       = $articles[$i]->getVar('storyid');
+			$block['items'][$i]['posttime'] = formatTimestamp( $articles[$i]->getVar('published'));
+			$block['items'][$i]['topicid']  = $articles[$i]->getVar('topicid');
+			$block['items'][$i]['topic']    = $articles[$i]->topic_title();
+			$block['items'][$i]['title']    = $articles[$i]->getVar('title');
+			$block['items'][$i]['text']     = $articles[$i]->getVar('hometext');
+			$block['items'][$i]['hits']     = $articles[$i]->getVar('counter');
+			$block['items'][$i]['title_link'] = true;
+			//ユーザ情報をアサイン
+			$block['items'][$i]['uid']      = $articles[$i]->getVar('uid');
+			$block['items'][$i]['uname']    = $articles[$i]->getUname();
+			$block['items'][$i]['realname'] = $articles[$i]->getRealname();
+			$block['items'][$i]['morelink'] = '';
+		
+			// 文字数カウント処理
+			if ( $articles[$i]->strlenBodytext() > 1 ) {
+				$block['items'][$i]['bytes']    = sprintf(_MB_BYTESMORE, $articles[$i]->strlenBodytext());
+				$block['items'][$i]['readmore'] = true;
+			}
+	
+			// コメントの数をアサイン
+			$ccount = $articles[$i]->getVar('comments');
+			if( $ccount == 0 ){
+				$block['items'][$i]['comentstotal'] = _MB_COMMENTS;
+			}elseif( $ccount == 1 ) {
+				$block['items'][$i]['comentstotal'] = _MB_ONECOMMENT;
+			}else{
+				$block['items'][$i]['comentstotal'] = sprintf(_MB_NUMCOMMENTS, $ccount);
+			}
+		
+			// 管理者用のリンク
+			$block['items'][$i]['adminlink'] = 0;
+		
+			// トピック画像
+			if ( $articles[$i]->showTopicimg()  ) {
+				$block['items'][$i]['imglink'] = $articles[$i]->imglink($bulletin_topicon_path);
+				$block['items'][$i]['align']   = $articles[$i]->getTopicalign();
 			}
 		}
-		$news['title'] = $title;
-		$news['id'] = $myrow['storyid'];
-		if ( $options[0] == "published" ) {
-			$news['date'] = formatTimestamp($myrow['published'],"s");
-		} elseif ( $options[0] == "counter" ) {
-			$news['hits'] = $myrow['counter'];
+	}
+
+	if( $options[1] - $options[3] > 0 ){
+
+		$sql  = sprintf('SELECT storyid, title, published, expired, counter, uid FROM %s WHERE published < %u AND published > 0 AND (expired = 0 OR expired > %2$u) ORDER BY %s DESC', $table_stories, time(), $options[0]);
+
+		$result = $xoopsDB->query($sql,$options[1]-$options[3],$options[3]);
+
+		while ( $myrow = $xoopsDB->fetchArray($result) ) {
+			$story = array();
+
+			// マルチバイト環境に対応
+			$story['title']    = $myts->makeTboxData4Show(xoops_substr($myrow['title'], 0 ,$options[2] + 3, '...'));
+			$story['id']       = $myrow['storyid'];
+			$story['date']     = formatTimestamp($myrow['published'],"s");
+			$story['hits']     = $myrow['counter'];
+			$story['uid']      = $myrow['uid'];
+			$story['uname']    = XoopsUser::getUnameFromId($myrow['uid']);
+			$story['realname'] = XoopsUser::getUnameFromId($myrow['uid'], 1);
+
+			$block['stories'][] = $story;
 		}
-		$block['stories'][] = $news;
+
 	}
 
 	$block['lang_postedby'] = _POSTEDBY;
 	$block['lang_on']       = _ON;
 	$block['lang_reads']    = _READS;
 	$block['lang_readmore'] = _MB_READMORE;
-	$block['type'] = $options[0];
+	$block['type']  = $options[0];
+	$block['myurl'] = $myurl;
 
 	return $block;
 }
@@ -138,18 +139,7 @@ function b_bulletin_new_edit($options) {
 	
 	$form .= "<br />"._MB_BULLETIN_DISP."&nbsp;<input type='text' name='options[]' value='".$options[1]."' />&nbsp;"._MB_BULLETIN_ARTCLS."";
 	$form .= "<br />"._MB_BULLETIN_CHARS."&nbsp;<input type='text' name='options[]' value='".$options[2]."' />&nbsp;"._MB_BULLETIN_LENGTH."";
-	$form .= "<br />"._MB_BULLETIN_WITH_HOMETEXT."&nbsp;<select name='options[]'>";
-	$form .= "<option value='0'";
-	if ( $options[3] == "0" ) {
-		$form .= " selected='selected'";
-	}
-	$form .= ">"._NO."</option>\n";
-	$form .= "<option value='1'";
-	if($options[3] == "1"){
-		$form .= " selected='selected'";
-	}
-	$form .= ">"._YES."</option>\n";
-	$form .= "</select>\n";
+	$form .= "<br />"._MB_BULLETIN_DISP_HOMETEXT."&nbsp;<input type='text' name='options[]' value='".$options[3]."' />&nbsp;"._MB_BULLETIN_ARTCLS."";
 
 	return $form;
 }

@@ -31,7 +31,9 @@ $assing_array = array(
 	'lang_readmore' => _MD_READMORE,
 	'lang_topic' => _MD_TOPICC,
 	'lang_url_for_story' => _MD_URLFORSTORY,
-
+	'lang_rss' => _MD_RSS,
+	
+	'disp_rss_link' => $bulletin_disp_rss_link,
 	'myurl' => $myurl,
 	
 	);

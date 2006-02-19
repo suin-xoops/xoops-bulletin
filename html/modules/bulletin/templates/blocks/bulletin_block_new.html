@@ -6,9 +6,10 @@
   <{assign var="lang_readmore" value=$block.lang_readmore}>
   <{assign var="myurl" value=$block.myurl}>
 
-<{if $block.disphometext}>
-  <{include file="db:bulletin_item.html" story=$block.TopStory}>
-<{/if}>
+<{foreach item=story from=$block.items}>
+  <{include file="db:bulletin_item.html" story=$story}>
+  <br />
+<{/foreach}>
 
 <ul>
   <{foreach item=news from=$block.stories}>
