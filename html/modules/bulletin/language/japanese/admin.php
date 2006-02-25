@@ -57,8 +57,8 @@ define("_AM_WAYSYWTDTTAL","¤³¤Î¥«¥Æ¥´¥ê¤ª¤è¤Ó¤³¤Î¥«¥Æ¥´¥êÆâ¤ÎÁ´¤Æ¤Î¥Ë¥å¡¼¥¹µ­»ö¤
 
 define("_AM_EXPARTS","´ü¸ÂÀÚ¤ì¤Îµ­»ö");
 define("_AM_EXPIRED","·ÇºÜ´ü¸Â");
-define("_AM_CHANGEEXPDATETIME","Í­¸ú´ü¸Â¤òÊÑ¹¹¤¹¤ë");
-define("_AM_SETEXPDATETIME","Í­¸ú´ü¸Â¤òÀßÄê¤¹¤ë");
+define("_AM_CHANGEEXPDATETIME","·ÇºÜ´ü¸Â¤òÊÑ¹¹¤¹¤ë");
+define("_AM_SETEXPDATETIME","·ÇºÜ´ü¸Â¤òÀßÄê¤¹¤ë");
 
 define("_AM_ERRORTOPICNAME", "¥«¥Æ¥´¥êÌ¾¤¬µ­Æþ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£");
 define("_AM_EMPTYNODELETE", "ºï½ü¤Ç¤­¤Þ¤»¤ó");

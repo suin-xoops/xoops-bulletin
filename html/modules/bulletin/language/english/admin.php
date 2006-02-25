@@ -11,7 +11,7 @@ define("_AM_STORYID","ID");
 define("_AM_TITLE","Subject");
 define("_AM_TOPIC","Category");
 define("_AM_POSTER","Poster");
-define("_AM_PROGRAMMED","Scheduled date/time");
+define("_AM_PROGRAMMED","Scheduled time");
 define("_AM_ACTION","Action");
 define("_AM_EDIT","Edit");
 define("_AM_DELETE","Delete");
@@ -28,15 +28,15 @@ define("_AM_EXTEXT","Extended text");
 define("_AM_DISAMILEY","Disable smiley");
 define("_AM_DISHTML","Disable HTML tags");
 define("_AM_APPROVE","Approve this story");
-define("_AM_MOVETOTOP","Move this story to the top of top page");
-define("_AM_CHANGEDATETIME","Change date/time of publication");
-define("_AM_NOWSETTIME","Current scheduled timeÔºö d/m/Y H:i"); 
-define("_AM_CURRENTTIME","Current timeÔºö d/m/Y H:i");  
-define("_AM_SETDATETIME","Set the date/time of publish");
+define("_AM_MOVETOTOP","Move this story to the top of the index page");
+define("_AM_CHANGEDATETIME","Change publication time");
+define("_AM_NOWSETTIME","Current scheduled timeÅF d/m/Y H:i"); 
+define("_AM_CURRENTTIME","Current timeÅF d/m/Y H:i");  
+define("_AM_SETDATETIME","Set the publication time");
 
 define("_AM_PREVIEW","Preview");
 define("_AM_SAVE","Save");
-define("_AM_PUBINHOME","Publish in top page");
+define("_AM_PUBINHOME","Publish on the index page");
 define("_AM_ADD","Add");
 
 //%%%%%%	Admin Module Name  Topics 	%%%%%
@@ -44,7 +44,7 @@ define("_AM_ADD","Add");
 define("_AM_ADDMTOPIC","Create a category");
 define("_AM_TOPICNAME","Category name");
 define("_AM_MAX40CHAR","(max. 40 characters)");
-define("_AM_TOPICIMG","Category image");
+define("_AM_TOPICIMG","Category icon");
 define("_AM_IMGNAEXLOC","Image filename under %s");
 
 define("_AM_MODIFYTOPIC","Edit category");
@@ -57,8 +57,8 @@ define("_AM_WAYSYWTDTTAL","Are you sure you want to delete this category and all
 
 define("_AM_EXPARTS","Stories expiration");
 define("_AM_EXPIRED","Expired");
-define("_AM_CHANGEEXPDATETIME","Change date/time of expiration");
-define("_AM_SETEXPDATETIME","Set date/time of expiration");
+define("_AM_CHANGEEXPDATETIME","Change expiration time");
+define("_AM_SETEXPDATETIME","Set expiration time");
 
 define("_AM_ERRORTOPICNAME","Category name has not been filled.");
 define("_AM_EMPTYNODELETE","Unable to delete.");
@@ -66,13 +66,13 @@ define("_AM_EMPTYNODELETE","Unable to delete.");
 // Added by SUIN
 
 define("_AM_TOPIC_IMAGE","Category image");
-define("_AM_TOPIC_DISABLE","Do not show category image");
-define("_AM_TOPIC_LEFT","Show category image on left side");
-define("_AM_TOPIC_RIGHT","Show category image on right side");
+define("_AM_TOPIC_DISABLE","Do not show category icon");
+define("_AM_TOPIC_LEFT","Show category icon on left side");
+define("_AM_TOPIC_RIGHT","Show category icon on right side");
 define("_AM_OPTIONSETTINGS","Option");
 define("_AM_DISP_CONTENUE","[Show all news]");
 define("_AM_PUB_ARTICLES","Published news");
-define("_AM_WAITING_ARTICLES","Waiting news");
+define("_AM_WAITING_ARTICLES","Awaiting news");
 define("_AM_ARTICLE_ADMIN","News manager");
 define("_AM_NOSUBJECT","No subject");
 define("_AM_RIGHT_TO_POST","Allow post");
@@ -82,7 +82,7 @@ define("_AM_RIGHT_HTML","Allow HTML");
 define("_AM_RIGHT_XCODE","Allow XOOPS Code");
 define("_AM_RIGHT_SMILEY","Allow smiley");
 define("_AM_DATE_FORMAT","%d %m %y %h : %i");
-define("_AM_POST_NOW","Move this article to the top of top page");
+define("_AM_POST_NOW","Move this article to the top of the index page");
 define("_AM_USE_SAMILEY","Allow smiley");
 define("_AM_USE_HTML","Allow HTML tags");
 define("_AM_USE_BR","Enable auto wrap lines");
@@ -97,14 +97,14 @@ define("_AM_CONFIG","%s configs");
 // v 1.01 added
 define("_AM_TOPICS_DELETE","Delete category");
 define("_AM_TOPICID","ID");
-define("_AM_DESTINATION_OF_STORIES","The destination of stories belonging this category");
-define("_AM_FOLLOW_TOPICS_IS_DELETED","Following categories is deleted.");
+define("_AM_DESTINATION_OF_STORIES","Destination of stories belonging this category");
+define("_AM_FOLLOW_TOPICS_IS_DELETED","The following category will be deleted.");
 
 
 define("_AM_CREDIT","Bulletin(www.suin.jp)");
-// ‰ª•‰∏ã„ÅÆË°å„ÅØÁøªË®≥ËÄÖ„ÅÆÂêçÂâç„ÇÑURL„Å™„Å©„Å´Â§âÊõ¥„Åß„Åç„Åæ„Åô„ÄÇ‰ª•‰∏ã„ÅØÁÆ°ÁêÜÁîªÈù¢„Å´Ë°®Á§∫„Åï„Çå„Åæ„Åô„ÄÇ
+// à»â∫ÇÃçsÇÕñ|ñÛé“ÇÃñºëOÇ‚URLÇ»Ç«Ç…ïœçXÇ≈Ç´Ç‹Ç∑ÅBà»â∫ÇÕä«óùâÊñ Ç…ï\é¶Ç≥ÇÍÇ‹Ç∑ÅB
 // It is able to change a following line into the TRANSLATER's name and website. Follow appears at admin page.
-define("_AM_TRANSLATER","English Translation by Marcelo Yuji Himoro <http://yuji.ws>");
+define("_AM_TRANSLATER","English Translation by Marcelo Yuji Himoro (http://yuji.ws)");
 // example : define("_AM_TRANSLATER","English patch(www.english-tranlater.com)");
 }
 ?>

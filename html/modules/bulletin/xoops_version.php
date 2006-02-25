@@ -6,7 +6,7 @@ if( ! preg_match( '/^(\D+)(\d*)$/' , $mydirname , $regs ) ) echo ( "invalid dirn
 $mydirnumber = $regs[2] === '' ? '' : intval( $regs[2] ) ;
 
 $modversion['name']        = _MI_BULLETIN_NAME.$mydirnumber;
-$modversion['version']     = 1.01;
+$modversion['version']     = 1.02;
 $modversion['description'] = _MI_BULLETIN_DESC;
 $modversion['credits']     = "suin";
 $modversion['help']        = "help.html";
@@ -48,25 +48,28 @@ $modversion['blocks'][$i]['file']        = "bulletin_topics.php";
 $modversion['blocks'][$i]['name']        = _MI_BULLETIN_BNAME1.$mydirnumber;
 $modversion['blocks'][$i]['description'] = _MI_BULLETIN_BDESC1.$mydirnumber;
 $modversion['blocks'][$i]['show_func']   = "b_bulletin_topics_show";
+$modversion['blocks'][$i]['options']     = $mydirname;
 $modversion['blocks'][$i]['template']    = "bulletin{$mydirnumber}_block_topics.html";
 $i++;
 $modversion['blocks'][$i]['file']        = "bulletin_bigstory.php";
 $modversion['blocks'][$i]['name']        = _MI_BULLETIN_BNAME2.$mydirnumber;
 $modversion['blocks'][$i]['description'] = _MI_BULLETIN_BDESC2.$mydirnumber;
 $modversion['blocks'][$i]['show_func']   = "b_bulletin_bigstory_show";
+$modversion['blocks'][$i]['options']     = $mydirname;
 $modversion['blocks'][$i]['template']    = "bulletin{$mydirnumber}_block_bigstory.html";
 $i++;
 $modversion['blocks'][$i]['file']        = "bulletin_calendar.php";
 $modversion['blocks'][$i]['name']        = _MI_BULLETIN_BNAME3.$mydirnumber;
 $modversion['blocks'][$i]['description'] = _MI_BULLETIN_BDESC3.$mydirnumber;
 $modversion['blocks'][$i]['show_func']   = "b_bulletin_calendar_show";
+$modversion['blocks'][$i]['options']     = $mydirname;
 $i++;
 $modversion['blocks'][$i]['file']        = "bulletin_new.php";
 $modversion['blocks'][$i]['name']        = _MI_BULLETIN_BNAME4.$mydirnumber;
 $modversion['blocks'][$i]['description'] = _MI_BULLETIN_BDESC4.$mydirnumber;
 $modversion['blocks'][$i]['show_func']   = "b_bulletin_new_show";
 $modversion['blocks'][$i]['edit_func']   = "b_bulletin_new_edit";
-$modversion['blocks'][$i]['options']     = "published|10|25|0";
+$modversion['blocks'][$i]['options']     = "$mydirname|published|10|25|0";
 $modversion['blocks'][$i]['template']    = "bulletin{$mydirnumber}_block_new.html";
 $modversion['blocks'][$i]['can_clone']   = true ;
 $i++;
@@ -75,7 +78,7 @@ $modversion['blocks'][$i]['name']        = _MI_BULLETIN_BNAME5.$mydirnumber;
 $modversion['blocks'][$i]['description'] = _MI_BULLETIN_BDESC5.$mydirnumber;
 $modversion['blocks'][$i]['show_func']   = "b_bulletin_Ctop_show";
 $modversion['blocks'][$i]['edit_func']   = "b_bulletin_Ctop_edit";
-$modversion['blocks'][$i]['options']     = "published|3|25|0|0|1";
+$modversion['blocks'][$i]['options']     = "$mydirname|published|3|25|0|0|1";
 $modversion['blocks'][$i]['template']    = "bulletin{$mydirnumber}_block_cnew.html";
 $modversion['blocks'][$i]['can_clone']   = true ;
 $i++;
@@ -83,6 +86,7 @@ $modversion['blocks'][$i]['file']        = "bulletin_comment.php";
 $modversion['blocks'][$i]['name']        = _MI_BULLETIN_BNAME6.$mydirnumber;
 $modversion['blocks'][$i]['description'] = _MI_BULLETIN_BDESC6.$mydirnumber;
 $modversion['blocks'][$i]['show_func']   = "b_bulletin_recent_comments_show";
+$modversion['blocks'][$i]['options']     = $mydirname;
 $modversion['blocks'][$i]['template']    = "bulletin{$mydirnumber}_block_comments.html";
 
 // Menu
@@ -265,7 +269,7 @@ if( ! empty( $_POST['fct'] ) && ! empty( $_POST['op'] ) && $_POST['fct'] == 'mod
 }
 
 // On Update
-if( ! empty( $_POST['fct'] ) && ! empty( $_POST['op'] ) && $_POST['fct'] == 'modulesadmin' && $_POST['op'] == 'update_ok' && $_POST['dirname'] == $modversion['dirname'] ) {
-	include dirname( __FILE__ ) . "/include/onupdate.inc.php" ;
-}
+//if( ! empty( $_POST['fct'] ) && ! empty( $_POST['op'] ) && $_POST['fct'] == 'modulesadmin' && $_POST['op'] == 'update_ok' && $_POST['dirname'] == $modversion['dirname'] ) {
+//	include dirname( __FILE__ ) . "/include/onupdate.inc.php" ;
+//}
 ?>

@@ -17,7 +17,9 @@
 </span> <span class="itemPostDate"><{$lang_on}> <{$story.posttime}></span> (<span class="itemStats"><{$story.hits}> <{$lang_reads}></span>)
   </div>
   <div class="itemBody">
-    <{$story.imglink}>
+    <{if $story.topic_url}>
+      <a href="<{$myurl}>/index.php?storytopic=<{$story.topicid}>"><img src="<{$story.topic_url}>" alt="<{$story.topic}>" hspace="10" vspace="10" align="<{$story.align}>" /></a>
+    <{/if}>
     <p class="itemText"><{$story.text}><br clear="all" /></p>
   </div>
   <div class="itemFoot">

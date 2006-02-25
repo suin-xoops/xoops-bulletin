@@ -6,18 +6,18 @@
   <{assign var="lang_readmore" value=$block.lang_readmore}>
   <{assign var="myurl" value=$block.myurl}>
 
-<{foreach item=story from=$block.items}>
-  <{include file="db:bulletin_item.html" story=$story}>
+<{foreach item=fullstory from=$block.fullstories}>
+  <{include file="db:bulletin_item.html" story=$fullstory}>
   <br />
 <{/foreach}>
 
 <ul>
-  <{foreach item=news from=$block.stories}>
-  <li><a href="<{$block.myurl}>/article.php?storyid=<{$news.id}>"><{$news.title}></a>
+  <{foreach item=story from=$block.stories}>
+  <li><a href="<{$block.myurl}>/article.php?storyid=<{$story.id}>"><{$story.title}></a>
   <{if $block.type == "published"}>
-    (<{$news.date}>)
+    (<{$story.date}>)
   <{else}>
-    (<{$news.hits}>)
+    (<{$story.hits}>)
   <{/if}>
   </li>
   <{/foreach}>

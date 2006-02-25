@@ -14,8 +14,8 @@ define("_MI_BULLETIN_DESC","Creates a Slashdot-like news system, where users can
 // Names of blocks for this module (Not all module has blocks)
 define("_MI_BULLETIN_BNAME1","News categories");
 define("_MI_BULLETIN_BDESC1","News categories block");
-define("_MI_BULLETIN_BNAME2","Today top story");
-define("_MI_BULLETIN_BDESC2","Today top story block");
+define("_MI_BULLETIN_BNAME2","Today's top story");
+define("_MI_BULLETIN_BDESC2","Today's top story block");
 define("_MI_BULLETIN_BNAME3","Calendar");
 define("_MI_BULLETIN_BDESC3","Calender block");
 define("_MI_BULLETIN_BNAME4","Recent news");
@@ -27,10 +27,10 @@ define("_MI_BULLETIN_BDESC6","Bulletin recent comments block");
 
 // Sub menu
 define("_MI_BULLETIN_SMNAME1","Submit news");
-define("_MI_BULLETIN_SMNAME2","Archives");
+define("_MI_BULLETIN_SMNAME2","Archive");
 
 //
-define("_MI_BULLETIN_TEMPLATE1","Archives page");
+define("_MI_BULLETIN_TEMPLATE1","Archive page");
 define("_MI_BULLETIN_TEMPLATE2","Single news page");
 define("_MI_BULLETIN_TEMPLATE3","Top page");
 define("_MI_BULLETIN_TEMPLATE4","News template");
@@ -55,17 +55,17 @@ define("_MI_BULLETIN_ADMENU7","Import from news");
 define("_MI_BULLETIN_ADMENU7_D","Get news and categories data from news1.1.");
 
 // Title of config items
-define("_MI_BULLETIN_CONFIG1","Number of news to display on top page");
-define("_MI_BULLETIN_CONFIG1_D","Set the number of news to display on top page.");
+define("_MI_BULLETIN_CONFIG1","Number of news to display on the index page");
+define("_MI_BULLETIN_CONFIG1_D","Set the number of news to display on the index page.");
 define("_MI_BULLETIN_CONFIG2","Show navigation box?");
 define("_MI_BULLETIN_CONFIG2_D","Select \"Yes\" to display a navigation box for category select at the top of each news page.");
 define("_MI_BULLETIN_CONFIG3","Submit/edit textarea height");
-define("_MI_BULLETIN_CONFIG3_D","Set the number of lines of textarea on submit.php page");
+define("_MI_BULLETIN_CONFIG3_D","Set the number of lines of textarea on submit.php page.");
 define("_MI_BULLETIN_CONFIG4","Submit/edit textarea width");
-define("_MI_BULLETIN_CONFIG4_D","Set the number of columns of textarea on submit.php page");
+define("_MI_BULLETIN_CONFIG4_D","Set the number of columns of textarea on submit.php page.");
 define("_MI_BULLETIN_CONFIG5","Timestamp");
-define("_MI_BULLETIN_CONFIG5_D","Describe it using PHP date/XOOPS formatTimestamp functions as reference.");
-define("_MI_BULLETIN_CONFIG6","Sums up to user's post count according to posts");
+define("_MI_BULLETIN_CONFIG5_D","Use PHP date/XOOPS formatTimestamp functions as reference.");
+define("_MI_BULLETIN_CONFIG6","Reflect posts to user's post count");
 define("_MI_BULLETIN_CONFIG6_D","When a story posted from submit.php is approved, user's \"Posts\" will be increased.");
 define("_MI_BULLETIN_CONFIG7","Path to category image directory");
 define("_MI_BULLETIN_CONFIG7_D","Set the absolute path.");
@@ -76,13 +76,13 @@ define("_MI_BULLETIN_CONFIG9_D","Replaces the site name for the story subject. I
 define("_MI_BULLETIN_CONFIG10","assign RSS URL on xoops_module_header");
 define("_MI_BULLETIN_CONFIG10_D","");
 // 1.01 added
-define("_MI_BULLETIN_CONFIG11","Display \"print\" icon");
+define("_MI_BULLETIN_CONFIG11","Display \"Print\" icon?");
 define("_MI_BULLETIN_CONFIG11_D", "");
-define("_MI_BULLETIN_CONFIG12","Display \"tell a frind\" icon");
+define("_MI_BULLETIN_CONFIG12","Display \"Tell a frind\" icon?");
 define("_MI_BULLETIN_CONFIG12_D", "");
-define("_MI_BULLETIN_CONFIG13","Use Tell a Friend module?");
+define("_MI_BULLETIN_CONFIG13","Use Tell A Friend module?");
 define("_MI_BULLETIN_CONFIG13_D", "");
-define("_MI_BULLETIN_CONFIG14","Show RSS link");
+define("_MI_BULLETIN_CONFIG14","Show RSS link?");
 define("_MI_BULLETIN_CONFIG14_D", "");
 
 // Text for notifications

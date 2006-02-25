@@ -624,6 +624,8 @@ case 'convert':
 			}
 		
 		}
+		
+		echo '<br /><a href="'.MODULE_URL.'/admin/">'._BACK.'</a>';
 	}
 
 	break;

@@ -28,9 +28,10 @@ if( ! defined( 'BULLETIN_BLOCK_TOPICS_INCLUDED' ) ) {
 
 define( 'BULLETIN_BLOCK_TOPICS_INCLUDED' , 1 ) ;
 
-function b_bulletin_topics_show() {
+function b_bulletin_topics_show($options) {
 
-	$mydirname = basename( dirname( dirname( __FILE__ ) ) ) ;
+	$mydirname = $options[0] ;
+	if( ! preg_match( '/^(\D+)(\d*)$/' , $mydirname , $regs ) ) echo ( "invalid dirname: " . htmlspecialchars( $mydirname ) ) ;
 	require XOOPS_ROOT_PATH.'/modules/'.$mydirname.'/include/configs.inc.php';
 	require_once XOOPS_ROOT_PATH.'/class/xoopstopic.php';
 

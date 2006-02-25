@@ -29,90 +29,70 @@ $ihome_yesno       = new XoopsFormRadioYN(_AM_PUBINHOME, 'ihome', $ihome);
 $hometext_area     = new XoopsFormDhtmlTextArea(_AM_INTROTEXT, 'hometext', $hometext, 20, 15);
 
 $bodytext_tray     = new XoopsFormElementTray(_AM_EXTEXT, '<br />');
-	$bodytext_tray->addElement(new XoopsFormDhtmlTextArea('', 'bodytext', $bodytext, 20, 15));
-	$bodytext_tray->addElement(new XoopsFormLabel('', '<p>'._MULTIPAGE.'</p>'));
-	
-$option_tray       = new XoopsFormElementTray(_AM_OPTIONSETTINGS, '<br />');
-	$smiley_checkbox = new XoopsFormCheckBox('', 'smiley', $smiley);
-	$smiley_checkbox->addOption(1, _AM_USE_SAMILEY);
-	$html_checkbox = new XoopsFormCheckBox('', 'html', $html);
-	$html_checkbox->addOption(1, _AM_USE_HTML);
-	$br_checkbox = new XoopsFormCheckBox('', 'br', $br);
-	$br_checkbox->addOption(1, _AM_USE_BR);
-	$xcode_checkbox = new XoopsFormCheckBox('', 'xcode', $xcode);
-	$xcode_checkbox->addOption(1, _AM_USE_XCODE);
-	$autodate_checkbox = new XoopsFormCheckBox('', 'autodate', $autodate);
-	
-	// ÊÔ½¸¥â¡¼¥É ¡õ ·ÇºÜÆü»þ ¡ä ¸½ºß»þ¹ï
-	if(!empty($isedit) && $published >$time){
-	
-		$desc  = '&nbsp;&nbsp;&nbsp;&nbsp;( '.formatTimestamp($published, _AM_NOWSETTIME).'&nbsp;/&nbsp;';
-		$desc .= formatTimestamp($time, _AM_CURRENTTIME).' )';
-		$autodate_checkbox->addOption(1, _AM_CHANGEDATETIME);
-	
-	}else{
-	
-		$desc  = '&nbsp;&nbsp;&nbsp;&nbsp;( '.formatTimestamp($time, _AM_CURRENTTIME).' )';
-		$autodate_checkbox->addOption(1, _AM_SETDATETIME);
-	
-	}
-	
-	$autodate_select = new XoopsFormSelectTime('&nbsp;&nbsp;&nbsp;', 'auto', $auto, _AM_DATE_FORMAT);
-	$autodate_label = new XoopsFormLabel('', $desc);
-	$autoexpdate_checkbox = new XoopsFormCheckBox('', 'autoexpdate', $autoexpdate);
-	
-	// ÊÔ½¸¥â¡¼¥É ¡õ ·ÇºÜ½ªÎ»¡ä0
-	if(!empty($isedit) && $expired > 0){
-	
-		$desc  = '&nbsp;&nbsp;&nbsp;&nbsp;( '.formatTimestamp($expired, _AM_NOWSETTIME).'&nbsp;/&nbsp;';
-		$desc .= formatTimestamp($time, _AM_CURRENTTIME).' )';
-		$autoexpdate_checkbox->addOption(1, _AM_CHANGEEXPDATETIME);
-		
-	}else{
-	
-		$desc = '&nbsp;&nbsp;&nbsp;( '.formatTimestamp($time, _AM_CURRENTTIME).' )';
-		$autoexpdate_checkbox->addOption(1, _AM_SETEXPDATETIME);
-	
-	}
-	
-	$autoexpdate_select = new XoopsFormSelectTime('&nbsp;&nbsp;&nbsp;', 'autoexp', $autoexp, _AM_DATE_FORMAT);
-	$autoexpdate_label = new XoopsFormLabel('', $desc);
+$bodytext_tray->addElement(new XoopsFormDhtmlTextArea('', 'bodytext', $bodytext, 20, 15));
+$bodytext_tray->addElement(new XoopsFormLabel('', '<p>'._MULTIPAGE.'</p>'));
 
-	// ÊÔ½¸¥â¡¼¥É ¡õ ·ÇºÜÆü»þ¤¬ÀßÄê¤µ¤ì¤Æ¤¤¤ë ¡õ ¥æ¡¼¥¶¤«¤é¤ÎÅê¹Æ
-	if( !empty($isedit) && empty($published) && $type == 1 ){
-	
-		$approve_checkbox = new XoopsFormCheckBox('', 'approve', $approve);
-		$approve_checkbox->addOption(1, '<strong>'._AM_APPROVE.'</strong>');
-	
-	} else {
-	
-		if( !empty($isedit) ){
-		
-			$approve_checkbox = new XoopsFormCheckBox('', 'movetotop', $movetotop);
-			
-			if($published >$time){
-				$approve_checkbox->addOption(1, '<strong>'._AM_POST_NOW.'</strong>');
-			}else{
-				$approve_checkbox->addOption(1, '<strong>'._AM_MOVETOTOP.'</strong>');
-			}
+$autodate_tray = new XoopsFormElementTray(_AM_PUBLISHED, '<br />');
+$autodate_checkbox = new XoopsFormCheckBox('', 'autodate', $autodate);
+// ÊÔ½¸¥â¡¼¥É ¡õ ·ÇºÜÆü»þ ¡ä ¸½ºß»þ¹ï
+if(!empty($isedit) && $published >$time){
+	$desc  = '( '.formatTimestamp($published, _AM_NOWSETTIME).'&nbsp;/&nbsp;'.formatTimestamp($time, _AM_CURRENTTIME).' )';
+	$autodate_checkbox->addOption(1, _AM_CHANGEDATETIME);
+}else{
+	$desc  = '( '.formatTimestamp($time, _AM_CURRENTTIME).' )';
+	$autodate_checkbox->addOption(1, _AM_SETDATETIME);
+}
+$autodate_tray->addElement($autodate_checkbox);
+$autodate_tray->addElement(new XoopsFormSelectTime('', 'auto', $auto, _AM_DATE_FORMAT));
+$autodate_tray->addElement(new XoopsFormLabel('', $desc));
+
+$autoexpdate_tray = new XoopsFormElementTray(_AM_EXPIRED, '<br />');
+$autoexpdate_checkbox = new XoopsFormCheckBox('', 'autoexpdate', $autoexpdate);
+// ÊÔ½¸¥â¡¼¥É ¡õ ·ÇºÜ½ªÎ»¡ä0
+if(!empty($isedit) && $expired > 0){
+	$desc  = '( '.formatTimestamp($expired, _AM_NOWSETTIME).'&nbsp;/&nbsp;'.formatTimestamp($time, _AM_CURRENTTIME).' )';
+	$autoexpdate_checkbox->addOption(1, _AM_CHANGEEXPDATETIME);
+}else{
+	$desc = '( '.formatTimestamp($time, _AM_CURRENTTIME).' )';
+	$autoexpdate_checkbox->addOption(1, _AM_SETEXPDATETIME);
+}
+$autoexpdate_tray->addElement($autoexpdate_checkbox);
+$autoexpdate_tray->addElement(new XoopsFormSelectTime('', 'autoexp', $autoexp, _AM_DATE_FORMAT));
+$autoexpdate_tray->addElement(new XoopsFormLabel('', $desc));
+
+$option_tray       = new XoopsFormElementTray(_AM_OPTIONSETTINGS, '<br />');
+$smiley_checkbox = new XoopsFormCheckBox('', 'smiley', $smiley);
+$smiley_checkbox->addOption(1, _AM_USE_SAMILEY);
+$html_checkbox = new XoopsFormCheckBox('', 'html', $html);
+$html_checkbox->addOption(1, _AM_USE_HTML);
+$br_checkbox = new XoopsFormCheckBox('', 'br', $br);
+$br_checkbox->addOption(1, _AM_USE_BR);
+$xcode_checkbox = new XoopsFormCheckBox('', 'xcode', $xcode);
+$xcode_checkbox->addOption(1, _AM_USE_XCODE);
+// ÊÔ½¸¥â¡¼¥É ¡õ ·ÇºÜÆü»þ¤¬ÀßÄê¤µ¤ì¤Æ¤¤¤ë ¡õ ¥æ¡¼¥¶¤«¤é¤ÎÅê¹Æ
+if( !empty($isedit) && empty($published) && $type == 1 ){
+	$approve_checkbox = new XoopsFormCheckBox('', 'approve', $approve);
+	$approve_checkbox->addOption(1, '<strong>'._AM_APPROVE.'</strong>');
+} else {
+	if( !empty($isedit) ){
+		$approve_checkbox = new XoopsFormCheckBox('', 'movetotop', $movetotop);
+		if($published >$time){
+			$approve_checkbox->addOption(1, '<strong>'._AM_POST_NOW.'</strong>');
+		}else{
+			$approve_checkbox->addOption(1, '<strong>'._AM_MOVETOTOP.'</strong>');
 		}
-		$form->addElement(new XoopsFormHidden('approve', 1));
-	
 	}
+	$form->addElement(new XoopsFormHidden('approve', 1));
+}
 
 $option_tray->addElement($smiley_checkbox);
 $option_tray->addElement($html_checkbox);
 $option_tray->addElement($br_checkbox);
 $option_tray->addElement($xcode_checkbox);
-$option_tray->addElement($autodate_checkbox);
-$option_tray->addElement($autodate_select);
-$option_tray->addElement($autodate_label);
-$option_tray->addElement($autoexpdate_checkbox);
-$option_tray->addElement($autoexpdate_select);
-$option_tray->addElement($autoexpdate_label);
 if(isset($approve_checkbox) && is_object($approve_checkbox)){
 	$option_tray->addElement($approve_checkbox);
 }
+
 $button_tray = new XoopsFormElementTray('', '');
 $op_select   = new XoopsFormSelect('', 'op', $op);
 $op_select->addOptionArray(array('form' => _AM_PREVIEW, 'save' => _AM_SAVE ));
@@ -132,6 +112,8 @@ $form->addElement($topicalign_select);
 $form->addElement($ihome_yesno);
 $form->addElement($hometext_area);
 $form->addElement($bodytext_tray);
+$form->addElement($autodate_tray);
+$form->addElement($autoexpdate_tray);
 $form->addElement($option_tray);
 $form->addElement($button_tray);
 $form->addElement($type_hidden);
