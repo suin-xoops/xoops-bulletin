@@ -6,7 +6,7 @@ if( ! preg_match( '/^(\D+)(\d*)$/' , $mydirname , $regs ) ) echo ( "invalid dirn
 $mydirnumber = $regs[2] === '' ? '' : intval( $regs[2] ) ;
 
 $modversion['name']        = _MI_BULLETIN_NAME.$mydirnumber;
-$modversion['version']     = 1.02;
+$modversion['version']     = 1.03;
 $modversion['description'] = _MI_BULLETIN_DESC;
 $modversion['credits']     = "suin";
 $modversion['help']        = "help.html";
@@ -269,7 +269,7 @@ if( ! empty( $_POST['fct'] ) && ! empty( $_POST['op'] ) && $_POST['fct'] == 'mod
 }
 
 // On Update
-//if( ! empty( $_POST['fct'] ) && ! empty( $_POST['op'] ) && $_POST['fct'] == 'modulesadmin' && $_POST['op'] == 'update_ok' && $_POST['dirname'] == $modversion['dirname'] ) {
-//	include dirname( __FILE__ ) . "/include/onupdate.inc.php" ;
-//}
+if( ! empty( $_POST['fct'] ) && ! empty( $_POST['op'] ) && $_POST['fct'] == 'modulesadmin' && $_POST['op'] == 'update_ok' && $_POST['dirname'] == $modversion['dirname'] ) {
+	include dirname( __FILE__ ) . "/include/onupdate.inc.php" ;
+}
 ?>

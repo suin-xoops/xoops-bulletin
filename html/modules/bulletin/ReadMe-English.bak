@@ -148,12 +148,6 @@ Please remove at module admin like usuall modules.
       <th align="center">Note</th>
     </tr>
     <tr>
-      <td>1.03</td>
-      <td>2006-03-27</td>
-      <td align="center">Bug</td>
-      <td>Counting comments.</td>
-    </tr>
-    <tr>
       <td align="center">1.02</td>
       <td align="center">2006-02-26</td>
       <td align="center">Bug</td>

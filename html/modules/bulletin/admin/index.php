@@ -157,14 +157,18 @@ case 'form':
 
 	foreach( $str_arr as $k ){
 		if( isset($_POST[$k]) ) $story->setVar($k, $_POST[$k]);
-		$$k = $story->getVar($k, 'E');
+		$$k = $story->getVar($k, 'f');
 	}
 	foreach( $int_arr as $k ){
 		if( isset($_POST[$k]) ) $story->setVar($k, $_POST[$k]);
 		$$k = $story->getVar($k);
 	}
 	foreach( $bai_arr as $k ){
-		if( isset($_POST[$k]) ) $story->setVar($k, 1);
+		if( isset($_POST[$k]) ){
+			$story->setVar($k, 1);
+		}elseif( isset($_POST['preview']) ){
+			$story->setVar($k, 0);
+		}
 		$$k = $story->getVar($k);
 	}
 	foreach( $etc_arr as $k ){

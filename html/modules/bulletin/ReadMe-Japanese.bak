@@ -244,12 +244,6 @@ modules/bulletin3/templates/blocks/²¼¤Î¥Õ¥¡¥¤¥ë¤ò°Ê²¼¤Î¤è¤¦¤Ë¥ê¥Í¡¼¥à¤·¤Æ¤¯¤À¤µ¤
       <th align="center">Note</th>
     </tr>
     <tr>
-      <td>1.03</td>
-      <td>2006-03-27</td>
-      <td align="center">¥Ð¥°</td>
-      <td>¥³¥á¥ó¥È¿ô¤Î¥Ð¥°¤ò½¤Àµ</td>
-    </tr>
-    <tr>
       <td align="center">1.02</td>
       <td align="center">2006-02-26</td>
       <td align="center">¥Ð¥°</td>

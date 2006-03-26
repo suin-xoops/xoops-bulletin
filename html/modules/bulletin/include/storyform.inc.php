@@ -7,8 +7,7 @@ require XOOPS_ROOT_PATH.'/class/xoopsformloader.php';
 $form = new XoopsThemeForm(_MD_SUBMITNEWS, 'storyform', xoops_getenv('PHP_SELF'));
 $form->addElement(new XoopsFormToken(XoopsMultiTokenHandler::quickCreate('bulletin_submit')));
 $form->addElement(new XoopsFormText(_MD_TITLE, 'title', 50, 80, $title), true);
-$form->addElement(new XoopsFormLabel(_MD_TOPIC, Bulletin::makeTopicSelBox(0)));
-$form->addElement($topic_select);
+$form->addElement(new XoopsFormLabel(_MD_TOPIC, Bulletin::makeTopicSelBox(0, $topicid)));
 $form->addElement(new XoopsFormDhtmlTextArea(_MD_THESCOOP, 'hometext', $hometext, $bulletin_post_tray_row, $bulletin_post_tray_col), true);
 $option_tray = new XoopsFormElementTray(_OPTIONS,'<br />');
 
