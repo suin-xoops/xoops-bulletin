@@ -34,7 +34,7 @@ if (function_exists('mb_http_output')) {
 header ('Content-Type:text/xml; charset=utf-8');
 $tpl = new XoopsTpl();
 $tpl->xoops_setCaching(2);
-$tpl->xoops_setCacheTime(3600);
+$tpl->xoops_setCacheTime(0);
 if (!$tpl->is_cached("db:bulletin{$mydirnumber}_rss.html")) {
 	$articles = Bulletin::getAllPublished(10, 0);
 	if (is_array($articles)) {
@@ -64,11 +64,11 @@ if (!$tpl->is_cached("db:bulletin{$mydirnumber}_rss.html")) {
 		$count = $articles;
 		foreach ($articles as $article) {
 			$tpl->append('items', array(
-				'title' => xoops_utf8_encode($article->getVar('title', 'n')), 
+				'title' => htmlspecialchars(xoops_utf8_encode($article->getVar('title', 'n')), ENT_QUOTES), 
 				'link' => $myurl.'/article.php?storyid='.$article->getVar('storyid'), 
 				'guid' => $myurl.'/article.php?storyid='.$article->getVar('storyid'), 
 				'pubdate' => formatTimestamp($article->getVar('published'), 'rss'), 
-				'description' => xoops_utf8_encode($article->getVar('hometext'))));
+				'description' => htmlspecialchars(xoops_utf8_encode($article->getVar('hometext','n')), ENT_QUOTES)));
 		}
 	}
 }
