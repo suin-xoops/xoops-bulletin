@@ -106,6 +106,9 @@ function b_bulletin_Ctop_show($options) {
 				if ( myStrlenText($myrow['bodytext']) > 1 ) {
 					$fullstory['bytes']    = sprintf(_MB_BYTESMORE, myStrlenText($myrow['bodytext']));
 					$fullstory['readmore'] = true;
+				}else{
+					$fullstory['bytes']    = 0;
+					$fullstory['readmore'] = false;
 				}
 
 				// コメントの数をアサイン
