@@ -42,7 +42,7 @@ function b_bulletin_new_show($options) {
 	// –{•¶‚ð•\Ž¦‚·‚é
 	if($options[4] > 0){
 
-		$sql  = sprintf('SELECT s.storyid, s.topicid, s.title, s.hometext, s.bodytext, s.published, s.expired, s.counter, s.comments, s.uid, s.topicimg, s.html, s.smiley, s.br, s.xcode, t.topic_title, t. topic_imgurl FROM %s s, %s t WHERE s.published < %u AND s.published > 0 AND (s.expired = 0 OR s.expired > %2$u) AND s.topicid = t.topic_id AND s.ihome = 1 ORDER BY %s DESC', $table_stories, $table_topics, time(), $options[1]);
+		$sql  = sprintf('SELECT s.storyid, s.topicid, s.title, s.hometext, s.bodytext, s.published, s.expired, s.counter, s.comments, s.uid, s.topicimg, s.html, s.smiley, s.br, s.xcode, t.topic_title, t. topic_imgurl FROM %s s, %s t WHERE s.published < %u AND s.published > 0 AND (s.expired = 0 OR s.expired > %3$u) AND s.topicid = t.topic_id AND s.ihome = 1 ORDER BY %s DESC', $table_stories, $table_topics, time(), $options[1]);
 
 		$result = $xoopsDB->query($sql,$options[4],0);
 
