@@ -31,14 +31,22 @@ if( ! preg_match( '/^(\D+)(\d*)$/' , $mydirname , $regs ) ) echo ( "invalid dirn
 $mydirnumber = $regs[2] === '' ? '' : intval( $regs[2] ) ;
 
 eval( '
+function bulletin'.$mydirnumber.'_notify_iteminfo( $category, $item_id )
+{
+	return bulletin_notify_base( $category, $item_id, "'.$mydirname.'", "'.$mydirnumber.'" ) ;
+}
+' ) ;
 
-function bulletin_notify_iteminfo($category, $item_id)
+if( ! function_exists( 'bulletin_notify_base' ) ) {
+
+
+function bulletin_notify_base($category, $item_id, $mydirname, $mydirnumber)
 {
 	global $xoopsModule, $xoopsModuleConfig, $xoopsConfig;
 
-	if (empty($xoopsModule) || $xoopsModule->getVar("dirname") != "' .$mydirname. '") {	
+	if (empty($xoopsModule) || $xoopsModule->getVar("dirname") != $mydirname) {	
 		$module_handler =& xoops_gethandler("module");
-		$module =& $module_handler->getByDirname("' .$mydirname. '");
+		$module =& $module_handler->getByDirname($mydirname);
 		$config_handler =& xoops_gethandler("config");
 		$config =& $config_handler->getConfigsByCat(0,$module->getVar("mid"));
 	} else {
@@ -56,14 +64,14 @@ function bulletin_notify_iteminfo($category, $item_id)
 
 	if ($category=="story") {
 		// Assume we have a valid story id
-		$sql = "SELECT title FROM ".$xoopsDB->prefix("bulletin'.$mydirnumber.'_stories") . " WHERE storyid = " . intval($item_id);
+		$sql = "SELECT title FROM ".$xoopsDB->prefix("bulletin".$mydirnumber."_stories") . " WHERE storyid = " . intval($item_id);
 		$result = $xoopsDB->query($sql); // TODO: error check
 		$result_array = $xoopsDB->fetchArray($result);
 		$item["name"] = $result_array["title"];
-		$item["url"] = XOOPS_URL . "/modules/' .$mydirname. '/article.php?storyid=" . intval($item_id);
+		$item["url"] = XOOPS_URL . "/modules/" .$mydirname. "/article.php?storyid=" . intval($item_id);
 		return $item;
 	}
 }
 
-');
+}
 ?>

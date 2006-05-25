@@ -6,7 +6,7 @@ if( ! preg_match( '/^(\D+)(\d*)$/' , $mydirname , $regs ) ) echo ( "invalid dirn
 $mydirnumber = $regs[2] === '' ? '' : intval( $regs[2] ) ;
 
 $modversion['name']        = _MI_BULLETIN_NAME.$mydirnumber;
-$modversion['version']     = 1.042;
+$modversion['version']     = 1.05;
 $modversion['description'] = _MI_BULLETIN_DESC;
 $modversion['credits']     = "suin";
 $modversion['help']        = "help.html";
@@ -251,7 +251,7 @@ $modversion['notification']['event'][3]['category']      = 'global';
 $modversion['notification']['event'][3]['title']         = _MI_BULLETIN_GLOBAL_NEWSTORY_NOTIFY;
 $modversion['notification']['event'][3]['caption']       = _MI_BULLETIN_GLOBAL_NEWSTORY_NOTIFYCAP;
 $modversion['notification']['event'][3]['description']   = _MI_BULLETIN_GLOBAL_NEWSTORY_NOTIFYDSC;
-$modversion['notification']['event'][3]['mail_template'] = 'global_bulletintory_notify';
+$modversion['notification']['event'][3]['mail_template'] = 'global_newstory_notify';
 $modversion['notification']['event'][3]['mail_subject']  = _MI_BULLETIN_GLOBAL_NEWSTORY_NOTIFYSBJ;
 
 $modversion['notification']['event'][4]['name']          = 'approve';
