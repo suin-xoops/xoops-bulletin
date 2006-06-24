@@ -1,0 +1,37 @@
+<{strip}>
+<div class="item">
+  <div class="itemHead"><span class="itemTitle"><a href="<{$mydirurl}>/index.php?storytopic=<{$story.topicid}>"><{$story.topic}></a>&nbsp;:&nbsp;
+<{if $story.title_link}>
+<a href="<{$mydirurl}>/index.php?page=article&amp;storyid=<{$story.id}>"><{$story.title}></a>
+<{else}>
+<{$story.title}>
+<{/if}>
+</span></div>
+  <div class="itemInfo">
+    <span class="itemPoster"><{$smarty.const._MD_POSTEDBY}>&nbsp;:&nbsp;
+<{if $story.uid}>
+<a href="<{$xoops_url}>/userinfo.php?uid=<{$story.uid}>"><{$story.uname}></a>
+<{else}>
+<{$story.uname}>
+<{/if}>
+</span> <span class="itemPostDate"><{$smarty.const._ON}> <{$story.posttime}></span> (<span class="itemStats"><{$story.hits}> <{$smarty.const._READS}></span>)
+  </div>
+  <div class="itemBody">
+    <{if $story.topic_url}>
+      <a href="<{$mydirurl}>/index.php?storytopic=<{$story.topicid}>"><img src="<{$story.topic_url}>" alt="<{$story.topic}>" hspace="10" vspace="10" align="<{$story.align}>" /></a>
+    <{/if}>
+    <p class="itemText"><{$story.text}><br clear="all" /></p>
+  </div>
+  <div class="itemFoot">
+    <{if $story.adminlink}>
+    <span class="itemAdminLink">&nbsp;[ <a href="<{$mydirurl}>/index.php?page=submit&amp;storyid=<{$story.id}>"><{$smarty.const._EDIT}></a> | <a href="<{$mydirurl}>/index.php?mode=admin&amp;op=delete&amp;storyid=<{$story.id}>"><{$smarty.const._DELETE}></a> ]&nbsp;</span>&nbsp;
+    <{/if}>
+<span class="itemPermaLink">
+<{if $story.readmore}>
+<a href="<{$mydirurl}>/index.php?page=article&amp;storyid=<{$story.id}>"><{$smarty.const._MD_READMORE}></a> | <{$story.bytes}> | 
+<{/if}>
+<a href="<{$mydirurl}>/index.php?page=article&amp;storyid=<{$story.id}>"><{$story.comentstotal}></a>
+</span>
+  </div>
+</div>
+<{/strip}>

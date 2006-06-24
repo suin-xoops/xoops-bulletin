@@ -6,6 +6,6 @@ $mydirname = basename( dirname( __FILE__ ) ) ;
 $mydirpath = dirname( __FILE__ ) ;
 require $mydirpath.'/mytrustdirname.php' ; // set $mytrustdirname
 
-require XOOPS_TRUST_PATH.'/modules/'.$mytrustdirname.'/xoops_version.php' ;
+require XOOPS_TRUST_PATH.'/modules/'.$mytrustdirname.'/admin_menu.php' ;
 
 ?>
