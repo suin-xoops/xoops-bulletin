@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title><{$channel_title}></title>
     <link><{$channel_link}></link>
@@ -27,6 +28,7 @@
       <description><{$item.description}></description>
       <pubDate><{$item.pubdate}></pubDate>
       <guid><{$item.guid}></guid>
+      <category><{$item.category}></category>
       <content:encoded><![CDATA[<{$item.content}>]]></content:encoded>
     </item>
     <{/foreach}>

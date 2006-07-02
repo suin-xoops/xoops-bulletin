@@ -22,13 +22,10 @@ $topic_select = new XoopsFormSelect(_MD_TOPIC, 'topicid', $story->getVar('topici
 $topic_select->addOptionArray(Bulletin::makeCategoryArrayForSelect());
 $form->addElement($topic_select);
 
-// only for admin
-if( $isadmin ){
-	$topicalign_select = new XoopsFormSelect(_MD_TOPIC_IMAGE, 'topicimg', $story->getVar('topicimg') );
-	$topicalign_select->addOptionArray(array('1' => _MD_TOPIC_RIGHT, '2' => _MD_TOPIC_LEFT, '0' => _MD_TOPIC_DISABLE));
-	$form->addElement($topicalign_select);
-	$form->addElement(new XoopsFormRadioYN(_MD_PUBINHOME, 'ihome', $story->getVar('ihome') ));
-}
+$topicalign_select = new XoopsFormSelect(_MD_TOPIC_IMAGE, 'topicimg', $story->getVar('topicimg') );
+$topicalign_select->addOptionArray(array('1' => _MD_TOPIC_RIGHT, '2' => _MD_TOPIC_LEFT, '0' => _MD_TOPIC_DISABLE));
+$form->addElement($topicalign_select);
+
 $bodytext_tray = new XoopsFormElementTray(_MD_THESCOOP, '');
 $bodytext_tray->addElement(new XoopsFormDhtmlTextArea('', 'text', $story->getVar('text', 'f'), $bulletin_post_tray_row, $bulletin_post_tray_col), true);
 $bodytext_tray->addElement(new XoopsFormLabel('', '<div>'._MULTIPAGE.'</div>'));
@@ -59,12 +56,11 @@ if( $gperm->group_perm(3) ){
 if( $gperm->group_perm(7) && $bulletin_use_relations ){
 	$relation_content  = '<div id="relation">';
 	foreach( $relations as $relation ){
-		$relstory = new Bulletin( $relation['linkedid'] );
 		$relation_content .= '<input type="checkbox" name="storyidR[]" value="'.intval($relation['linkedid']).'" />';
-		$relation_content .= '<input type="hidden" name="titleR[]" value="'.$relstory->getVar('title').'" />';
+		$relation_content .= '<input type="hidden" name="titleR[]" value="'.$story->getRelatedTitle($relation['linkedid'], $relation['dirname']).'" />';
 		$relation_content .= '<input type="hidden" name="dirnameR[]" value="'.htmlspecialchars($relation['dirname']).'" />';
 		$relation_content .= '<input type="hidden" name="storyidRH[]" value="'.intval($relation['linkedid']).'" />';
-		$relation_content .= ''.$relstory->getVar('title').'<br />';
+		$relation_content .= ''.$story->getRelatedTitle($relation['linkedid'], $relation['dirname']).'<br />';
 	}
 	$relation_content .= '</div>';
 	$relation_content .= '<input type="button" value="'._MD_ADD_RELATION.'" name="opensub" onclick="window.open(\'index.php?page=search\',\'sub\',\'width=400,height=500\');">';
@@ -76,7 +72,7 @@ if( $gperm->group_perm(7) && $bulletin_use_relations ){
 $option_tray = new XoopsFormElementTray(_OPTIONS,'<br />');
 
 // event notifaction (if mode is edit, not display.)
-if ($xoopsUser && $storyid == 0) {
+if ($xoopsUser && $storyid == 0 && !$gperm->group_perm(2)) {
 	$notify_checkbox = new XoopsFormCheckBox('', 'notifypub', $story->getVar('notifypub') );
 	$notify_checkbox->addOption(1, _MD_NOTIFYPUBLISH);
 	$option_tray->addElement($notify_checkbox);
@@ -98,29 +94,19 @@ $option_tray->addElement($smiley_checkbox);
 $xcode_checkbox = new XoopsFormCheckBox('', 'xcode', $story->getVar('xcode') );
 $xcode_checkbox->addOption(1, _MD_USE_XCODE);
 $option_tray->addElement($xcode_checkbox);
-$form->addElement($option_tray);
-
-if( $isadmin && $storyid > 0 ){
-	// for approving
-	if( $story->getVar('type') == 0 ){
-		$approve_tray = new XoopsFormElementTray(_MD_APPROVE, '');
-		$approve_tray->addElement(new XoopsFormRadioYN('', 'approve', $story->getVar('approve')));
-		if( $story->getVar('autodate') < $time ){
-			$approve_tray->addElement(new XoopsFormLabel('','&nbsp;<span style="font-size:0.8em;">' . _MD_DATE_IS_UPDETED . '</span>'));
-
-		}
-		$form->addElement($approve_tray);
-	} else {
-		if( $story->getVar('published') > $time ){
-			$movetotop_tray = new XoopsFormElementTray(_MD_POST_NOW, '');
-		}else{
-			$movetotop_tray = new XoopsFormElementTray(_MD_MOVETOTOP, '');
-		}
-		$movetotop_tray->addElement(new XoopsFormRadioYN('', 'movetotop', $story->getVar('movetotop')));
-		$movetotop_tray->addElement(new XoopsFormLabel('','&nbsp;<span style="font-size:0.8em;">' . _MD_DATE_IS_UPDETED . '</span>'));
-		$form->addElement($movetotop_tray);
-	}
+$block_checkbox = new XoopsFormCheckBox('', 'block', $story->getVar('block') );
+$block_checkbox->addOption(1, _MD_DISP_BLOCK);
+$option_tray->addElement($block_checkbox);
+$ihome_checkbox = new XoopsFormCheckBox('', 'ihome', $story->getVar('ihome') );
+$ihome_checkbox->addOption(1, _MD_PUBINHOME);
+$option_tray->addElement($ihome_checkbox);
+if( $gperm->group_perm(2) ){
+	$approve_value = isset($_POST['approve']) ? $story->getVar('approve') : $story->getVar('type');
+	$approve_checkbox = new XoopsFormCheckBox('', 'approve', $approve_value );
+	$approve_checkbox->addOption(1, _MD_APPROVE);
+	$option_tray->addElement($approve_checkbox);
 }
+$form->addElement($option_tray);
 
 // for edit
 if( $storyid > 0){

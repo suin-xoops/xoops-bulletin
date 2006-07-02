@@ -2,8 +2,22 @@
 
 <{include file="db:`$mydirname`_head.html"}>
 
-<div style="text-align: left;">
-<{if $pagenav}>Page <{$pagenav}><{/if}></div>
+<{* PANKUZU *}>
+<{if $pankuzu}>
+  <div style="text-align: left;">
+  <{foreach item=p from=$pankuzu name=pankuzu}>
+    <{if $smarty.foreach.pankuzu.last}>
+      <{$p.topic_title}>
+    <{else}>
+      <a href="<{$mydirurl}>/index.php?storytopic=<{$p.topic_id}>"><{$p.topic_title}></a>&nbsp;&gt;&nbsp;
+    <{/if}>
+  <{/foreach}>
+  </div>
+<{/if}>
+
+<{if $pagenav}>
+  <div style="text-align: left;">Page <{$pagenav}></div>
+<{/if}>
 
 <div>
 <{include file="db:`$mydirname`_item.html" story=$story}>
@@ -14,6 +28,9 @@
 
 <{* RELATED ARTICLES *}>
 <{include file="db:`$mydirname`_relations.html"}>
+
+<{* RECENT NEWS IN THIS CATEGORY *}>
+<{include file="db:`$mydirname`_category.html"}>
 
 <{if $disp_print_icon or $disp_tell_icon}>
   <div style="text-align: right;">

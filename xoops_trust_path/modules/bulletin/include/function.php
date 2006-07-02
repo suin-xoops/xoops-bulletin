@@ -2,21 +2,23 @@
 
 if( !function_exists('myStrlenText') ){
 
-	function myStrlenText($text){
+	function myStrlenText($str){
 
-		// HTMLƒ^ƒO‚ğíœ
-		$text = strip_tags($text);
-		// HTML“Áê•¶š‚ğ”¼Šp1•¶š‚Æ‚µ‚ÄƒJƒEƒ“ƒg
-		$text = ereg_replace("&[a-zA-Z]{1,5};", " ", $text);
-		// Unicode10i•¶š‚ğ”¼Šp1•¶š‚Æ‚µ‚ÄƒJƒEƒ“ƒg
-		$text = ereg_replace("&#[0-9]{1,5};", " ", $text);
-		// [pagebreak]‚ğƒJƒEƒ“ƒg‘ÎÛŠO‚É‚·‚é
-		$text = str_replace('[pagebreak]', '', $text);
-		// PHPƒ}ƒ‹ƒ`ƒoƒCƒg‘Î‰
+		// HTML¥¿¥°¤òºï½ü
+		$str = strip_tags($str);
+		// ²ş¹Ô¤òºï½ü
+		$str = preg_replace("/(\015\012)|(\015)|(\012)/", "", $str);
+		// Ï¢Â³¤¹¤ëÈ¾³Ñ¥¹¥Ú¡¼¥¹¤òÈ¾³Ñ¥¹¥Ú¡¼¥¹£±¤È¤·¤Æ¥«¥¦¥ó¥È
+		$str = preg_replace('!\s+!', " ", $str);
+		// HTMLÆÃ¼ìÊ¸»ú¤òÈ¾³Ñ1Ê¸»ú¤È¤·¤Æ¥«¥¦¥ó¥È
+		$str = ereg_replace("&[a-zA-Z]{1,5};", " ", $str);
+		// Unicode10¿ÊÊ¸»ú¤òÈ¾³Ñ1Ê¸»ú¤È¤·¤Æ¥«¥¦¥ó¥È
+		$str = ereg_replace("&#[0-9]{1,5};", " ", $str);
+		// PHP¥Ş¥ë¥Á¥Ğ¥¤¥ÈÂĞ±ş
 		if( function_exists('mb_strlen') ){
-			$result = mb_strlen($text);
+			$result = mb_strlen($str);
 		}else{
-			$result = strlen($text);	
+			$result = strlen($str);
 		}
 
 		return $result;

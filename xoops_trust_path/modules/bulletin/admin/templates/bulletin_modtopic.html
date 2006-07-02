@@ -20,12 +20,14 @@
           <{if $topic_imgurl}>
             <img src="<{$topic_imgdir}><{$topic_imgurl}>" alt="" /><br />
           <{/if}>
-          <select size="1" name="topic_imgurl">
+          <select size="1" name="topic_imgurl" id="topic_imgurl" onchange='showImgSelected("topicimage", "topic_imgurl", "<{$imagebase}>", "", "<{$imagedirname}>")'>
           <option value=" ">------</option>
           <{foreach item=i from=$images}>
             <option value="<{$i.image}>" <{$i.option}>><{$i.image}></option>
           <{/foreach}>
-          </select><br /><{$imagelocation}>
+          </select><br />
+          <img src="<{$xoops_url}>/images/blank.gif" name="topicimage" id="topicimage" alt="" vspace="4" /><br />
+          <{$imagelocation}>
         </td>
       </tr>
       <tr>

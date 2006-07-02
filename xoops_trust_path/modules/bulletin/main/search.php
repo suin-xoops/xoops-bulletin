@@ -5,7 +5,7 @@ xoops_header(false);
 </head>
 <body>
 <?
-require_once(XOOPS_ROOT_PATH.'/language/japanese/search.php');
+require_once(XOOPS_ROOT_PATH.'/language/'.$xoopsConfig['language'].'/search.php');
 
 $groups = is_object($xoopsUser) ? $xoopsUser -> getGroups() : XOOPS_GROUP_ANONYMOUS;
 $gperm_handler = & xoops_gethandler( 'groupperm' );

@@ -15,8 +15,6 @@ define("_AM_PUBLISHED","Published date"); // Published Date
 define("_AM_EXPARTS","Stories expiration");
 define("_AM_EXPIRED","Expired");
 
-define("_AM_RUSUREDEL","Are you sure you want to delete this news and all its comments?");
-
 //%%%%%%	Admin Module Name  Topics 	%%%%%
 
 define("_AM_ADDMTOPIC","Create a category");
@@ -32,7 +30,6 @@ define("_AM_SAVECHANGE","Save changes");
 define("_AM_WAYSYWTDTTAL","Are you sure you want to delete this category and all its news and comments?");
 
 define("_AM_ERRORTOPICNAME","Category name has not been filled.");
-define("_AM_EMPTYNODELETE","Unable to delete.");
 
 // Added by SUIN
 
@@ -47,7 +44,7 @@ define("_AM_RIGHT_TO_CHOSE_DATE","Allow published date setting");
 define("_AM_RIGHT_HTML","Allow HTML");
 define("_AM_RIGHT_XCODE","Allow XOOPS Code");
 define("_AM_RIGHT_SMILEY","Allow smiley");
-define('_AM_RIGHT_RELATION','Allow related articles setting'); // ver 2.00 added
+define('_AM_RIGHT_RELATION','Allow related articles feature'); // ver 2.00 added
 define("_AM_NO_TOPICS","There are no categories.");
 define("_AM_DO_YOU_CONVERT","Get stories and categories data from news?");
 define("_AM_EDIT_ARTICLE","Edit news");
@@ -64,6 +61,6 @@ define("_AM_FOLLOW_TOPICS_IS_DELETED","The following category will be deleted.")
 define("_AM_CREDIT","Bulletin(www.suin.jp)");
 // té∆uYqé w≈“éÀ{z{qé“qé {é∫ynqﬂ∂RLqé∆qé≈qé«{nwwqé√qé©qé⁄qéµqaté∆uYqéÀué≈|<u°¶é»qé«{{é¶qé±qÔ“é⁄qéµqa
 // It is able to change a following line into the TRANSLATER's name and website. Follow appears at admin page.
-define("_AM_TRANSLATER","English Translation by Marcelo Yuji Himoro (http://yuji.ws)");
+define("_AM_TRANSLATER","English Translation by Marcelo Yuji Himoro (http://yuji.ws) and Suin (http://suin.jp)");
 // example : define("_AM_TRANSLATER","English patch(www.english-tranlater.com)");
 ?>

@@ -19,5 +19,32 @@ class BulletinGP{
 		return false;
 	}
 
+	function getAdminUsers(){
+
+		global $xoopsDB, $xoopsModule;	
+		$mid = $xoopsModule->mid();
+
+		$groups = array();
+		$rs = $xoopsDB->query( "SELECT gperm_groupid FROM ".$xoopsDB->prefix('group_permission')." WHERE  gperm_itemid='$mid' AND gperm_name='module_admin'" ) ;
+		while( list( $id ) = $xoopsDB->fetchRow( $rs ) ) {
+			$groups[] = $id ;
+		}
+
+		$users = array();
+		foreach( $groups as $groupid ){
+			$sql = 'SELECT uid FROM '.$xoopsDB->prefix('groups_users_link').' WHERE groupid='.intval($groupid);
+			$result = $xoopsDB->query($sql);
+			while ($myrow = $xoopsDB->fetchArray($result)) {
+				$users[] = $myrow['uid'];
+			}
+		}
+		
+		$users = array_unique($users);
+		
+		sort($users);
+		
+		return $users;
+	}
+
 }
 ?>

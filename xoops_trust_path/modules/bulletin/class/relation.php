@@ -113,7 +113,7 @@ class relation {
 
 	function queryLink()
 	{
-		$sql = sprintf("INSERT INTO %s (`storyid`, `linkedid`, `dirname`) VALUES ('%u', '%u', '%s')", $this->db->prefix("{$this->dirname}_relation"), $this->getLinkedidSQL(), $this->getStoryidSQL(), addslashes($this->dirname));
+		$sql = sprintf("INSERT INTO %s (`storyid`, `linkedid`, `dirname`) VALUES ('%u', '%u', '%s')", $this->db->prefix("{$this->dirname}_relation"), $this->getLinkedidSQL(), $this->getStoryidSQL(), addslashes($this->mydirname));
 		//echo $sql;
 		if ( !$result = $this->db->query($sql) ) {
 			return false;
@@ -123,11 +123,25 @@ class relation {
 
 	function queryUnlink()
 	{
-		$sql = sprintf("DELETE FROM %s WHERE `storyid` = '%u' AND `linkedid` = '%u'", $this->db->prefix("{$this->dirname}_relation"), $this->getLinkedidSQL(), $this->getStoryidSQL());
+		$sql = sprintf("DELETE FROM %s WHERE `storyid` = '%u' AND `linkedid` = '%u' AND `dirname` LIKE '%s'", $this->db->prefix("{$this->dirname}_relation"), $this->getLinkedidSQL(), $this->getStoryidSQL(), addslashes($this->mydirname));
        	if ( !$this->db->query($sql) ) {
 			return false;
 		}
 		return true;
+	}
+
+	function queryUnlinkById($storyid)
+	{
+		$relations = $this->getRelations($storyid);
+		foreach($relations as $relation){
+			$this->dirname = $relation['dirname'];
+			$this->storyid = $storyid;
+			$this->linkedid = $relation['linkedid'];
+			if($this->queryUnlink()){
+				return false;
+			}
+		}
+		return ture;
 	}
 
 }

@@ -108,7 +108,7 @@ case 'listall':
 
 	$navi = '';
 	if ( $total > $limit ) {
-		$pagenav = new XoopsPageNav($total, $limit, $start, 'start', 'op=listall&amp;statu='.$statu);
+		$pagenav = new XoopsPageNav($total, $limit, $start, 'start', 'mode=admin&amp;op=listall&amp;statu='.$statu);
 		$navi = $pagenav->renderNav();
 	}
 	
@@ -120,29 +120,6 @@ case 'listall':
 	);
 	
     break;
-
-case 'delete':
-	$storyid = isset( $_GET['storyid'] ) ? intval( $_GET['storyid'] ) : 0 ;
-	
-	if ( !empty( $_POST['ok'] ) ){
-		
-		$storyid = isset( $_POST['storyid'] ) ? intval( $_POST['storyid'] ) : 0 ;
-		
-		if ( empty( $storyid ) ){
-			redirect_header( 'index.php?mode=admin&op=list', 2, _AM_EMPTYNODELETE );
-			exit();
-		}
-		$story = new Bulletin( $storyid );
-		$story -> delete();
-		xoops_comment_delete( $xoopsModule->getVar('mid'), $storyid );
-		xoops_notification_deletebyitem( $xoopsModule->getVar('mid'), 'story', $storyid );
-		redirect_header( 'index.php?mode=admin&op=list', 1, _AM_DBUPDATED );
-		exit();
-	}else{
-		xoops_cp_header();
-		xoops_confirm( array( 'op' => 'delete', 'storyid' => $storyid, 'ok' => 1 ), 'index.php?mode=admin', _AM_RUSUREDEL );
-	}
-	break;
 
 //グループによる投稿許可設定画面
 case 'permition':
@@ -211,7 +188,6 @@ case 'modTopic':
 	$BTopic->makeTopicSelBox( 1, $BTopic->topic_pid(), 'topic_pid' );
 	$topicselbox = ob_get_contents();
 	ob_end_clean();
-
 	$asssigns = array(
 		'images' => $images,
 		'topic_id' => $BTopic->topic_id(),
@@ -438,6 +414,8 @@ $assing_global = array(
 	'ADMENU4' => constant( $constpref.'_ADMENU4'),
 	'ADMENU5' => constant( $constpref.'_ADMENU5'),
 	'imagelocation' => sprintf( _AM_IMGNAEXLOC,str_replace(XOOPS_ROOT_PATH,XOOPS_URL,$xoopsModuleConfig['topicon_path']) ),
+	'imagebase' => basename(str_replace(XOOPS_ROOT_PATH,XOOPS_URL,$xoopsModuleConfig['topicon_path'])),
+	'imagedirname' => dirname(str_replace(XOOPS_ROOT_PATH,XOOPS_URL,$xoopsModuleConfig['topicon_path'])),
 	'credit' => $myts->previewTarea($credit,0,1,0,0,0),
 	'translater' => $myts->previewTarea($translater,0,1,0,0,0),
 	'admin_title' => sprintf(_AM_CONFIG, $xoopsModule->name()),
@@ -504,7 +482,7 @@ function RENDER_NEWS_TITLE(&$obj)
 {
 	global $xoopsModule;
 	$ret="";
-	if($obj->getVar('published')<time() && $obj->getVar('published') != 0 && ($obj->getVar('expired') == 0 || $obj->getVar('expired') > time() ) ){
+	if($obj->getVar('type') != 0 && $obj->getVar('published')<time() && $obj->getVar('published') != 0 && ($obj->getVar('expired') == 0 || $obj->getVar('expired') > time() ) ){
 	
 		if( $obj->getVar('title') == '' ){
 			$obj->setVar('title', _AM_NOSUBJECT);

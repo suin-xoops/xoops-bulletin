@@ -73,6 +73,12 @@ define($constpref.'_CONFIG14_D', '');
 // 2.00 added
 define($constpref.'_CONFIG15','関連記事機能を有効にする');
 define($constpref.'_CONFIG15_D', '');
+define($constpref.'_CONFIG16','カテゴリの最新記事を表示する');
+define($constpref.'_CONFIG16_D', '各記事の下に同一カテゴリの最新記事一覧が表示されます。');
+define($constpref.'_CONFIG17','カテゴリの最新記事の記事数');
+define($constpref.'_CONFIG17_D', '各記事の下に表示する同一カテゴリの最新記事一覧の記事数を指定します。');
+define($constpref.'_CONFIG18','カテゴリのパンくずリストを表示する');
+define($constpref.'_CONFIG18_D', '');
 
 // Text for notifications
 define($constpref.'_GLOBAL_NOTIFY', 'モジュール全体');
@@ -100,6 +106,11 @@ define($constpref.'_STORY_APPROVE_NOTIFY', 'ニュース記事の承認');
 define($constpref.'_STORY_APPROVE_NOTIFYCAP', 'このニュース記事が承認された場合に通知する');
 define($constpref.'_STORY_APPROVE_NOTIFYDSC', 'このニュース記事が承認された場合に通知する');
 define($constpref.'_STORY_APPROVE_NOTIFYSBJ', '[{X_SITENAME}] {X_MODULE}: ニュース記事が承認されました');
+
+define($constpref.'_NOTIFY5_TITLE', '新規コメント投稿');
+define($constpref.'_NOTIFY5_CAPTION', 'この記事にコメントがついた場合通知する');
+define($constpref.'_NOTIFY5_DESC', 'この記事にコメントがついた場合通知する');
+define($constpref.'_NOTIFY5_SUBJECT', '[{X_SITENAME}] {X_MODULE}: コメントの投稿がありました');
 
 }
 ?>

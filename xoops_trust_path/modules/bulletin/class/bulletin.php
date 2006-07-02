@@ -4,6 +4,7 @@ require_once XOOPS_ROOT_PATH."/class/xoopstopic.php";
 require_once XOOPS_ROOT_PATH."/class/xoopsuser.php";
 require_once XOOPS_ROOT_PATH."/class/xoopsobject.php";
 require_once "$mytrustdirpath/class/relation.php";
+require_once "$mytrustdirpath/class/bulletinTopic.php";
 
 if (!defined('DB_BULLETIN_STORIES')) define('DB_BULLETIN_STORIES',"{$mydirname}_stories");
 if (!defined('DB_BULLETIN_TOPICS')) define('DB_BULLETIN_TOPICS',"{$mydirname}_topics");
@@ -33,19 +34,20 @@ class Bulletin extends XoopsObject{
 		$this->initVar("counter", XOBJ_DTYPE_INT, 0, false);
 		$this->initVar("topicid", XOBJ_DTYPE_INT, 1, false);
 		$this->initVar("ihome", XOBJ_DTYPE_INT, 1, false);
-		$this->initVar("type", XOBJ_DTYPE_INT, 0, false);
+		$this->initVar("type", XOBJ_DTYPE_INT, 1, false);
 		$this->initVar("topicimg", XOBJ_DTYPE_INT, 1, false);
 		$this->initVar("comments", XOBJ_DTYPE_INT, 0, false);
+		$this->initVar("block", XOBJ_DTYPE_INT, 1, false);
 		//extra
 		$this->initVar("notifypub", XOBJ_DTYPE_INT, 1, false);
 		$this->initVar("autodate", XOBJ_DTYPE_INT, 0, false);
 		$this->initVar("autoexpdate", XOBJ_DTYPE_INT, 0, false);
 		$this->initVar("approve", XOBJ_DTYPE_INT, 0, false);
-		$this->initVar("movetotop", XOBJ_DTYPE_INT, 0, false);
 		$this->initVar("text", XOBJ_DTYPE_TXTAREA, null, false);
 		$this->initVar("dirname", XOBJ_DTYPE_TXTBOX, null, false, 25);
 
 		$this->relation = new relation(BULLETIN_DIR);
+		$this->topics = new BulletinTopic();
 
 		if ( !empty($id) ) {
 			if ( is_array($id) ) {
@@ -55,6 +57,10 @@ class Bulletin extends XoopsObject{
 				$this->vars['dosmiley']['value'] = $this->getVar('smiley');
 				$this->vars['dobr']['value'] = $this->getVar('br');
 				$this->vars['doxcode']['value'] = $this->getVar('xcode');
+				$this->vars['dohtml']['changed'] = false;
+				$this->vars['dosmiley']['changed'] = false;
+				$this->vars['dobr']['changed'] = false;
+				$this->vars['doxcode']['changed'] = false;
 			} else {
 				$this->load(intval($id));
 				$this->newstopic = $this->topic();
@@ -62,6 +68,10 @@ class Bulletin extends XoopsObject{
 				$this->vars['dosmiley']['value'] = $this->getVar('smiley');
 				$this->vars['dobr']['value'] = $this->getVar('br');
 				$this->vars['doxcode']['value'] = $this->getVar('xcode');
+				$this->vars['dohtml']['changed'] = false;
+				$this->vars['dosmiley']['changed'] = false;
+				$this->vars['dobr']['changed'] = false;
+				$this->vars['doxcode']['changed'] = false;
 			}
 		}
 		
@@ -86,9 +96,9 @@ class Bulletin extends XoopsObject{
 		if ( empty($storyid) ) {
 			$storyid = $this->db->genId($this->db->prefix(DB_BULLETIN_STORIES)."_storyid_seq");
 			
-			$sql = sprintf("INSERT INTO %s (storyid, uid, title, created, published, expired, hostname, html, smiley, hometext, bodytext, counter, topicid, ihome, type, topicimg, comments, br, xcode) VALUES (%u, %u, %s, %u, %u, %u, %s, %u, %u, %s, %s, %u, %u, %u, %u, %u, %u, %u, %u)", $this->db->prefix(DB_BULLETIN_STORIES), $storyid, $uid, $this->db->quoteString($title), time(), $published, $expired, $this->db->quoteString($hostname), $html, $smiley, $this->db->quoteString($hometext), $this->db->quoteString($bodytext), $counter, $topicid, $ihome, $type, $topicimg, $comments, $br, $xcode);
+			$sql = sprintf("INSERT INTO %s (storyid, uid, title, created, published, expired, hostname, html, smiley, hometext, bodytext, counter, topicid, ihome, type, topicimg, comments, br, xcode, block) VALUES (%u, %u, %s, %u, %u, %u, %s, %u, %u, %s, %s, %u, %u, %u, %u, %u, %u, %u, %u, %u)", $this->db->prefix(DB_BULLETIN_STORIES), $storyid, $uid, $this->db->quoteString($title), time(), $published, $expired, $this->db->quoteString($hostname), $html, $smiley, $this->db->quoteString($hometext), $this->db->quoteString($bodytext), $counter, $topicid, $ihome, $type, $topicimg, $comments, $br, $xcode, $block);
 		} else {
-			$sql = sprintf("UPDATE %s SET uid=%u, title=%s, created=%u, published=%u, expired=%u, hostname=%s, html=%u, smiley=%u, hometext=%s, bodytext=%s, counter=%u, topicid=%u, ihome=%u, type=%u, topicimg=%u, comments=%u, br=%u, xcode=%u WHERE storyid=%u", $this->db->prefix(DB_BULLETIN_STORIES), $uid, $this->db->quoteString($title), $created, $published, $expired, $this->db->quoteString($hostname), $html, $smiley, $this->db->quoteString($hometext), $this->db->quoteString($bodytext), $counter, $topicid, $ihome, $type, $topicimg, $comments, $br, $xcode, $storyid);
+			$sql = sprintf("UPDATE %s SET uid=%u, title=%s, created=%u, published=%u, expired=%u, hostname=%s, html=%u, smiley=%u, hometext=%s, bodytext=%s, counter=%u, topicid=%u, ihome=%u, type=%u, topicimg=%u, comments=%u, br=%u, xcode=%u, block=%u WHERE storyid=%u", $this->db->prefix(DB_BULLETIN_STORIES), $uid, $this->db->quoteString($title), $created, $published, $expired, $this->db->quoteString($hostname), $html, $smiley, $this->db->quoteString($hometext), $this->db->quoteString($bodytext), $counter, $topicid, $ihome, $type, $topicimg, $comments, $br, $xcode, $block, $storyid);
 		}
 		//echo $sql;
 		if ( !$result = $this->db->query($sql) ) {
@@ -398,7 +408,7 @@ class Bulletin extends XoopsObject{
 		
 		return false;
 	}
-	
+
 	// トピックのセレクトボックスを返す
 	function makeTopicSelBox($none=0, $seltopic=-1, $selname="", $onchange=""){
 	
@@ -409,12 +419,12 @@ class Bulletin extends XoopsObject{
 		$xt->makeTopicSelBox($none=0, $seltopic, $selname, $onchange);
 		$ret = ob_get_contents();
 		ob_end_clean();	
-		
-		$ret = str_replace('topic_id','topicid', $ret);
 
+		$ret = str_replace('topic_id','topicid', $ret);
+		
 		return $ret;
 	}
-	
+
 	function getTreeCategories($topic_pid = 0, $so = 0 ,$cat_tree = array()){
 	
 		$db =& Database::getInstance();
@@ -434,11 +444,12 @@ class Bulletin extends XoopsObject{
 	}
 
 	function makeCategoryArrayForSelect($pad_string = '--'){
-	
+
+		$ts =& MyTextSanitizer::getInstance();
 		$cat_tree = Bulletin::getTreeCategories();
 		$ret = array();
 		foreach($cat_tree as $cat){
-			$ret[$cat['topic_id']] = str_repeat($pad_string, $cat['fukasa']).' '.$cat['title'];
+			$ret[$cat['topic_id']] = str_repeat($pad_string, $cat['fukasa']).' '.$ts->htmlspecialchars($cat['title']);
 		}
 		return $ret;
 	}
@@ -546,6 +557,10 @@ class Bulletin extends XoopsObject{
 		
 		// HTMLタグを削除
 		$hometext = strip_tags($this->getVar('hometext'));
+		// 改行を削除
+		$hometext = preg_replace("/(\015\012)|(\015)|(\012)/", "", $hometext);
+		// 連続する半角スペースを半角スペース１としてカウント
+		$hometext = preg_replace('!\s+!', " ", $hometext);
 		// HTML特殊文字を半角1文字としてカウント
 		$hometext = ereg_replace("&[a-zA-Z]{1,5};", " ", $hometext);
 		// Unicode10進文字を半角1文字としてカウント
@@ -566,6 +581,10 @@ class Bulletin extends XoopsObject{
 		
 		// HTMLタグを削除
 		$bodytext = strip_tags($this->getVar('bodytext'));
+		// 改行を削除
+		$bodytext = preg_replace("/(\015\012)|(\015)|(\012)/", "", $bodytext);
+		// 連続する半角スペースを半角スペース１としてカウント
+		$bodytext = preg_replace('!\s+!', " ", $bodytext);
 		// HTML特殊文字を半角1文字としてカウント
 		$bodytext = ereg_replace("&[a-zA-Z]{1,5};", " ", $bodytext);
 		// Unicode10進文字を半角1文字としてカウント
@@ -631,6 +650,13 @@ class Bulletin extends XoopsObject{
 		}
 		
 		return $ret;
+	}
+	
+	function getRelatedTitle($storyid, $dirname){
+		$dirname = addslashes($dirname);
+		$sql = sprintf("SELECT title FROM %s WHERE storyid = %u", $this->db->prefix("{$dirname}_stories"), intval($storyid));
+		list($title) = $this->db->fetchRow($this->db->query($sql));
+		return htmlspecialchars($title);
 	}
 
 }

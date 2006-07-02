@@ -17,12 +17,14 @@
       <tr>
         <td class="head"><{$smarty.const._AM_TOPICIMG}></td>
         <td class="even">
-          <select size="1" name="topic_imgurl">
+          <select size="1" name="topic_imgurl" id="topic_imgurl" onchange='showImgSelected("topicimage", "topic_imgurl", "<{$imagebase}>", "", "<{$imagedirname}>")'>
           <option value="">------</option>
           <{foreach item=i from=$images}>
           <option value="<{$i.image}>"><{$i.image}></option>
           <{/foreach}>
           </select><br />
+          <img src="<{$xoops_url}>/images/blank.gif" name="topicimage" id="topicimage" alt="" vspace="4" />
+          <br />
           <{$imagelocation}>
         </td>
       </tr>

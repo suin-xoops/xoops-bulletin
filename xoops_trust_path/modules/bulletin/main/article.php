@@ -16,18 +16,13 @@ require_once XOOPS_ROOT_PATH.'/header.php';
 
 $article = new Bulletin($storyid);
 
-// 閲覧数をカウントアップする
-if (empty($_GET['com_id']) && !isset($_GET['storypage'])) {
-	$article->updateCounter();
-}
-
 $story['id']       = $storyid;
 $story['posttime'] = formatTimestamp($article->getVar('published'), $bulletin_date_format);
 $story['topicid']  = $article->getVar('topicid');
 $story['topic']    = $article->topic_title();
 $story['title']    = $article->getVar('title');
 $story['text']     = $article->getVar('hometext');
-$story['hits']     = $article->getVar('counter');
+$story['hits']     = $article->getVar('counter') + 1; // To disp real view
 $bodytext = $article->getVar('bodytext');
 
 if ( $bodytext != '' ) {
@@ -74,16 +69,33 @@ if($bulletin_use_relations){
 		$relation_asign = array();
 		$relation_asign['storyid'] = $relation->getVar('storyid');
 		$relation_asign['title'] = $relation->getVar('title');
-		$relation_asign['published'] = formatTimestamp($relation->getVar('published'), $bulletin_date_format);
+		$relation_asign['date'] = formatTimestamp($relation->getVar('published'), $bulletin_date_format);
 		$relation_asign['uid'] = $relation->getVar('uid');
 		$relation_asign['uname'] = $relation->getUname();
-//		$relation_asign['topicid'] = $relation->getVar('topicid');
-//		$relation_asign['topic'] = $relation->topic_title();
+		$relation_asign['realname'] = $relation->getRealname();
+		$relation_asign['topicid'] = $relation->getVar('topicid');
+		$relation_asign['topic'] = $relation->topic_title();
 		$relation_asign['counter'] = $relation->getVar('counter');
 		$relation_asign['comments'] = $relation->getVar('comments');
 		$relation_asign['dirname'] = $relation->getVar('dirname');
 		$relation_asign['url'] = XOOPS_URL.'/modules/'.$relation->getVar('dirname');
 		$xoopsTpl->append('relations', $relation_asign);
+	}
+}
+
+// カテゴリの最新記事
+if($bulletin_disp_list_of_cat && $bulletin_stories_of_cat > 0){
+	$category_storeis = Bulletin::getAllPublished($bulletin_stories_of_cat, 0, $article->getVar('topicid'), 0);
+	foreach($category_storeis as $category_story){
+		$category_story_asign['storyid']  = $category_story->getVar('storyid');
+		$category_story_asign['title']    = $category_story->getVar('title');
+		$category_story_asign['date']     = formatTimestamp($category_story->getVar('published'), $bulletin_date_format);
+		$category_story_asign['uid']      = $category_story->getVar('uid');
+		$category_story_asign['uname']    = $category_story->getUname();
+		$category_story_asign['realname'] = $category_story->getRealname();
+		$category_story_asign['counter']  = $category_story->getVar('counter');
+		$category_story_asign['comments'] = $category_story->getVar('comments');
+		$xoopsTpl->append('category_storeis', $category_story_asign);
 	}
 }
 
@@ -98,6 +110,8 @@ $xoopsTpl->assign('story', $story);
 $xoopsTpl->assign('mail_link', $mail_link);
 $xoopsTpl->assign('disp_print_icon', $bulletin_disp_print_icon);
 $xoopsTpl->assign('disp_tell_icon', $bulletin_disp_tell_icon );
+// パンくずリスト
+if($bulletin_use_pankuzu) $xoopsTpl->assign('pankuzu', $article->topics->makePankuzuForHTML($article->getVar('topicid')) );
 
 if( $bulletin_titile_as_sitename ) $xoopsTpl->assign('xoops_pagetitle', $article->getVar('title'));
 
@@ -108,5 +122,9 @@ if($bulletin_assing_rssurl_head){
 }
 $xoopsTpl->assign($assing_array);
 
+// 閲覧数をカウントアップする
+if (empty($_GET['com_id']) && !isset($_GET['storypage'])) {
+	$article->updateCounter();
+}
 require_once XOOPS_ROOT_PATH.'/footer.php';
 ?>

@@ -39,13 +39,16 @@ if (!$tpl->is_cached("db:{$mydirname}_rss.html")) {
 		$tpl->assign('image_height', $height);
 		$count = $articles;
 		foreach ($articles as $article) {
+			$conetent = $article->getVar('hometext') . $article->getDividedBodytext() ;
 			$tpl->append('items', array(
 				'title' => htmlspecialchars(xoops_utf8_encode($article->getVar('title', 'n')), ENT_QUOTES), 
+				'category' => htmlspecialchars(xoops_utf8_encode($article->newstopic->topic_title), ENT_QUOTES), 
 				'link' => $mydirurl.'/index.php?page=article&amp;storyid='.$article->getVar('storyid'), 
 				'guid' => $mydirurl.'/index.php?page=article&amp;storyid='.$article->getVar('storyid'), 
 				'pubdate' => formatTimestamp($article->getVar('published'), 'rss'), 
 				'description' => xoops_utf8_encode(xoops_substr(htmlspecialchars(strip_tags($myts->xoopsCodeDecode($article->getVar('hometext','n'))), ENT_QUOTES), 0, 300)),
-				'content' => xoops_utf8_encode($article->getVar('hometext'))));
+				'content' => xoops_utf8_encode($conetent)));
+//				'content' => xoops_utf8_encode($article->getVar('hometext'))));
 		}
 	}
 }

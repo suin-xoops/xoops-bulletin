@@ -30,7 +30,7 @@ function b_bulletin_category_new_show($options) {
 			$topic['topic_url'] = str_replace(XOOPS_ROOT_PATH,XOOPS_URL,$bulletin_topicon_path).$topic_imgurl;
 		}
 
-		$where = sprintf("s.type > 0 AND s.published < %u AND s.published > 0 AND (s.expired = 0 OR s.expired > %1\$u) AND s.ihome = 1 AND(s.topicid=%u", time(), $topic_id);
+		$where = sprintf("s.type > 0 AND s.published < %u AND s.published > 0 AND (s.expired = 0 OR s.expired > %1\$u) AND s.block = 1 AND (s.topicid=%u", time(), $topic_id);
 
 		// 子ディレクトリを対象に含める
 		$arr = $mytree->getAllChildId($topic_id);

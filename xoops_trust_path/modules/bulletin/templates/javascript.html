@@ -1,13 +1,14 @@
 function submitRelations(form, check)
 {
-	content = getContents();
+	var content = getContents();
 	content += bulid(form, check);
 	setContents(content, 1);
 }
 
 function updateRelations(form, check)
 {
-	content = bulid(form, check);
+
+	var content = bulid(form, check);
 	setContents(content, 0);
 }
 
@@ -15,11 +16,11 @@ function bulid(form, check)
 {
 	ret = '';
 
-	MyFrom = eval( 'document.'+form+'.elements' );
+	var MyFrom = document.forms[form].elements;
+
 	if(MyFrom['storyidR[]']){
-		count = MyFrom['storyidR[]'].length;
-		if( count > 0 ){
-			for(i=0;i<count;i++){
+		if( MyFrom['storyidR[]'].length ){
+			for(i=0;i<MyFrom['storyidR[]'].length;i++){
 				if( MyFrom['storyidR[]'][i].checked == check){
 					storyid = MyFrom['storyidR[]'][i].value;
 					title = MyFrom['titleR[]'][i].value;
@@ -31,16 +32,26 @@ function bulid(form, check)
 					ret += ''+title+'<br />';
 				}
 			}
+		}else{
+			if( MyFrom['storyidR[]'].checked == check){
+				storyid = MyFrom['storyidR[]'].value;
+				title = MyFrom['titleR[]'].value;
+				dirname = MyFrom['dirnameR[]'].value;
+				ret += '<input type="checkbox" name="storyidR[]" value="' + storyid + '" />';
+				ret += '<input type="hidden" name="titleR[]" value="' + title + '" />';
+				ret += '<input type="hidden" name="dirnameR[]" value="' + dirname + '" />';
+				ret += '<input type="hidden" name="storyidRH[]" value="' + storyid + '" />';
+				ret += ''+title+'<br />';
+			}
 		}
 	}
-
 	return ret;
 }
 
 function getContents()
 {
 	if (document.getElementById){
-		ret = window.opener.document.getElementById("relation").innerHTML;
+		var ret = window.opener.document.getElementById("relation").innerHTML;
 		return ret;
 	}
 	return false;

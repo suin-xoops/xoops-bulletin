@@ -23,6 +23,7 @@ CREATE TABLE `stories` (
   `type` tinyint(1) NOT NULL default '0',
   `topicimg` tinyint(1) NOT NULL default '0',
   `comments` smallint(5) unsigned NOT NULL default '0',
+  `block` tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (`storyid`),
   KEY `idxstoriestopic` (`topicid`),
   KEY `ihome` (`ihome`),

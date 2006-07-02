@@ -15,8 +15,6 @@ define('_AM_PUBLISHED','掲載日時'); // Published Date
 define('_AM_EXPARTS','期限切れの記事');
 define('_AM_EXPIRED','掲載期限');
 
-define('_AM_RUSUREDEL','このニュース記事および記事に対するコメントを全て削除してもいいですか？');
-
 //%%%%%%	Admin Module Name  Topics 	%%%%%
 
 define('_AM_ADDMTOPIC','カテゴリの作成');
@@ -32,7 +30,6 @@ define('_AM_SAVECHANGE','変更を保存');
 define('_AM_WAYSYWTDTTAL','このカテゴリおよびこのカテゴリ内の全てのニュース記事およびコメントを削除してもいいですか？');
 
 define('_AM_ERRORTOPICNAME', 'カテゴリ名が記入されていません。');
-define('_AM_EMPTYNODELETE', '削除できません');
 
 // Added by SUIN
 

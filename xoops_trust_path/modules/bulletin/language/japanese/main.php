@@ -36,16 +36,16 @@ define('_MD_SETDATETIME','掲載日時を設定する'); // ver 2.00 added
 define('_MD_SETDATETIME_DESC','*チェックをしないと掲載日時は現在の日時になります。'); // ver 2.00 added
 define('_MD_SETEXPDATETIME','掲載期限を設定する'); // ver 2.00 added
 define('_MD_SETEXPDATETIME_DESC','*チェックをしないと掲載期限の設定は無効になります。'); // ver 2.00 added
-define('_MD_APPROVE','この記事を承認する'); // ver 2.00 added
-define('_MD_DATE_IS_UPDETED','*「はい」にすると掲載日時は現在の日時に変更されます。'); // ver 2.00 added
-define('_MD_MOVETOTOP','記事をメインページの最上部に移動する'); // ver 2.00 added
-define('_MD_POST_NOW','記事を今すぐ掲載する'); // ver 2.00 added
+define('_MD_APPROVE','この記事を掲載承認状態にする'); // ver 2.00 added
 define('_MD_DATE_FORMAT','%y 年 %m 月 %d 日 %h 時 %i 分 %s 秒'); // ver 2.00 added
 define('_MD_DBPUDATED','データベースの更新に成功しました。'); // ver 2.00 added
 define('_MD_POSTEDBY','投稿者'); // ver 2.00 added
-define('_MD_RELATION','関連記事'); // ver 2.00 added
+define('_MD_RELATION','この記事に関連した記事'); // ver 2.00 added
 define('_MD_ADD_RELATION','関連記事を追加'); // ver 2.00 added
 define('_MD_CHECKED_AS_RELATION','関連記事に追加'); // ver 2.00 added
+define('_MD_DISP_BLOCK','ブロックに掲載する'); // ver 2.00 added
+define('_MD_RUSUREDEL','このニュース記事および記事に対するコメントを全て削除してもいいですか？'); // ver 2.00 added
+define('_MD_EMPTYNODELETE', '削除できません'); // ver 2.00 added
 
 //          archive.php          //
 define('_MD_NEWSARCHIVES','ニュースアーカイブ');

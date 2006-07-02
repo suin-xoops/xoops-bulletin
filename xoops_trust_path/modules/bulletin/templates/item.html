@@ -20,11 +20,12 @@
     <{if $story.topic_url}>
       <a href="<{$mydirurl}>/index.php?storytopic=<{$story.topicid}>"><img src="<{$story.topic_url}>" alt="<{$story.topic}>" hspace="10" vspace="10" align="<{$story.align}>" /></a>
     <{/if}>
-    <p class="itemText"><{$story.text}><br clear="all" /></p>
+    <p class="itemText"><{$story.text}></p>
   </div>
+  <div style="clear:both;"></div>
   <div class="itemFoot">
     <{if $story.adminlink}>
-    <span class="itemAdminLink">&nbsp;[ <a href="<{$mydirurl}>/index.php?page=submit&amp;storyid=<{$story.id}>"><{$smarty.const._EDIT}></a> | <a href="<{$mydirurl}>/index.php?mode=admin&amp;op=delete&amp;storyid=<{$story.id}>"><{$smarty.const._DELETE}></a> ]&nbsp;</span>&nbsp;
+    <span class="itemAdminLink">&nbsp;[ <a href="<{$mydirurl}>/index.php?page=submit&amp;storyid=<{$story.id}>"><{$smarty.const._EDIT}></a> | <a href="<{$mydirurl}>/index.php?page=submit&amp;op=delete&amp;storyid=<{$story.id}>"><{$smarty.const._DELETE}></a> ]&nbsp;</span>&nbsp;
     <{/if}>
 <span class="itemPermaLink">
 <{if $story.readmore}>

@@ -21,7 +21,7 @@ define("_MB_BULLETIN_DATE_FORMAT","m/Y");
 
 define("_MB_BULLETIN_DISP_TOPICID","Display category (0=show all)");
 define("_MB_BULLETIN_DISP_HOMETEXT","Number of news showing hometext");
-define("_MB_BULLETIN_DIPS_ICON","Show category icon");
+define("_MB_BULLETIN_DIPS_ICON","Display category icon");
 
 define("_MB_BULLETIN_READMORE","Read more...");
 define("_MB_BULLETIN_COMMENTS","0 comments");

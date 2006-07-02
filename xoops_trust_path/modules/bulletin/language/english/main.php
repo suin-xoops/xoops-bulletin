@@ -26,27 +26,26 @@ define("_MD_USE_BR","Enable auto wrap lines");
 define("_MD_USE_XCODE","Enable XOOPS Code");
 define("_MD_NO_TOPICS","There are no categories.");
 define("_MD_TOPIC_IMAGE","Category image"); // ver 2.00 added
-define("_MD_TOPIC_DISABLE","Do not show category icon"); // ver 2.00 added
-define("_MD_TOPIC_LEFT","Show category icon on left side"); // ver 2.00 added
-define("_MD_TOPIC_RIGHT","Show category icon on right side"); // ver 2.00 added
+define("_MD_TOPIC_DISABLE","Do not display category icon"); // ver 2.00 added
+define("_MD_TOPIC_LEFT","Display category icon on left side"); // ver 2.00 added
+define("_MD_TOPIC_RIGHT","Display category icon on right side"); // ver 2.00 added
 define("_MD_PUBINHOME","Publish on the index page"); // ver 2.00 added
 define("_MD_PUBLISHED","Posted date"); // ver 2.00 added
 define("_MD_EXPIRED","Expired"); // ver 2.00 added
 define("_MD_SETDATETIME","Set the publication time"); // ver 2.00 added
-define("_MD_SETDATETIME_DESC","*If you do not check, published time will be current time."); // ver 2.00 added
+define("_MD_SETDATETIME_DESC","* If you do not check it, published time will be current time."); // ver 2.00 added
 define("_MD_SETEXPDATETIME","Set expiration time"); // ver 2.00 added
-define("_MD_SETEXPDATETIME_DESC","*If you do not check, expired setting will become invalid."); // ver 2.00 added
+define("_MD_SETEXPDATETIME_DESC","* If you do not check it, expired setting will become invalid."); // ver 2.00 added
 define("_MD_APPROVE","Approve this story"); // ver 2.00 added
-define("_MD_DATE_IS_UPDETED","*If you choose "Yes", published time will be current time."); // ver 2.00 added
-define("_MD_MOVETOTOP","Move this story to the top of the index page"); // ver 2.00 added
-define("_MD_POST_NOW","Move this article to the top of the index page"); // ver 2.00 added
 define("_MD_DATE_FORMAT","%d %m %y %h : %i : %s"); // ver 2.00 added
 define("_MD_DBPUDATED","Database updated successfully!"); // ver 2.00 added
 define("_MD_POSTEDBY","Poster"); // ver 2.00 added
 define("_MD_RELATION","Related articles"); // ver 2.00 added
-define("_MD_ADD_RELATION","Add articles"); // ver 2.00 added
-define("_MD_CHECKED_AS_RELATION","Add those articles"); // ver 2.00 added
-
+define("_MD_ADD_RELATION","Add related articles"); // ver 2.00 added
+define("_MD_CHECKED_AS_RELATION","Add as related articles"); // ver 2.00 added
+define("_MD_DISP_BLOCK","Display on block"); // ver 2.00 added
+define("_MD_RUSUREDEL","Are you sure you want to delete this news and all its comments?"); // ver 2.00 added
+define("_MD_EMPTYNODELETE", "Unable to delete."); // ver 2.00 added
 //          archive.php          //
 define("_MD_NEWSARCHIVES","News archive");
 define("_MD_ARTICLES","News");

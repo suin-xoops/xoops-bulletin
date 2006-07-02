@@ -12,6 +12,7 @@ class BulletinTopic extends XoopsTopic{
 	{
 		$this->db =& Database::getInstance();
 		$this->table = $this->db->prefix(DB_BULLETIN_TOPICS);
+		$this->ts =& MyTextSanitizer::getInstance();
 		
 		if ( is_array($topicid) ) {
 			$this->makeTopic($topicid);
@@ -34,6 +35,30 @@ class BulletinTopic extends XoopsTopic{
 		}
 	}
 
+	function makePankuzu($topic_id=0, $ret = array())
+	{
+		$result = ( "SELECT `topic_pid`, `topic_title` FROM ".$this->db->prefix(DB_BULLETIN_TOPICS)." WHERE `topic_id` = ".intval($topic_id) );
+		$result = $this->db->query($result);
+		list($topic_pid, $topic_title) = $this->db->fetchRow($result);
+		$ret[] = array('topic_id' => $topic_id, 'topic_title' => $topic_title);
+		if($topic_pid > 0){
+			$ret = $this->makePankuzu($topic_pid, $ret);
+		}
+		
+		$ret = array_reverse($ret);
+		
+		return $ret;
+
+	}
+
+	function makePankuzuForHTML($topic_id=0)
+	{
+		$pankuzu = $this->makePankuzu($topic_id);
+		foreach($pankuzu as $k => $v){
+			$pankuzu[$k]['topic_title'] = $this->ts->htmlSpecialChars($pankuzu[$k]['topic_title']);
+		}
+		return $pankuzu;
+	}
 
 }
 ?>
