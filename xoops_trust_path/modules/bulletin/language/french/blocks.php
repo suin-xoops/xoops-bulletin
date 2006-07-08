@@ -1,8 +1,6 @@
-<?php /* French Translation by Nuno Luciano <http://xoopserver.com> */
-// Blocks
-if( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( 'BULLETIN_BL_LOADED' ) ) {
+<?php /* French Translation by Nuno Luciano aka Gigamaster <http://xoopserver.com> */
 
-define('BULLETIN_BL_LOADED' , 1 ) ;
+// Blocks
 
 define("_MB_BULLETIN_NOTYET","Il n'y a pas encore d'Article du jour.");
 define("_MB_BULLETIN_TMRSI","L'Article le plus lu aujourd'hui est :");
@@ -37,5 +35,4 @@ define("_MB_BULLETIN_DISP_TOPICID","Afficher Sujet par ID (0=affiche tout)");
 define("_MB_BULLETIN_DISP_HOMETEXT","Afficher r&eacute;szm&eacute; dans");
 define("_MB_BULLETIN_DIPS_ICON","Afficher icon du Sujet");
 
-}
 ?>

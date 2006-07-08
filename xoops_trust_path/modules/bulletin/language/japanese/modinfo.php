@@ -59,7 +59,7 @@ define($constpref.'_CONFIG8','印刷ページの画像のURL');
 define($constpref.'_CONFIG8_D', '印刷用ページに表示されるロゴ画像をURLで指定します。');
 define($constpref.'_CONFIG9','記事名をサイトのタイトルにする');
 define($constpref.'_CONFIG9_D', '記事の題名をサイトのタイトルに置き換えます。SEOの面で有効だと言われています。');
-define($constpref.'_CONFIG10','xoops_module_headerにRSSのURLをassingする');
+define($constpref.'_CONFIG10','xoops_module_headerにRSSのURLをassignする');
 define($constpref.'_CONFIG10_D', '');
 // 1.01 added
 define($constpref.'_CONFIG11','「印刷する」アイコンを表示する');

@@ -21,7 +21,7 @@ function b_bulletin_new_show($options) {
 		
 		while ( $myrow = $xoopsDB->fetchArray($result) ) {
 			$fullstory['id']       = $myrow['storyid'];
-			$fullstory['posttime'] = formatTimestamp($myrow['published']);
+			$fullstory['posttime'] = formatTimestamp($myrow['published'], $bulletin_date_format);
 			$fullstory['topicid']  = $myrow['topicid'];
 			$fullstory['topic']    = $myts->makeTboxData4Show($myrow['topic_title']);
 			$fullstory['title']    = $myts->makeTboxData4Show($myrow['title']);
@@ -79,7 +79,7 @@ function b_bulletin_new_show($options) {
 			// 
 			$story['title']    = $myts->makeTboxData4Show(xoops_substr($myrow['title'], 0 ,$options[3] + 3, '...'));
 			$story['id']       = $myrow['storyid'];
-			$story['date']     = formatTimestamp($myrow['published'],"s");
+			$story['date']     = formatTimestamp($myrow['published'], $bulletin_date_format);
 			$story['hits']     = $myrow['counter'];
 			$story['uid']      = $myrow['uid'];
 			$story['uname']    = XoopsUser::getUnameFromId($myrow['uid']);

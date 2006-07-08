@@ -3,6 +3,8 @@ Hello {X_UNAME},
 Un nouveau Sujet "{TOPIC_NAME}" est disponible sur le site {X_SITENAME}.
 
 Vous pouvez consulter les articles du nouveau Sujet en suivant ce lien:
+{TOPIC_NAME}
+
 {X_MODULE_URL}
 
 -----------
