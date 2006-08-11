@@ -7,6 +7,17 @@ function bulletin_onupdate_base( $module, $prev_version , $mydirname )
 {
 	global $msgs, $xoopsDB, $xoopsUser, $xoopsConfig ;
 
+	// for Cube 2.1
+	if( class_exists( 'XCube_Root' ) ) {
+		$isCube = true ;
+		$root =& XCube_Root::getSingleton();
+		$root->mEventManager->add("Module.Legacy.ModuleUpdate.Success", new XCube_Delegate( 'bulletin_message_append_onupdate' ) ) ;
+		$msgs = array() ;
+	} else {
+		$isCube = false ;
+		if( ! is_array( $msgs ) ) $msgs = array() ;
+	}
+
 	$db =& Database::getInstance() ;
 	$mid = $module->getVar('mid') ;
 
@@ -197,4 +208,14 @@ function bulletin_onupdate_base( $module, $prev_version , $mydirname )
 
 	return true ;
 }
+
+function bulletin_message_append_onupdate( &$controller , &$eventArgs )
+{
+	if( is_array( @$GLOBALS['msgs'] ) ) {
+		foreach( $GLOBALS['msgs'] as $message ) {
+			$controller->mLog->add( $message ) ;
+		}
+	}
+}
+
 ?>

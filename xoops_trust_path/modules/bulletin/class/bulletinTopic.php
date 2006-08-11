@@ -43,10 +43,10 @@ class BulletinTopic extends XoopsTopic{
 		$ret[] = array('topic_id' => $topic_id, 'topic_title' => $topic_title);
 		if($topic_pid > 0){
 			$ret = $this->makePankuzu($topic_pid, $ret);
+		}else{
+			$ret = array_reverse($ret);
 		}
-		
-		$ret = array_reverse($ret);
-		
+
 		return $ret;
 
 	}

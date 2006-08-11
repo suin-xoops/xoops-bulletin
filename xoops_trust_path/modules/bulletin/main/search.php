@@ -1,10 +1,10 @@
 <?php
 xoops_header(false);
 ?>
-<script type="text/javascript" src="<?=$mydirurl?>/index.php?page=javascript"></script>
+<script type="text/javascript" src="<?php echo $mydirurl; ?>/index.php?page=javascript"></script>
 </head>
 <body>
-<?
+<?php
 require_once(XOOPS_ROOT_PATH.'/language/'.$xoopsConfig['language'].'/search.php');
 
 $groups = is_object($xoopsUser) ? $xoopsUser -> getGroups() : XOOPS_GROUP_ANONYMOUS;

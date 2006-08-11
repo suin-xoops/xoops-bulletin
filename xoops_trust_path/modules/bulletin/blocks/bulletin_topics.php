@@ -14,6 +14,7 @@ function b_bulletin_topics_show($options) {
 	ob_start();
 	$xt->makeTopicSelBox(1, $storytopic,"storytopic","location=\"".$jump."\"+this.options[this.selectedIndex].value");
 	$block['selectbox'] = ob_get_contents();
+	$block['mydirname'] = $mydirname;
 	ob_end_clean();
 	return $block;
 

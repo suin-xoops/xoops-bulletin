@@ -1,13 +1,24 @@
 <?php
 
-eval( ' function xoops_module_uninstall_'.$mydirname.'( $module ) { return wraps_onuninstall_base( $module , "'.$mydirname.'" ) ; } ' ) ;
+eval( ' function xoops_module_uninstall_'.$mydirname.'( $module ) { return bulletin_onuninstall_base( $module , "'.$mydirname.'" ) ; } ' ) ;
 
 
-function wraps_onuninstall_base( $module , $mydirname )
+function bulletin_onuninstall_base( $module , $mydirname )
 {
 	// transations on module uninstall
 
 	global $ret ;
+
+	// for Cube 2.1
+	if( class_exists( 'XCube_Root' ) ) {
+		$isCube = true ;
+		$root =& XCube_Root::getSingleton();
+		$root->mEventManager->add("Module.Legacy.ModuleUninstall.Success", new XCube_Delegate( 'bulletin_message_append_onuninstall' ) ) ;
+		$ret = array() ;
+	} else {
+		$isCube = false ;
+		if( ! is_array( $ret ) ) $ret = array() ;
+	}
 
 	$db =& Database::getInstance() ;
 	$mid = $module->getVar('mid') ;
@@ -48,6 +59,15 @@ function wraps_onuninstall_base( $module , $mydirname )
 
 
 	return true ;
+}
+
+function bulletin_message_append_onuninstall( &$controller , &$eventArgs )
+{
+	if( is_array( @$GLOBALS['ret'] ) ) {
+		foreach( $GLOBALS['ret'] as $message ) {
+			$controller->mLog->add( $message ) ;
+		}
+	}
 }
 
 ?>

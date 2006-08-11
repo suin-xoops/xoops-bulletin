@@ -46,7 +46,7 @@ if (!$tpl->is_cached("db:{$mydirname}_rss.html")) {
 				'link' => $mydirurl.'/index.php?page=article&amp;storyid='.$article->getVar('storyid'), 
 				'guid' => $mydirurl.'/index.php?page=article&amp;storyid='.$article->getVar('storyid'), 
 				'pubdate' => formatTimestamp($article->getVar('published'), 'rss'), 
-				'description' => xoops_utf8_encode(xoops_substr(htmlspecialchars(strip_tags($myts->xoopsCodeDecode($article->getVar('hometext','n'))), ENT_QUOTES), 0, 300)),
+				'description' => xoops_utf8_encode(htmlspecialchars(strip_tags($myts->xoopsCodeDecode($article->getVar('hometext','n'))), ENT_QUOTES)),
 				'content' => xoops_utf8_encode($conetent)));
 //				'content' => xoops_utf8_encode($article->getVar('hometext'))));
 		}

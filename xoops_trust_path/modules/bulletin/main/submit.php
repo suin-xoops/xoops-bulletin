@@ -227,10 +227,10 @@ if( $op == 'post' ){
 
 		// 自動承認のときはメッセージを変える
 		if($gperm->group_perm(2)){
-			redirect_header($mydirurl, 2, _MD_THANKS_AUTOAPPROVE);
+			redirect_header($mydirurl.'/index.php', 2, _MD_THANKS_AUTOAPPROVE);
 			exit;
 		}
-		redirect_header($mydirurl, 3, _MD_THANKS);
+		redirect_header($mydirurl.'/index.php', 3, _MD_THANKS);
 		exit;
 
 	}else{
@@ -246,7 +246,7 @@ if( $op == 'post' ){
 			$notification_handler->triggerEvent('global', 0, 'new_story', $tags);
 		}
 
-		if ( $return == 1 ){
+		if ( $return == 1 || $story->getVar('published') > time() ){
 			redirect_header($mydirurl.'/index.php?mode=admin&op=list', 3, _MD_DBPUDATED);
 		}else{
 			redirect_header($mydirurl.'/index.php?page=article&storyid='.$story->getVar('storyid'), 3, _MD_DBPUDATED);
@@ -296,6 +296,8 @@ if( $op == 'form' ){
 		$autoexp = time();
 	}
 
+//	$xoopsOption['template_main'] = "{$mydirname}_submit.html";
+
 	require_once XOOPS_ROOT_PATH.'/header.php';
 	if( !empty($errors) ) xoops_error($errors);
 	require $mytrustdirpath.'/include/storyform.inc.php';
@@ -338,7 +340,7 @@ if( $op == 'delete' ){
 		if( $return == 1){
 			redirect_header( $mydirurl.'/index.php?mode=admin&op=list', 1, _MD_DBPUDATED );
 		}else{
-			redirect_header( $mydirurl, 1, _MD_DBPUDATED );
+			redirect_header( $mydirurl.'/index.php', 1, _MD_DBPUDATED );
 		}
 		exit();
 	}else{

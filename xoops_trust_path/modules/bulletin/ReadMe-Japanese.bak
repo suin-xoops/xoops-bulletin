@@ -242,12 +242,6 @@ Bulletinの複製機能はいわゆるDuplicatable V3です。<br>
     </tr>
     <tr>
       <td align="center">2.03</td>
-      <td align="center">2006-08-12</td>
-      <td align="center">変更</td>
-      <td>oretinをマージ＝俺的XOOPSに対応。ドキュメントも勝手に頂きました。(thx marijuana)</td>
-    </tr>
-    <tr>
-      <td align="center">2.03</td>
       <td align="center">2006-07-20</td>
       <td align="center">バグ</td>
       <td>モジュールのアイコンの色がおかしくなるバグを修正。(thx GIJOE)</td>
