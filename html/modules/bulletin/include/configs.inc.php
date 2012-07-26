@@ -42,7 +42,7 @@
 	$table_topics   = $xoopsDB->prefix( "bulletin{$mydirnumber}_topics" ) ;
 	$table_comments = $xoopsDB->prefix( "xoopscomments" ) ;
 
-	//サニタイザー
+	// sanitizer
 	$myts =& MyTextSanitizer::getInstance();
 
 	require_once $myroot.'/include/function.php';
