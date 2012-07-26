@@ -1,0 +1,35 @@
+<{strip}>
+<div class="item">
+  <div class="itemHead"><span class="itemTitle"><a href="<{$myurl}>/index.php?storytopic=<{$story.topicid}>"><{$story.topic}></a>&nbsp;:&nbsp;
+<{if $story.title_link}>
+<a href="<{$myurl}>/article.php?storyid=<{$story.id}>"><{$story.title}></a>
+<{else}>
+<{$story.title}>
+<{/if}>
+</span></div>
+  <div class="itemInfo">
+    <span class="itemPoster"><{$lang_postedby}>&nbsp;
+<{if $story.uid}>
+<a href="<{$xoops_url}>/userinfo.php?uid=<{$story.uid}>"><{$story.uname}></a>
+<{else}>
+<{$story.uname}>
+<{/if}>
+</span> <span class="itemPostDate"><{$lang_on}> <{$story.posttime}></span> (<span class="itemStats"><{$story.hits}> <{$lang_reads}></span>)
+  </div>
+  <div class="itemBody">
+    <{$story.imglink}>
+    <p class="itemText"><{$story.text}><br clear="all" /></p>
+  </div>
+  <div class="itemFoot">
+    <{if $story.adminlink}>
+    <span class="itemAdminLink">&nbsp;[ <a href="<{$myurl}>/admin/index.php?op=edit&amp;storyid=<{$story.id}>"><{$lang_edit}></a> | <a href="<{$myurl}>/admin/index.php?op=delete&amp;storyid=<{$story.id}>"><{$lang_delete}></a> ]&nbsp;</span>&nbsp;
+    <{/if}>
+<span class="itemPermaLink">
+<{if $story.readmore}>
+<a href="<{$myurl}>/article.php?storyid=<{$story.id}>"><{$lang_readmore}></a> | <{$story.bytes}> | 
+<{/if}>
+<a href="<{$myurl}>/article.php?storyid=<{$story.id}>"><{$story.comentstotal}></a>
+</span>
+  </div>
+</div>
+<{/strip}>

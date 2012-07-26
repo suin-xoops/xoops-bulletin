@@ -1,0 +1,45 @@
+<{foreach item=topic from=$block.topics}>
+  <div class="itemHead"><span class="itemTitle"><a href="<{$block.myurl}>/index.php?storytopic=<{$topic.id}>"><{$topic.title}></a></span></div>
+  <{if isset($topic.stories1)}>
+
+  <{assign var="lang_postedby" value=$block.lang_postedby}>
+  <{assign var="lang_on" value=$block.lang_on}>
+  <{assign var="lang_reads" value=$block.lang_reads}>
+
+  <{foreach item=story from=$topic.stories1}>
+
+  <{include file="db:bulletin_item.html" story=$story}>
+
+  <{/foreach}>
+  <{/if}>
+
+
+  <{if isset($topic.stories2)}>
+  <table style="border:0px">
+    <tr>
+      <td style="width:80px;">
+        <{$topic.imglink}>
+      </td>
+      <td>
+        <ul>
+	<{foreach item=news from=$topic.stories2}>
+	<li><a href="<{$block.myurl}>/article.php?storyid=<{$news.id}>"><{$news.title}></a> <{if $block.type == "published"}>
+    (<{$news.date}>)
+  <{else}>
+    (<{$news.hits}>)
+  <{/if}></li>
+	<{/foreach}>
+        </ul>
+      </td>
+    </tr>
+  </table>
+  <{/if}>
+
+  <{if $topic.morelink}>
+  <div style="text-align:right">
+    <span class="itemPermaLink"><{$topic.morelink}></span>
+  </div>
+  <{/if}>
+
+  <{/foreach}>
+
