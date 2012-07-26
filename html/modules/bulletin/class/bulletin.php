@@ -400,6 +400,8 @@ class Bulletin extends XoopsObject{
 		$ret = ob_get_contents();
 		ob_end_clean();	
 		
+		$ret = str_replace('topic_id','topicid', $ret);
+		
 		return $ret;
 	}
 	

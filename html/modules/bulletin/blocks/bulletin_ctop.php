@@ -83,7 +83,7 @@ function b_bulletin_Ctop_show($options) {
 		// 本文を表示する
 		if($options[5] > 0){
 
-			$sql  = sprintf('SELECT s.storyid, s.topicid, s.title, s.hometext, s.bodytext, s.published, s.expired, s.counter, s.uid, s.topicimg, s.html, s.smiley, s.br, s.xcode, t.topic_title, t. topic_imgurl FROM %s s, %s t WHERE %s AND s.topicid = t.topic_id %s', $table_stories, $table_topics, $where, $order);
+			$sql  = sprintf('SELECT s.storyid, s.topicid, s.title, s.hometext, s.bodytext, s.published, s.expired, s.counter, s.comments, s.uid, s.topicimg, s.html, s.smiley, s.br, s.xcode, t.topic_title, t. topic_imgurl FROM %s s, %s t WHERE %s AND s.topicid = t.topic_id %s', $table_stories, $table_topics, $where, $order);
 
 			$result2 = $xoopsDB->query($sql,$options[5],0);
 
@@ -109,7 +109,7 @@ function b_bulletin_Ctop_show($options) {
 				}
 
 				// コメントの数をアサイン
-				$ccount = $myrow['counter'];
+				$ccount = $myrow['comments'];
 				if( $ccount == 0 ){
 					$fullstory['comentstotal'] = _MB_COMMENTS;
 				}elseif( $ccount == 1 ) {

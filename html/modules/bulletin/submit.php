@@ -39,7 +39,7 @@ if( $op == 'form' ) {
 }
 
 // $_POSTの値を取得
-$topic_id  = isset($_POST['topic_id'])  ? intval($_POST['topic_id'])  : 0 ;
+$topicid   = isset($_POST['topicid'])   ? intval($_POST['topicid'])   : 0 ;
 $title     = isset($_POST['title'])     ?       ($_POST['title'])     : '';
 $hometext  = isset($_POST['hometext'])  ?       ($_POST['hometext'])  : '';
 $notifypub = isset($_POST['notifypub']) ? 1 : 0 ;
@@ -86,7 +86,7 @@ case "post":
 	$story->setVar('title', $title);
 	$story->setVar('hometext', $hometext);
 	$story->setVar('uid', $uid);
-	$story->setVar('topicid', $topic_id);
+	$story->setVar('topicid', $topicid);
 	$story->setVar('hostname', xoops_getenv('REMOTE_ADDR'));
 	$story->setVar('html', $html);
 	$story->setVar('br', $br);
