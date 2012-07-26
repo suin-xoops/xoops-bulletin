@@ -286,12 +286,10 @@ class Bulletin extends XoopsObject{
 	// トピック画像を取得する
 	function imglink($topic_path)
 	{
-		$ret = '';
 		if ($this->newstopic->topic_imgurl() != '' && file_exists($topic_path.$this->newstopic->topic_imgurl())) {
-			$topic_url = str_replace(XOOPS_ROOT_PATH,XOOPS_URL,$topic_path).$this->newstopic->topic_imgurl();
-			$ret = "<a href='".XOOPS_URL."/modules/".BULLETIN_DIR."/index.php?storytopic=".$this->getVar('topicid')."'><img src='".$topic_url."' alt='".$this->newstopic->topic_title()."' hspace='10' vspace='10' align='".$this->getTopicalign()."' /></a>";
+			return str_replace(XOOPS_ROOT_PATH,XOOPS_URL,$topic_path).$this->newstopic->topic_imgurl();
 		}
-		return $ret;
+		return false;
 	}
 
 	// ユーザの本名を取得する

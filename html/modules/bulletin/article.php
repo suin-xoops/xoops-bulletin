@@ -65,8 +65,8 @@ if ( $xoopsUser && $xoopsUser->isAdmin($xoopsModule->getVar('mid')) ) {
 }
 
 if ( $article->showTopicimg()  ) {
-	$story['imglink'] = $article->imglink($bulletin_topicon_path);
-	$story['align']   = $article->getTopicalign();
+	$story['topic_url'] = $article->imglink($bulletin_topicon_path);
+	$story['align']     = $article->getTopicalign();
 }
 
 // Tell A Frinedを使う場合

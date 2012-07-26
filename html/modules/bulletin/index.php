@@ -87,8 +87,8 @@ for ( $i = 0; $i < $scount; $i++ ) {
 	
 	// アイコン画像
 	if ( $articles[$i]->showTopicimg() ) {
-		$story['imglink'] = $articles[$i]->imglink($bulletin_topicon_path);
-		$story['align']   = $articles[$i]->getTopicalign();
+		$story['topic_url'] = $articles[$i]->imglink($bulletin_topicon_path);
+		$story['align']     = $articles[$i]->getTopicalign();
 	}
 	
 	$xoopsTpl->append('stories', $story);

@@ -45,4 +45,6 @@
 	//サニタイザー
 	$myts =& MyTextSanitizer::getInstance();
 
+	require_once $myroot.'/include/function.php';
+
 ?>

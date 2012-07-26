@@ -17,8 +17,8 @@ define("_MD_NUMCOMMENTS","%s comments");
 define("_MD_SUBMITNEWS","Submit news");
 define("_MD_TITLE","Subject");
 define("_MD_TOPIC","Category");
-define("_MD_THESCOOP","Text body");
-define("_MD_NOTIFYPUBLISH","Notify by e-mail when this story is approved");
+define("_MD_THESCOOP","Text");
+define("_MD_NOTIFYPUBLISH","Notify me by e-mail when this story is approved");
 define("_MD_POST","Post");
 define("_MD_GO","Send");
 define("_MD_THANKS","Your post was received. Please wait until it is approved and published officially by this website staff."); //submission of news article
@@ -29,7 +29,7 @@ define("_MD_NOTIFYSBJCT","NEWS for my site"); // Notification mail subject
 define("_MD_NOTIFYMSG","A new story has been posted."); // Notification mail message
 
 //%%%%%%		File Name archive.php		%%%%%
-define("_MD_NEWSARCHIVES","News archives");
+define("_MD_NEWSARCHIVES","News archive");
 define("_MD_ARTICLES","News");
 define("_MD_VIEWS","hits");
 define("_MD_DATE","Date");
@@ -55,8 +55,8 @@ define("_MD_THISCOMESFROM","You can read more news at %s.");
 // Added language definitions for news expiry date
 define("_AM_EXPARTS","Expired news");
 define("_AM_EXPIRED","Expired");
-define("_AM_CHANGEEXPDATETIME","Change date/time of expiration");
-define("_AM_SETEXPDATETIME","Set date/time of expiration");
+define("_AM_CHANGEEXPDATETIME","Change expiration time");
+define("_AM_SETEXPDATETIME","Set expiration time");
 define("_AM_NOWSETEXPTIME","Current expiration time: %s");
 
 // Added by suin
@@ -80,6 +80,9 @@ define("_MD_OCTOBER","October");
 define("_MD_NOVEMBER","November");
 define("_MD_DECEMBER","December");
 define("_MD_NO_TOPICS","There are no categories.");
+
+// ver 1.01 added
+define("_MD_RSS", "RSS");
 
 }
 ?>
