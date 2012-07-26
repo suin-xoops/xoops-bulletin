@@ -123,7 +123,7 @@ case 'listall':
 		break;
 		
 	}
-	
+
 	$navi = '';
 	if ( $total > $limit ) {
 		$pagenav = new XoopsPageNav($total, $limit, $start, 'start', 'op=listall&amp;statu='.$statu);

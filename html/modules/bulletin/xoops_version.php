@@ -6,7 +6,7 @@ if( ! preg_match( '/^(\D+)(\d*)$/' , $mydirname , $regs ) ) echo ( "invalid dirn
 $mydirnumber = $regs[2] === '' ? '' : intval( $regs[2] ) ;
 
 $modversion['name']        = _MI_BULLETIN_NAME.$mydirnumber;
-$modversion['version']     = 1.03;
+$modversion['version']     = 1.04;
 $modversion['description'] = _MI_BULLETIN_DESC;
 $modversion['credits']     = "suin";
 $modversion['help']        = "help.html";

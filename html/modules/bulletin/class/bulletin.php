@@ -448,8 +448,8 @@ class Bulletin extends XoopsObject{
 			$criteria[] = "topicid=$topic4sql";
 			$criteria[] = "(ihome=1 OR ihome=0)";
 		} else {
-			if ( $ihome == 0 ) {
-				$criteria[] = "ihome=0";
+			if ( $ihome == 1 ) {
+				$criteria[] = "ihome=1";
 			}
 		}
 		return Bulletin::countAll($criteria);

@@ -161,6 +161,7 @@ function b_bulletin_Ctop_show($options) {
 	$block['lang_on'] = _ON;
 	$block['lang_reads'] = _READS;
 	$block['lang_morelink'] = _MB_BULLETIN_MORE;
+	$block['lang_readmore'] = _MB_READMORE;
 	$block['myurl'] = $myurl;
 	$block['type'] = $options[1];
 
