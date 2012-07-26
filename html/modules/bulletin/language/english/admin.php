@@ -1,90 +1,110 @@
-<?php
-// $Id: admin.php,v 1.2 2005/03/18 12:52:38 onokazu Exp $
+<?php /* English Translation by Marcelo Yuji Himoro <http://yuji.ws> */
+if( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( 'BULLETIN_AM_LOADED' ) ) {
+
+define('BULLETIN_AM_LOADED' , 1 ) ;
+
 //%%%%%%	Admin Module Name  Articles 	%%%%%
-define("_AM_DBUPDATED","Database Updated Successfully!");
-define("_AM_CONFIG","News Configuration");
-define("_AM_AUTOARTICLES","Automated Articles");
-define("_AM_STORYID","Story ID");
-define("_AM_TITLE","Title");
-define("_AM_TOPIC","Topic");
+define("_AM_DBUPDATED","Database updated successfully!");
+
+define("_AM_AUTOARTICLES","Stories scheduling");
+define("_AM_STORYID","ID");
+define("_AM_TITLE","Subject");
+define("_AM_TOPIC","Category");
 define("_AM_POSTER","Poster");
-define("_AM_PROGRAMMED","Programmed Date/Time");
+define("_AM_PROGRAMMED","Scheduled date/time");
 define("_AM_ACTION","Action");
 define("_AM_EDIT","Edit");
 define("_AM_DELETE","Delete");
-define("_AM_LAST10ARTS","Last 10 Articles");
-define("_AM_PUBLISHED","Published"); // Published Date
-define("_AM_GO","Go!");
-define("_AM_EDITARTICLE","Edit Article");
-define("_AM_POSTNEWARTICLE","Post New Article");
-define("_AM_ARTPUBLISHED","Your article has been published!");
-define("_AM_HELLO","Hello %s,");
-define("_AM_YOURARTPUB","Your article submitted to our site has been published.");
-define("_AM_TITLEC","Title: ");
-define("_AM_URLC","URL: ");
-define("_AM_PUBLISHEDC","Published: ");
-define("_AM_RUSUREDEL","Are you sure you want to delete this article and all its comments?");
+define("_AM_POSTED","Posted date");
+define("_AM_PUBLISHED","Published date"); // Published Date
+define("_AM_GO","Send");
+
+define("_AM_RUSUREDEL","Are you sure you want to delete this news and all its comments?");
 define("_AM_YES","Yes");
 define("_AM_NO","No");
-define("_AM_INTROTEXT","Intro Text");
-define("_AM_EXTEXT","Extended Text");
-define("_AM_ALLOWEDHTML","Allowed HTML:");
-define("_AM_DISAMILEY","Disable Smiley");
-define("_AM_DISHTML","Disable HTML");
-define("_AM_APPROVE","Approve");
-define("_AM_MOVETOTOP","Move this story to top");
-define("_AM_CHANGEDATETIME","Change the date/time of publication");
-define("_AM_NOWSETTIME","It is now set at: %s"); // %s is datetime of publish
-define("_AM_CURRENTTIME","Current time is: %s");  // %s is the current datetime
+define("_AM_INTROTEXT","Intro text");
+define("_AM_EXTEXT","Extended text");
+
+define("_AM_DISAMILEY","Disable smiley");
+define("_AM_DISHTML","Disable HTML tags");
+define("_AM_APPROVE","Approve this story");
+define("_AM_MOVETOTOP","Move this story to the top of top page");
+define("_AM_CHANGEDATETIME","Change date/time of publication");
+define("_AM_NOWSETTIME","Current scheduled time： d/m/Y H:i"); 
+define("_AM_CURRENTTIME","Current time： d/m/Y H:i");  
 define("_AM_SETDATETIME","Set the date/time of publish");
-define("_AM_MONTHC","Month:");
-define("_AM_DAYC","Day:");
-define("_AM_YEARC","Year:");
-define("_AM_TIMEC","Time:");
+
 define("_AM_PREVIEW","Preview");
 define("_AM_SAVE","Save");
-define("_AM_PUBINHOME","Publish in Home?");
+define("_AM_PUBINHOME","Publish in top page");
 define("_AM_ADD","Add");
 
 //%%%%%%	Admin Module Name  Topics 	%%%%%
 
-define("_AM_ADDMTOPIC","Add a MAIN Topic");
-define("_AM_TOPICNAME","Topic Name");
-define("_AM_MAX40CHAR","(max: 40 characters)");
-define("_AM_TOPICIMG","Topic Image");
-define("_AM_IMGNAEXLOC","image name + extension located in %s");
-define("_AM_FEXAMPLE","for example: games.gif");
-define("_AM_ADDSUBTOPIC","Add a SUB-Topic");
-define("_AM_IN","in");
-define("_AM_MODIFYTOPIC","Modify Topic");
-define("_AM_MODIFY","Modify");
-define("_AM_PARENTTOPIC","Parent Topic");
-define("_AM_SAVECHANGE","Save Changes");
+define("_AM_ADDMTOPIC","Create a category");
+define("_AM_TOPICNAME","Category name");
+define("_AM_MAX40CHAR","(max. 40 characters)");
+define("_AM_TOPICIMG","Category image");
+define("_AM_IMGNAEXLOC","Image filename under %s");
+
+define("_AM_MODIFYTOPIC","Edit category");
+define("_AM_MODIFY","Send");
+define("_AM_PARENTTOPIC","Parent category");
+define("_AM_SAVECHANGE","Save changes");
 define("_AM_DEL","Delete");
 define("_AM_CANCEL","Cancel");
-define("_AM_WAYSYWTDTTAL","WARNING: Are you sure you want to delete this Topic and ALL its Stories and Comments?");
+define("_AM_WAYSYWTDTTAL","Are you sure you want to delete this category and all its news and comments?");
 
-
-// Added in Beta6
-define("_AM_TOPICSMNGR","Topics Manager");
-define("_AM_PEARTICLES","Post/Edit Articles");
-define("_AM_NEWSUB","New Submissions");
-define("_AM_POSTED","Posted");
-define("_AM_GENERALCONF","General Configuration");
-
-// Added in RC2
-define("_AM_TOPICDISPLAY","Display Topic Image?");
-define("_AM_TOPICALIGN","Position");
-define("_AM_RIGHT","Right");
-define("_AM_LEFT","Left");
-
-define("_AM_EXPARTS","Expired Articles");
+define("_AM_EXPARTS","Stories expiration");
 define("_AM_EXPIRED","Expired");
-define("_AM_CHANGEEXPDATETIME","Change the date/time of expiration");
-define("_AM_SETEXPDATETIME","Set the date/time of expiration");
-define("_AM_NOWSETEXPTIME","It is now set at: %s");
+define("_AM_CHANGEEXPDATETIME","Change date/time of expiration");
+define("_AM_SETEXPDATETIME","Set date/time of expiration");
 
-// Added in RC3
-define("_AM_ERRORTOPICNAME", "You must enter a topic name!");
-define("_AM_EMPTYNODELETE", "Nothing to delete!");
+define("_AM_ERRORTOPICNAME","Category name has not been filled.");
+define("_AM_EMPTYNODELETE","Unable to delete.");
+
+// Added by SUIN
+
+define("_AM_TOPIC_IMAGE","Category image");
+define("_AM_TOPIC_DISABLE","Do not show category image");
+define("_AM_TOPIC_LEFT","Show category image on left side");
+define("_AM_TOPIC_RIGHT","Show category image on right side");
+define("_AM_OPTIONSETTINGS","Option");
+define("_AM_DISP_CONTENUE","[Show all news]");
+define("_AM_PUB_ARTICLES","Published news");
+define("_AM_WAITING_ARTICLES","Waiting news");
+define("_AM_ARTICLE_ADMIN","News manager");
+define("_AM_NOSUBJECT","No subject");
+define("_AM_RIGHT_TO_POST","Allow post");
+define("_AM_RIGHT_TO_APPROVE","Approve publication automatically");
+define("_AM_RIGHT_TO_CHOSE_DATE","Allow published date setting");
+define("_AM_RIGHT_HTML","Allow HTML");
+define("_AM_RIGHT_XCODE","Allow XOOPS Code");
+define("_AM_RIGHT_SMILEY","Allow smiley");
+define("_AM_DATE_FORMAT","%d %m %y %h : %i");
+define("_AM_POST_NOW","Move this article to the top of top page");
+define("_AM_USE_SAMILEY","Allow smiley");
+define("_AM_USE_HTML","Allow HTML tags");
+define("_AM_USE_BR","Enable auto wrap lines");
+define("_AM_USE_XCODE","Enable XOOPS Code");
+define("_AM_SELECTTOPIC","Please choose a category.");
+define("_AM_NO_TOPICS","There are no categories.");
+define("_AM_DO_YOU_CONVERT","Get stories and categories data from news?");
+define("_AM_EDIT_ARTICLE","Edit news");
+define("_AM_NO_ARTICLES","There are no stories.");
+define("_AM_CONFIG","%s configs");
+
+// v 1.01 added
+define("_AM_TOPICS_DELETE","Delete category");
+define("_AM_TOPICID","ID");
+define("_AM_DESTINATION_OF_STORIES","The destination of stories belonging this category");
+define("_AM_FOLLOW_TOPICS_IS_DELETED","Following categories is deleted.");
+
+
+define("_AM_CREDIT","Bulletin(www.suin.jp)");
+// 以下の行は翻訳者の名前やURLなどに変更できます。以下は管理画面に表示されます。
+// It is able to change a following line into the TRANSLATER's name and website. Follow appears at admin page.
+define("_AM_TRANSLATER","English Translation by Marcelo Yuji Himoro <http://yuji.ws>");
+// example : define("_AM_TRANSLATER","English patch(www.english-tranlater.com)");
+}
 ?>

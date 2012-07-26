@@ -6,7 +6,7 @@ if( ! preg_match( '/^(\D+)(\d*)$/' , $mydirname , $regs ) ) echo ( "invalid dirn
 $mydirnumber = $regs[2] === '' ? '' : intval( $regs[2] ) ;
 
 $modversion['name']        = _MI_BULLETIN_NAME.$mydirnumber;
-$modversion['version']     = 1.0;
+$modversion['version']     = 1.01;
 $modversion['description'] = _MI_BULLETIN_DESC;
 $modversion['credits']     = "suin";
 $modversion['help']        = "help.html";
@@ -40,6 +40,8 @@ $modversion['templates'][5]['file']        = "bulletin{$mydirnumber}_print.html"
 $modversion['templates'][5]['description'] = _MI_BULLETIN_TEMPLATE5;
 $modversion['templates'][6]['file']        = "bulletin{$mydirnumber}_rss.html";
 $modversion['templates'][6]['description'] = _MI_BULLETIN_TEMPLATE6;
+$modversion['templates'][7]['file']        = "bulletin{$mydirnumber}_head.html";
+$modversion['templates'][7]['description'] = _MI_BULLETIN_TEMPLATE7;
 // Blocks
 $i = 1;
 $modversion['blocks'][$i]['file']        = "bulletin_topics.php";
@@ -176,6 +178,35 @@ $modversion['config'][$i]['description'] = '_MI_BULLETIN_CONFIG10_D';
 $modversion['config'][$i]['formtype']    = 'yesno';
 $modversion['config'][$i]['valuetype']   = 'int';
 $modversion['config'][$i]['default']     = 1;
+$i++;
+$modversion['config'][$i]['name']        = 'disp_print_icon';
+$modversion['config'][$i]['title']       = '_MI_BULLETIN_CONFIG11';
+$modversion['config'][$i]['description'] = '_MI_BULLETIN_CONFIG11_D';
+$modversion['config'][$i]['formtype']    = 'yesno';
+$modversion['config'][$i]['valuetype']   = 'int';
+$modversion['config'][$i]['default']     = 1;
+$i++;
+$modversion['config'][$i]['name']        = 'disp_tell_icon';
+$modversion['config'][$i]['title']       = '_MI_BULLETIN_CONFIG12';
+$modversion['config'][$i]['description'] = '_MI_BULLETIN_CONFIG12_D';
+$modversion['config'][$i]['formtype']    = 'yesno';
+$modversion['config'][$i]['valuetype']   = 'int';
+$modversion['config'][$i]['default']     = 1;
+$i++;
+$modversion['config'][$i]['name']        = 'use_tell_a_frined';
+$modversion['config'][$i]['title']       = '_MI_BULLETIN_CONFIG13';
+$modversion['config'][$i]['description'] = '_MI_BULLETIN_CONFIG13_D';
+$modversion['config'][$i]['formtype']    = 'yesno';
+$modversion['config'][$i]['valuetype']   = 'int';
+$modversion['config'][$i]['default']     = 0;
+$i++;
+$modversion['config'][$i]['name']        = 'disp_rss_link';
+$modversion['config'][$i]['title']       = '_MI_BULLETIN_CONFIG14';
+$modversion['config'][$i]['description'] = '_MI_BULLETIN_CONFIG14_D';
+$modversion['config'][$i]['formtype']    = 'yesno';
+$modversion['config'][$i]['valuetype']   = 'int';
+$modversion['config'][$i]['default']     = 1;
+
 
 // Notification
 $modversion['hasNotification'] = 1;

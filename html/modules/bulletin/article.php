@@ -69,11 +69,17 @@ if ( $article->showTopicimg()  ) {
 	$story['align']   = $article->getTopicalign();
 }
 
-
-$story['mail_link'] = 'mailto:?subject='.sprintf(_MD_INTARTICLE,$xoopsConfig['sitename']).'&amp;body='.sprintf(_MD_INTARTFOUND, $xoopsConfig['sitename']).':  '.$myurl.'/article.php?storyid='.$storyid;
+// Tell A Frinedを使う場合
+if($bulletin_use_tell_a_frined){
+	$mail_link = XOOPS_URL.'/modules/tellafriend/index.php?target_uri='.rawurlencode( "$myurl/article.php?storyid=$storyid" ).'&amp;subject='.rawurlencode(sprintf(_MD_INTARTFOUND,$xoopsConfig['sitename'])) ;
+}else{
+	$mail_link = 'mailto:?subject='.sprintf(_MD_INTARTICLE,$xoopsConfig['sitename']).'&amp;body='.sprintf(_MD_INTARTFOUND, $xoopsConfig['sitename']).':  '.$myurl.'/article.php?storyid='.$storyid;
+}
 
 $xoopsTpl->assign('story', $story);
-$xoopsTpl->assign('mail_link', 'mailto:?subject='.sprintf(_MD_INTARTICLE,$xoopsConfig['sitename']).'&amp;body='.sprintf(_MD_INTARTFOUND, $xoopsConfig['sitename']).':  '.$myurl.'/article.php?storyid='.$storyid);
+$xoopsTpl->assign('mail_link', $mail_link);
+$xoopsTpl->assign('disp_print_icon', $bulletin_disp_print_icon);
+$xoopsTpl->assign('disp_tell_icon', $bulletin_disp_tell_icon );
 
 if( $bulletin_titile_as_sitename ) $xoopsTpl->assign('xoops_pagetitle', $article->getVar('title'));
 

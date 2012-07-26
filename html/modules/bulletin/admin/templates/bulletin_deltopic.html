@@ -1,0 +1,54 @@
+<{strip}>
+<table width="100%" border="0" cellspacing="1" class="outer">
+  <tr>
+    <td class="odd">
+      <h4><a href="<{$myurl}>/admin/"><{$admin_title}></a>&nbsp;&raquo;&raquo;&nbsp;<a href="<{$myurl}>/admin/index.php?op=topicsmanager"><{$_MI_BULLETIN_ADMENU2}></a>&nbsp;&raquo;&raquo;&nbsp;<a href="<{$myurl}>/admin/index.php?op=modTopic&amp;topic_id=<{$topicid}>"><{$_AM_MODIFYTOPIC}></a>&nbsp;&raquo;&raquo;&nbsp;<{$_AM_TOPICS_DELETE}></h4>
+    </td>
+  </tr>
+</table>
+<br />
+
+<form action="index.php" method="post">
+<table class="outer" cellspacing="1" width="100%">
+  <tbody>
+    <tr>
+      <th><{$_AM_TOPICID}></th>
+      <th><{$_AM_TOPICNAME}>(<{$_AM_FOLLOW_TOPICS_IS_DELETED}>)</th>
+      <th><{$_AM_DESTINATION_OF_STORIES}></th>
+    </tr>
+    <{foreach item=i from=$topics}>
+    <tr class="<{cycle values="even,odd"}>">
+      <td><{$i.id}></td>
+      <td><{$i.title}></td>
+      <td>
+        <select size="1" name="topics[<{$i.id}>]">
+          <option value="0"><{$_AM_DELETE}></option>
+          <{foreach key=key item=j from=$remain_topics}>
+          <option value="<{$key}>"><{$j.title}></option>
+          <{/foreach}>
+        </select>
+      </td>
+    </tr>
+    <{/foreach}>
+    <tr>
+      <td colspan="3" class="foot" align="center">
+        <br />
+        <{$_AM_WAYSYWTDTTAL}><br />
+        <br />
+        <input name="confirm_submit" value="<{$_AM_GO}>" type="submit">&nbsp;
+        <input name="confirm_back" value="<{$_AM_CANCEL}>" onclick="javascript:history.go(-1);" type="button"><br />
+
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<input name="op" value="delTopic" type="hidden" />
+<input name="topic_id" value="<{$topicid}>" type="hidden" />
+<input name="ok" value="1" type="hidden">
+
+</form>
+
+<{include file="$template_path/bulletin_footer.html"}>
+
+<{/strip}>

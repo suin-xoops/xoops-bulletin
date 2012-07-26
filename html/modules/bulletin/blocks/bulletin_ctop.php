@@ -204,11 +204,10 @@ function b_bulletin_Ctop_format_story($aStory_array, $options){
 
 	$news = array();
 	$title = $myts->makeTboxData4Show($aStory_array["title"]);
-	if ( !XOOPS_USE_MULTIBYTES ) {
-		if (strlen($aStory_array['title']) >= $options[2]) {
-			$title = $myts->makeTboxData4Show(substr($aStory_array['title'],0,($options[2] -1)))."...";
-		}
-	}
+	
+	// マルチバイト環境に対応
+	$title = $myts->makeTboxData4Show(xoops_substr($aStory_array['title'], 0 ,$options[2] + 3, '...'));
+	
 	$news['title'] = $title;
 	if(!empty($aStory_array['hometext'])){
 		$news['hometext'] = $myts->makeTareaData4Show($aStory_array['hometext']); // Ryuji_edit(2003-05-08)

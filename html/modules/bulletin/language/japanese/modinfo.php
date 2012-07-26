@@ -12,8 +12,8 @@ define("_MI_BULLETIN_NAME","¥Ö¥ê¥Æ¥£¥ó");
 define("_MI_BULLETIN_DESC","¥æ¡¼¥¶¤¬¼«Í³¤Ë¥³¥á¥ó¥È¤Ç¤­¤ë¡¢¥¹¥é¥Ã¥·¥å¥É¥Ã¥ÈÉ÷¤Î¥Ë¥å¡¼¥¹µ­»ö¥·¥¹¥Æ¥à¤ò¹½ÃÛ¤·¤Þ¤¹");
 
 // Names of blocks for this module (Not all module has blocks)
-define("_MI_BULLETIN_BNAME1","¥Ë¥å¡¼¥¹¥È¥Ô¥Ã¥¯");
-define("_MI_BULLETIN_BDESC1","¥Ë¥å¡¼¥¹¥È¥Ô¥Ã¥¯¥Ö¥í¥Ã¥¯");
+define("_MI_BULLETIN_BNAME1","¥Ë¥å¡¼¥¹¥«¥Æ¥´¥ê");
+define("_MI_BULLETIN_BDESC1","¥Ë¥å¡¼¥¹¥«¥Æ¥´¥ê¥Ö¥í¥Ã¥¯");
 define("_MI_BULLETIN_BNAME2","ËÜÆü¤Î¥È¥Ã¥×¥Ë¥å¡¼¥¹");
 define("_MI_BULLETIN_BDESC2","ËÜÆü¤Î¥È¥Ã¥×¥Ë¥å¡¼¥¹¥Ö¥í¥Ã¥¯");
 define("_MI_BULLETIN_BNAME3","¥«¥ì¥ó¥À¡¼");
@@ -36,12 +36,13 @@ define("_MI_BULLETIN_TEMPLATE3","¥È¥Ã¥×¥Ú¡¼¥¸");
 define("_MI_BULLETIN_TEMPLATE4","µ­»ö¤Î¥Æ¥ó¥×¥ì¡¼¥È");
 define("_MI_BULLETIN_TEMPLATE5","°õºþ¥Ú¡¼¥¸");
 define("_MI_BULLETIN_TEMPLATE6","RSS¥Ú¡¼¥¸");
+define("_MI_BULLETIN_TEMPLATE7","Á´¥Ú¡¼¥¸¶¦ÄÌ¤Î¥Ø¥Ã¥À"); // 1.01 added
 
 // Admin
 define("_MI_BULLETIN_ADMENU1","°ìÈÌÀßÄê");
 define("_MI_BULLETIN_ADMENU1_D","´ðËÜÅª¤ÊÀßÄê¤ò¹Ô¤¤¤Þ¤¹¡£");
-define("_MI_BULLETIN_ADMENU2","¥È¥Ô¥Ã¥¯´ÉÍý");
-define("_MI_BULLETIN_ADMENU2_D","¥È¥Ô¥Ã¥¯¤Î´ÉÍý¤ò¹Ô¤¤¤Þ¤¹¡£");
+define("_MI_BULLETIN_ADMENU2","¥«¥Æ¥´¥ê´ÉÍý");
+define("_MI_BULLETIN_ADMENU2_D","¥«¥Æ¥´¥ê¤Î´ÉÍý¤ò¹Ô¤¤¤Þ¤¹¡£");
 define("_MI_BULLETIN_ADMENU3","¿·¤·¤¤¥Ë¥å¡¼¥¹µ­»ö¤ÎÅê¹Æ");
 define("_MI_BULLETIN_ADMENU3_D","¥Ë¥å¡¼¥¹µ­»ö¤ÎÅê¹Æ¤ò¹Ô¤¤¤Þ¤¹¡£");
 define("_MI_BULLETIN_ADMENU4","Åê¹Æ¸¢¸Â¤Î´ÉÍý");
@@ -51,7 +52,7 @@ define("_MI_BULLETIN_ADMENU5_D","µ­»ö¤ÎÊÔ½¸¡¦ºï½ü¡¦¾µÇ§Åù¤ò¹Ô¤¤¤Þ¤¹¡£");
 define("_MI_BULLETIN_ADMENU6","¥°¥ë¡¼¥×´ÉÍý/¥Ö¥í¥Ã¥¯´ÉÍý");
 define("_MI_BULLETIN_ADMENU6_D","¥°¥ë¡¼¥×¤Î¸¢¸Â¡¦¥Ö¥í¥Ã¥¯¤ÎÀßÄê¤ò¹Ô¤¤¤Þ¤¹¡£");
 define("_MI_BULLETIN_ADMENU7","news¤«¤é¥¤¥ó¥Ý¡¼¥È");
-define("_MI_BULLETIN_ADMENU7_D","news1.1¤«¤éµ­»ö¡¦¥È¥Ô¥Ã¥¯¤Î¾ðÊó¤ò¼è¤ê¹þ¤ß¤Þ¤¹¡£");
+define("_MI_BULLETIN_ADMENU7_D","news1.1¤«¤éµ­»ö¡¦¥«¥Æ¥´¥ê¤Î¾ðÊó¤ò¼è¤ê¹þ¤ß¤Þ¤¹¡£");
 
 // Title of config items
 define("_MI_BULLETIN_CONFIG1", "¥È¥Ã¥×¥Ú¡¼¥¸¤Ë·ÇºÜ¤¹¤ëµ­»ö¿ô");
@@ -66,7 +67,7 @@ define("_MI_BULLETIN_CONFIG5","ÆüÉÕ¡¦Æü»þ¤Î½ñ¼°");
 define("_MI_BULLETIN_CONFIG5_D", "Ê¸»ú¤Î½ñ¼°¤ÏPHP¤Îdate´Ø¿ô¡¦XOOPS¤ÎformatTimestamp´Ø¿ô¤ò»²¾È¤·¤Æ¤¯¤À¤µ¤¤¡£");
 define("_MI_BULLETIN_CONFIG6","Åê¹Æ¤ò¥æ¡¼¥¶¡¼¤ÎÅê¹Æ¿ô¤ËÈ¿±Ç");
 define("_MI_BULLETIN_CONFIG6_D", "submit.php¤«¤éÅê¹Æ¤µ¤ì¤¿µ­»ö¤¬¾µÇ§¤µ¤ì¤¿ºÝ¤Ë¡¢¤½¤Î¥æ¡¼¥¶¤Î¡ÖÅê¹Æ¿ô¡×¤Ë²Ã»»¤·¤Þ¤¹¡£");
-define("_MI_BULLETIN_CONFIG7","¥È¥Ô¥Ã¥¯²èÁü¤¬¤¢¤ë¥Ç¥£¥ì¥¯¥È¥ê¤Î¥Ñ¥¹");
+define("_MI_BULLETIN_CONFIG7","¥«¥Æ¥´¥ê¥¢¥¤¥³¥ó¤¬¤¢¤ë¥Ç¥£¥ì¥¯¥È¥ê¤Î¥Ñ¥¹");
 define("_MI_BULLETIN_CONFIG7_D", "ÀäÂÐ¥Ñ¥¹¤Ç»ØÄê¤·¤Þ¤¹¡£");
 define("_MI_BULLETIN_CONFIG8","°õºþ¥Ú¡¼¥¸¤Î²èÁü¤ÎURL");
 define("_MI_BULLETIN_CONFIG8_D", "°õºþÍÑ¥Ú¡¼¥¸¤ËÉ½¼¨¤µ¤ì¤ë¥í¥´²èÁü¤òURL¤Ç»ØÄê¤·¤Þ¤¹¡£");
@@ -74,6 +75,15 @@ define("_MI_BULLETIN_CONFIG9","µ­»öÌ¾¤ò¥µ¥¤¥È¤Î¥¿¥¤¥È¥ë¤Ë¤¹¤ë");
 define("_MI_BULLETIN_CONFIG9_D", "µ­»ö¤ÎÂêÌ¾¤ò¥µ¥¤¥È¤Î¥¿¥¤¥È¥ë¤ËÃÖ¤­´¹¤¨¤Þ¤¹¡£SEO¤ÎÌÌ¤ÇÍ­¸ú¤À¤È¸À¤ï¤ì¤Æ¤¤¤Þ¤¹¡£");
 define("_MI_BULLETIN_CONFIG10","xoops_module_header¤ËRSS¤ÎURL¤òassing¤¹¤ë");
 define("_MI_BULLETIN_CONFIG10_D", "");
+// 1.01 added
+define("_MI_BULLETIN_CONFIG11","¡Ö°õºþ¤¹¤ë¡×¥¢¥¤¥³¥ó¤òÉ½¼¨¤¹¤ë");
+define("_MI_BULLETIN_CONFIG11_D", "");
+define("_MI_BULLETIN_CONFIG12","¡ÖÍ§Ã£¤ËÃÎ¤é¤»¤ë¡×¥¢¥¤¥³¥ó¤òÉ½¼¨¤¹¤ë");
+define("_MI_BULLETIN_CONFIG12_D", "");
+define("_MI_BULLETIN_CONFIG13","Tell A Friend¥â¥¸¥å¡¼¥ë¤òÍøÍÑ¤¹¤ë");
+define("_MI_BULLETIN_CONFIG13_D", "");
+define("_MI_BULLETIN_CONFIG14","RSS¤Î¥ê¥ó¥¯¤òÉ½¼¨¤¹¤ë");
+define("_MI_BULLETIN_CONFIG14_D", "");
 
 // Text for notifications
 define("_MI_BULLETIN_GLOBAL_NOTIFY", "¥â¥¸¥å¡¼¥ëÁ´ÂÎ");
@@ -82,10 +92,10 @@ define("_MI_BULLETIN_GLOBAL_NOTIFYDSC", "¥Ë¥å¡¼¥¹¥â¥¸¥å¡¼¥ëÁ´ÂÎ¤Ë¤ª¤±¤ëÄÌÃÎ¥ª¥×¥
 define("_MI_BULLETIN_STORY_NOTIFY", "É½¼¨Ãæ¤Î¥Ë¥å¡¼¥¹µ­»ö");
 define("_MI_BULLETIN_STORY_NOTIFYDSC", "É½¼¨Ãæ¤Î¥Ë¥å¡¼¥¹µ­»ö¤ËÂÐ¤¹¤ëÄÌÃÎ¥ª¥×¥·¥ç¥ó");
 
-define("_MI_BULLETIN_GLOBAL_NEWCATEGORY_NOTIFY", "¿·µ¬¥È¥Ô¥Ã¥¯");
-define("_MI_BULLETIN_GLOBAL_NEWCATEGORY_NOTIFYCAP", "¿·µ¬¥È¥Ô¥Ã¥¯¤¬ºîÀ®¤µ¤ì¤¿¾ì¹ç¤ËÄÌÃÎ¤¹¤ë");
-define("_MI_BULLETIN_GLOBAL_NEWCATEGORY_NOTIFYDSC", "¿·µ¬¥È¥Ô¥Ã¥¯¤¬ºîÀ®¤µ¤ì¤¿¾ì¹ç¤ËÄÌÃÎ¤¹¤ë");
-define("_MI_BULLETIN_GLOBAL_NEWCATEGORY_NOTIFYSBJ", "[{X_SITENAME}] {X_MODULE}: ¿·µ¬¥È¥Ô¥Ã¥¯¤¬ºîÀ®¤µ¤ì¤Þ¤·¤¿");
+define("_MI_BULLETIN_GLOBAL_NEWCATEGORY_NOTIFY", "¿·µ¬¥«¥Æ¥´¥ê");
+define("_MI_BULLETIN_GLOBAL_NEWCATEGORY_NOTIFYCAP", "¿·µ¬¥«¥Æ¥´¥ê¤¬ºîÀ®¤µ¤ì¤¿¾ì¹ç¤ËÄÌÃÎ¤¹¤ë");
+define("_MI_BULLETIN_GLOBAL_NEWCATEGORY_NOTIFYDSC", "¿·µ¬¥«¥Æ¥´¥ê¤¬ºîÀ®¤µ¤ì¤¿¾ì¹ç¤ËÄÌÃÎ¤¹¤ë");
+define("_MI_BULLETIN_GLOBAL_NEWCATEGORY_NOTIFYSBJ", "[{X_SITENAME}] {X_MODULE}: ¿·µ¬¥«¥Æ¥´¥ê¤¬ºîÀ®¤µ¤ì¤Þ¤·¤¿");
 
 define("_MI_BULLETIN_GLOBAL_STORYSUBMIT_NOTIFY", "¿·µ¬¥Ë¥å¡¼¥¹µ­»öÅê¹Æ");       
 define("_MI_BULLETIN_GLOBAL_STORYSUBMIT_NOTIFYCAP", "¿·µ¬¥Ë¥å¡¼¥¹¤ÎÅê¹Æ¤¬¤¢¤Ã¤¿¾ì¹ç¤ËÄÌÃÎ¤¹¤ë");                           

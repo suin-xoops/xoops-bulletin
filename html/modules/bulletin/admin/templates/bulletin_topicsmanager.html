@@ -47,7 +47,7 @@
 <br />
 
 <{if $topics_exists}>
-  <form method="post" action="index.php">
+  <form method="get" action="index.php">
     <table class="outer" cellspacing="1" width="100%">
       <tbody>
         <tr><th colspan="2"><{$_AM_MODIFYTOPIC}></th></tr>
@@ -66,5 +66,7 @@
     </table>
   </form>
 <{/if}>
+
+<{include file="$template_path/bulletin_footer.html"}>
 
 <{/strip}>

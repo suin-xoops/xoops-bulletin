@@ -93,7 +93,14 @@ if ($fromyear != 0 && $frommonth != 0) {
 		$story['counter']    = $article[$i]->getVar('counter');
 		$story['date']       = formatTimestamp($article[$i]->getVar('published'), $bulletin_date_format, $useroffset);
 		$story['print_link'] = 'print.php?storyid='.$article[$i]->getVar('storyid');
-		$story['mail_link']  = 'mailto:?subject='.sprintf(_MD_INTARTICLE, $xoopsConfig['sitename']).'&amp;body='.sprintf(_MD_INTARTFOUND, $xoopsConfig['sitename']).':  '.$myurl.'/article.php?storyid='.$article[$i]->getVar('storyid');
+		
+		// Tell A Frined使用する場合
+		if($bulletin_use_tell_a_frined){
+			$story['mail_link'] = XOOPS_URL.'/modules/tellafriend/index.php?target_uri='.rawurlencode( "$myurl/article.php?storyid=".$article[$i]->getVar('storyid') ).'&amp;subject='.rawurlencode(sprintf(_MD_INTARTFOUND,$xoopsConfig['sitename'])) ;
+		}else{
+			$story['mail_link'] = 'mailto:?subject='.sprintf(_MD_INTARTICLE, $xoopsConfig['sitename']).'&amp;body='.sprintf(_MD_INTARTFOUND, $xoopsConfig['sitename']).':  '.$myurl.'/article.php?storyid='.$article[$i]->getVar('storyid');
+		}
+		
 		$xoopsTpl->append('stories', $story);
 	}
 
@@ -101,6 +108,9 @@ if ($fromyear != 0 && $frommonth != 0) {
 } else {
 	$xoopsTpl->assign('show_articles', false);
 }
+
+$xoopsTpl->assign('disp_print_icon', $bulletin_disp_print_icon);
+$xoopsTpl->assign('disp_tell_icon', $bulletin_disp_tell_icon );
 
 $xoopsTpl->assign($assing_array);
 if($bulletin_assing_rssurl_head){

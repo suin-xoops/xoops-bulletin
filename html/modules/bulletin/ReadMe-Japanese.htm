@@ -26,7 +26,6 @@ H2{
 }
 TABLE{
   width : 100%;
-  border-width : 1px 1px 1px 1px;
   border-style : solid solid solid solid;
   border-top-color : silver;
   border-right-color : silver;
@@ -76,6 +75,10 @@ IMG{
   margin: 0.5em;
   overflow: auto;
 }
+.news{
+  font-size : 0.8em;
+  letter-spacing : 1px;
+}
 -->
 </style>
 </head>
@@ -84,8 +87,7 @@ IMG{
 <div id="main_div">
 <h2>Bulletin</h2>
 <h4>д│д╬ете╕ехб╝еыд╦д─ддд╞</h4>
-<img src="images/bulletin_logo.png" width="92" height="52" border="0" align="left">е╦ехб╝е╣ете╕ехб╝еыд╬д╥д╚д─д╟д╣бгnewsд╬╕┼дде│б╝е╔дЄ║■┐╖д╣дыд│д╚дм│л╚пд╬днд├длд▒д╚д╩дъд▐д╖д┐бг║╟╜к┼кд╦▓с╡юд╬═н═╤д╩е╧е├епд╩д╔дЄ└╣дъ╣■д▀бвDuplicatable╡б╟╜дт╔╒д▒▓├дид▐д╖д┐бг<br>
-ви╕└╕ье╒ебедеыд╬englishд╧╔╘┤░┴┤д╟д╣б╩д└дьдл║юд├д╞б╦б░б░би╕╜║▀д╧╞№╦▄╕ь┤─╢нд╬XOOPS2.0.10 JP░╩╣▀д╟╞░║юд╖д▐д╣бг
+<img src="images/bulletin_logo.png" width="92" height="52" border="0" align="left">е╦ехб╝е╣ете╕ехб╝еыд╬д╥д╚д─д╟д╣бгnewsд╬╕┼дде│б╝е╔дЄ║■┐╖д╣дыд│д╚дм│л╚пд╬днд├длд▒д╚д╩дъд▐д╖д┐бг║╟╜к┼кд╦▓с╡юд╬═н═╤д╩е╧е├епд╩д╔дЄ└╣дъ╣■д▀бвDuplicatable╡б╟╜дт╔╒д▒▓├дид▐д╖д┐бг
 <h4>╡б╟╜└т╠└</h4>
 <ul>
   <li>е╦ехб╝е╣┼ъ╣╞бж╩╘╜╕бж║я╜№
@@ -138,7 +140,6 @@ IMG{
 д█длд╦дт═¤▓Є╔╘╟╜д╩╗┼══дЄ▓■┴▒д╖д┐дъбвд║д├д╚╩№├╓д╡дьд╞ддд┐д├д▌дде╨е░FixдЄд╖д┐дъд╚дддэдддэ╩╤дяд├д┐┼└дмдвдъд▐д╣бг
 <h4>ToDo</h4>
 <ul>
-  <li>е╚е╘е├епдЄ║я╜№д╣дыд╚днд╦бд╡н╗ЎдЄ░▄┤╔д╣ды╜ш═¤дЄ─╔▓├д╣дыбг
   <li>RSS╟█┐од╬▓ш┴№д╬URLдЄ╗╪─ъд╣ды
   <li>TinyDдЄд▐д═д╞└┼┼кURLдЄ└╕└од╣дыд╚длбг
   <li>е╚еще├епе╨е├еп╡б╟╜дЄ─╔▓├д╖д╞д▀дыд╚длбг
@@ -233,24 +234,80 @@ modules/bulletin3/templates/blocks/▓╝д╬е╒ебедеыдЄ░╩▓╝д╬дшджд╦еъе═б╝ерд╖д╞дпд└д╡д
 <h4>евеєедеєе╣е╚б╝еы╩¤╦б</h4>
 ─╠╛яд╬ете╕ехб╝еы╞▒══д╦ете╕ехб╝еы┤╔═¤дшдъевеєедеєе╣е╚б╝еыдЄ╝┬╣╘д╖д╞дпд└д╡ддбг
 <h4>╣╣┐╖═·╬Є</h4>
-<table border="1" cellpadding="0" cellspacing="0">
+<table cellpadding="0" cellspacing="0" class="news" border="0">
   <col span="3">
   <tbody>
     <tr>
-      <th align="center">ver</th>
+      <th align="center">Ver</th>
       <th align="center">Date</th>
-      <th align="center">News</th>
+      <th align="center">Category</th>
+      <th align="center">Note</th>
+    </tr>
+    <tr>
+      <td>1.01</td>
+      <td>2006-02-21</td>
+      <td align="center">╡б╟╜─╔▓├</td>
+      <td>englishдЄ─╔▓├(thx Yuji)</td>
+    </tr>
+    <tr>
+      <td>1.01</td>
+      <td>2006-02-20</td>
+      <td align="center">е╨е░╜д└╡</td>
+      <td>е╓еэе├епд╟╖я╠╛д╬╩╕╗·┐Ї└┌дъ╡═дсдм╜╨═шд╩дде╨е░дЄ╜д└╡бг</td>
+    </tr>
+    <tr>
+      <td>1.01</td>
+      <td>2006-02-20</td>
+      <td align="center">╡б╟╜─╔▓├</td>
+      <td>Tell A Friendете╕ехб╝еыд╦┬╨▒■бг</td>
+    </tr>
+    <tr>
+      <td>1.01</td>
+      <td>2006-02-20</td>
+      <td align="center">╡б╟╜─╔▓├</td>
+      <td>е╚е╘е├епдЄ║я╜№д╣дыд╚днбве╚е╘е├епд╦┬░д╣ды╡н╗ЎдЄ┬╛д╬е╚е╘е├епд╦░▄┤╔д╟днды╡б╟╜дЄ─╔▓├бг</td>
+    </tr>
+    <tr>
+      <td>1.01</td>
+      <td>2006-02-20</td>
+      <td align="center">╡б╟╜─╔▓├</td>
+      <td>б╓░ї║■д╣дыб╫б╓═з├гд╦├╬дщд╗дыб╫еведе│еєд╬╔╜╝и╚є╔╜╝идЄ┴к┬Єд╟дндыдшджд╦╩╤╣╣бг</td>
+    </tr>
+    <tr>
+      <td>1.01</td>
+      <td>2006-02-20</td>
+      <td align="center">╡б╟╜─╔▓├</td>
+      <td>б╓║╟┐╖е╦ехб╝е╣б╫д╟╦▄╩╕дЄ╩г┐Ї╔╜╝ид╟дндыдшджд╦╩╤╣╣бг</td>
+    </tr>
+    <tr>
+      <td>1.01</td>
+      <td>2006-02-20</td>
+      <td align="center">╡б╟╜─╔▓├</td>
+      <td>RSSд╪д╬еъеєепдЄ╔╜╝ид╟дндыдшджд╦╩╤╣╣бг</td>
+    </tr>
+    <tr>
+      <td>1.01</td>
+      <td>2006-02-20</td>
+      <td align="center">е╨е░╜д└╡</td>
+      <td>[╩╘╜╕]дмеъеєеп└┌дьд╖д╞ддд┐е╨е░дЄ╜д└╡бг</td>
+    </tr>
+    <tr>
+      <td>1.01</td>
+      <td>2006-02-20</td>
+      <td align="center">╗┼══╩╤╣╣</td>
+      <td>б╓е╚е╘е├епб╫д╚дддж╔╜╡ндЄб╓еле╞е┤еъб╫д╦┼¤░ьд╖д┐бг</td>
     </tr>
     <tr>
       <td nowrap>1.0</td>
       <td nowrap>2006-02-16</td>
+      <td align="center">д╜д╬┬╛</td>
       <td nowrap>е╞е╣е╚╚╟еъеъб╝е╣</td>
     </tr>
   </tbody>
 </table>
 <h4>╝╒╝н</h4>
 myblocksadminдЄGIJOEд╡дєдлдщдк╝┌дъд╖д▐д╖д┐бг&lt;<a href="http://www.peak.ne.jp/">http://www.peak.ne.jp/</a>&gt;<br>
-GIJOEд╡дєдшдъ▒╤╕ье╒ебедеыдЄ─║днд▐д╖д┐бг</div>
+Yujiд╡дєдшдъ▒╤╕ье╒ебедеыдЄддд┐д└днд▐д╖д┐бг</div>
 </div>
 </body>
 </html>
