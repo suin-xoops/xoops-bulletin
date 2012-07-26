@@ -1,0 +1,22 @@
+<{strip}>
+
+<{assign var="mydirurl" value=$block.mydirurl}>
+
+<{foreach item=fullstory from=$block.fullstories}>
+  <{include file="db:`$block.mydirname`_item.html" story=$fullstory}>
+  <br />
+<{/foreach}>
+
+<ul>
+  <{foreach item=story from=$block.stories}>
+  <li><a href="<{$mydirurl}>/index.php?page=article&amp;storyid=<{$story.id}>"><{$story.title}></a>
+  <{if $block.type == "published"}>
+    (<{$story.date}>)
+  <{else}>
+    (<{$story.hits}>)
+  <{/if}>
+  </li>
+  <{/foreach}>
+</ul>
+
+<{/strip}>

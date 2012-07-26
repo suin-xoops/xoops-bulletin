@@ -1,0 +1,105 @@
+<?php
+
+//%%%%%%	Admin Module Name  Articles 	%%%%%
+define('_AM_DBUPDATED','µ¥ÀÌÅ¸º£ÀÌ½º¸¦ ¼º°øÀûÀ¸·Î °»½ÅÇÏ¿´½À´Ï´Ù.');
+
+define('_AM_AUTOARTICLES','°ÔÀç¿¹Á¤±â»ç');
+define('_AM_STORYID','ID');
+define('_AM_TITLE','Á¦¸í');
+define('_AM_TOPIC','Ä«Å×°í¸®');
+define('_AM_POSTER','Åõ°íÀÚ');
+define('_AM_PROGRAMMED','°ÔÀç¿¹Á¤ÀÏ½Ã');
+define('_AM_ACTION','°ü¸®');
+define('_AM_EDIT','¼öÁ¤');
+define('_AM_DELETE','»èÁ¦');
+define('_AM_POSTED','Åõ°íÀÏ½Ã');
+define('_AM_PUBLISHED','°ÔÀçÀÏ½Ã'); // Published Date
+define('_AM_GO','¼Û½Å');
+
+define('_AM_RUSUREDEL','Á¤¸»·Î ÀÌ ´º½º±â»ç¿Í ±×¿¡ ¼ÓÇÑ ÄÚ¸àÆ®µîÀ» ¸ðµÎ »èÁ¦ÇÏ½Ç °Ç°¡¿ä?');
+define('_AM_YES','¿¹');
+define('_AM_NO','¾Æ´Ï¿ä');
+define('_AM_INTROTEXT','º»¹®');
+define('_AM_EXTEXT','º»¹®2');
+
+define('_AM_APPROVE','ÀÌ ±â»ç¸¦ ½ÂÀÎÇÔ');
+define('_AM_MOVETOTOP','ÀÌ ±â»ç¸¦ ÅéÀÎÆäÀÌÁö ÃÖ»ó´ÜÀ¸·Î ÀÌµ¿ÇÔ');
+define('_AM_CHANGEDATETIME','°ÔÀçÀÏ½Ã¸¦ º¯°æÇÔ');
+define('_AM_NOWSETTIME','ÇöÀç °ÔÀç¿¹Á¤ÀÏ½Ã: Y³âm¿ùdÀÏ H:i'); 
+define('_AM_CURRENTTIME','ÇöÀçÀÏ½Ã Y³âm¿ùdÀÏ H:i');  
+define('_AM_SETDATETIME','°ÔÀçÀÏ½Ã¸¦ ¼³Á¤');
+
+define('_AM_PREVIEW','¹Ì¸®º¸±â');
+define('_AM_SAVE','ÀúÀå');
+define('_AM_PUBINHOME','ÅéÀÎÆäÀÌÁö¿¡ °ÔÀçÇÔ');
+define('_AM_ADD','Ã·°¡');
+
+//%%%%%%	Admin Module Name  Topics 	%%%%%
+
+define('_AM_ADDMTOPIC','¸ÞÀÎ Ä«Å×°í¸® ÀÛ¼º');
+define('_AM_TOPICNAME','Ä«Å×°í¸®¸í');
+define('_AM_MAX40CHAR','£¨ÃÖ´ë20±ÛÀÚ£¨ÇÑ±Û£©£©');
+define('_AM_TOPICIMG','Ä«Å×°í¸® È­»ó');
+define('_AM_IMGNAEXLOC','%s ¿¡ ÀÖ´Â È­»óÆÄÀÏ¸í');
+
+define('_AM_MODIFYTOPIC','Ä«Å×°í¸® ¼öÁ¤');
+define('_AM_MODIFY','¼Û½Å');
+define('_AM_PARENTTOPIC','ºÎ¸ð Ä«Å×°í¸®');
+define('_AM_SAVECHANGE','º¯°æÀúÀå');
+define('_AM_DEL','»èÁ¦');
+define('_AM_CANCEL','Ãë¼Ò');
+define('_AM_WAYSYWTDTTAL','Á¤¸»·Î ÀÌ ÅäÇÈ°ú ÀÌ¿¡ ¼ÓÇÑ ¸ðµç ´º½º±â»ç,ÄÚ¸àÆ® µîÀ» »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?');
+
+define('_AM_EXPARTS','±âÇÑÁ¾·á±â»ç');
+define('_AM_EXPIRED','±âÇÑÁ¾·á');
+define('_AM_CHANGEEXPDATETIME','À¯È¿±âÇÑÀ» º¯°æÇÔ');
+define('_AM_SETEXPDATETIME','À¯È¿±âÇÑÀ» ¼³Á¤ÇÔ');
+
+define('_AM_ERRORTOPICNAME', 'Ä«Å×°í¸®¸íÀÌ ±âÀÔµÇ¾î ÀÖÁö ¾Ê½À´Ï´Ù.');
+define('_AM_EMPTYNODELETE', '»èÁ¦ÇÒ °ÍÀÌ ¾ø½À´Ï´Ù.');
+
+// Added by SUIN
+
+define('_AM_TOPIC_IMAGE','Ä«Å×°í¸® È­»ó');
+define('_AM_TOPIC_DISABLE','Ä«Å×°í¸® È­»óÀ» Ç¥½Ã ¾ÈÇÔ');
+define('_AM_TOPIC_LEFT','Ä«Å×°í¸® È­»óÀ» ¿ÞÂÊ¿¡ Ç¥½ÃÇÔ');
+define('_AM_TOPIC_RIGHT','Ä«Å×°í¸® È£»óÀ» ¿À¸¥ÂÊ¿¡ Ç¥½ÃÇÔ');
+define('_AM_OPTIONSETTINGS','«ª«×«·«ç«ó');
+define('_AM_DISP_CONTENUE','[îïªÆªÎÑÀÞÀªòøúãÆ]');
+define('_AM_PUB_ARTICLES','?î°ñéªÎ«Ë«å?«¹ÑÀÞÀ');
+define('_AM_WAITING_ARTICLES','ã¯ìãÓâªÁªÎ«Ë«å?«¹ÑÀÞÀ');
+define('_AM_ARTICLE_ADMIN','«Ë«å?«¹ÑÀÞÀªÎÎ·×â');
+define('_AM_NOSUBJECT','ð¹Ù£ªÊª·');
+define('_AM_RIGHT_TO_POST','÷áÍÃªòúÉÊ¦ª¹ªë');
+define('_AM_RIGHT_TO_APPROVE','?î°ªòí»ÔÑã¯ìãª¹ªë');
+define('_AM_RIGHT_TO_CHOSE_DATE','?î°ìíãÁàâïÒªòúÉÊ¦ª¹ªë');
+define('_AM_RIGHT_HTML','HTMLªÎÞÅéÄªòúÉÊ¦ª¹ªë');
+define('_AM_RIGHT_XCODE','XOOPS«³?«ÉªÎÞÅéÄªòúÉÊ¦ª¹ªë');
+define('_AM_RIGHT_SMILEY','äÔ«¢«¤«³«óªÎÞÅéÄªòúÉÊ¦ª¹ªë');
+define('_AM_DATE_FORMAT','%y Ò´ %m êÅ %d ìí %h ãÁ %i ÝÂ');
+define('_AM_POST_NOW','ª³ªÎÑÀÞÀªòÐÑª¹ª°«È«Ã«×«Ú?«¸õÌß¾Ý»ªË?î°ª¹ªë');
+define('_AM_USE_SAMILEY','äÔ«¢«¤«³«óªòêó?ªËª¹ªë');
+define('_AM_USE_HTML','HTML«¿«°ªòêó?ªËª¹ªë');
+define('_AM_USE_BR','ËÇú¼ªòí»ÔÑ?ìýª¹ªë');
+define('_AM_USE_XCODE','XOOPS«³?«Éªòêó?ªËª¹ªë');
+define('_AM_SELECTTOPIC','«««Æ«´«êªòàÔ?ª·ªÆª¯ªÀªµª¤¡£');
+define('_AM_NO_TOPICS','«««Æ«´«êª¬ª¢ªêªÞª»ªó¡£');
+define('_AM_DO_YOU_CONVERT','newsª«ªéÑÀÞÀ?«««Æ«´«êªÎï×ÜÃªòö¢ªê?ªßªÞª¹ª«£¿');
+define('_AM_EDIT_ARTICLE','«Ë«å?«¹ÑÀÞÀªÎøºó¢');
+define('_AM_NO_ARTICLES','ÑÀÞÀªÏª¢ªêªÞª»ªó¡£');
+define('_AM_CONFIG','%sÎ·×â');
+
+// v 1.01 added
+define('_AM_TOPICS_DELETE','«««Æ«´«êÞûð¶');
+define('_AM_TOPICID','ID');
+define('_AM_DESTINATION_OF_STORIES','«««Æ«´«êªË?ª¹ªëÑÀÞÀªÎáêªêà»');
+define('_AM_FOLLOW_TOPICS_IS_DELETED','ì¤ù»ªÎ«««Æ«´«êªÏÞûð¶ªµªìªÞª¹¡£');
+
+
+define('_AM_CREDIT','Bulletin(www.suin.jp)');
+// ì¤ù»ªÎú¼ªÏ??íºªÎÙ£îñªäURLªÊªÉªË?ÌÚªÇª­ªÞª¹¡£ì¤ù»ªÏÎ·×â?ØüªËøúãÆªµªìªÞª¹¡£
+// It is able to change a following line into the TRANSLATER's name and website. Follow appears at admin page.
+define('_AM_TRANSLATER','Japanese patch(www.suin.jp)');
+// example : define('_AM_TRANSLATER','English patch(www.english-tranlater.com)');
+
+?>
